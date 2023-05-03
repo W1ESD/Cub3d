@@ -1,13 +1,18 @@
-#include<stdio.h>
-#include<stdlib.h>
+#include "parsing.h"
 
-int main()
+
+int main(int ac,char **av)
 {
 
-    printf("hello");
+    char    **map;
 
+    if(ac == 2)
+    {
 
-
-
+    if(check_name(av[1]))
+        return (0);
+    
+    map = parse_map(av[1]);
+    }
     return 0;
 }
