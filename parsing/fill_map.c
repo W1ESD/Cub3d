@@ -40,6 +40,7 @@ void    fill_map2d(char     **map,int   fd)
         printf("%s\n",LMAP);
         exit(0);
     }
+    map[i] = NULL;
 }
 
 void    fill_map(char   **map,int fd)
@@ -70,4 +71,5 @@ void    fill_map(char   **map,int fd)
             return;
         }
     }
+    map[i] = NULL;
 }

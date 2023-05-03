@@ -18,6 +18,8 @@ char**   parse_map(char *str)
 
     fd = open(str,O_RDONLY);
     
+    map = NULL;
+
     map = malloc(sizeof(char*) * nbr_lines);
     
     fill_map(map,fd);
