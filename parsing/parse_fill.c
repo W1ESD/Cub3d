@@ -51,7 +51,55 @@ void    check_text(char **map)
         i++;
     }
 }
+
+void    check_duplicity(char    **map)
+{
+    int  i=0;
+    int j;
+    while(i < 4)
+    {
+        j = i + 1;
+        while(j < 4)
+        {
+            if(map[i][0] == map[j][0])
+            {
+                printf("errrrrnoo duplicated identifier");
+                exit(-1);
+            }
+            j++;
+        }
+        i++;
+    }
+}
+
+void    check_format(char   *line)
+{
+    int     i = 0;
+    while (line[i] == ' ' || line[i] == '\t')
+            i++;
+    
+}
+
+void    check_flor(char     *line)
+{
+    if(line[0] != 'F' && line[0] != 'C' && line[1] != ' ')
+    {
+        printf("sshhhshshhs\n");
+        exit(0);
+    }
+    check_format(line + 1);
+
+}
+
+void    check_colors(char       **map)
+{
+    check_flor(map[4]);
+    check_flor(map[5]);
+}
+
 void            parse_fill(char    **map)
 {
-        check_text(map);
+    check_text(map);
+    check_duplicity(map);
+    check_colors(map);
 }
