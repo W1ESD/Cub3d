@@ -11,12 +11,13 @@
 #define         FILE_NOT_FOUND  "\033[91;1mError \nfile not found \033[0m"
 #define         LMAP            "\033[91;1mError \nNew Line In Map\033[0m"
 
-int             check_name(char *str);
-char**          parse_map(char *str);
-char*           gnl(int fd);
-void            fill_map(char   **map,int fd);
-void            fill_map2d(char     **map,int   fd);
-int             empty_line(char *str);
-int             count_lines(int fd);
-void            parsing(char    **map);
-char		    **ft_split(char const *s, char c);
+
+int         check_name(char *str);
+int         count_lines(int fd);
+char*       gnl(int fd);
+char**      parse_map(char *str);
+void        fill_map(char   **map,int fd);
+char	    *ft_strjoin(char const *s1, char const *s2);
+char		**ft_split(char const *s, char c);
+char	**ft_split2(char *str);
+void        parse_fill(char    **map);
