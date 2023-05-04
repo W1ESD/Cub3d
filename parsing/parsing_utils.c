@@ -196,6 +196,39 @@ char *ft_strncpy(char *s1, char *s2, int n)
 	return (s1);
 }
 
+char	**ft_split2_2(char *str)
+{
+	int i = 0;
+	int j = 0;
+	int k = 0;
+	int wc = 0;
+	while (str[i])
+	{
+		while (str[i] && (str[i] == ' ' || str[i] == '\t' || str[i] == '\n' || str[i] == ','))
+			i++;
+		if (str[i])
+			wc++;
+		while (str[i] && (str[i] != ' ' && str[i] != '\t' && str[i] != '\n' && str[i] != ','))
+			i++;
+	}
+	char **out = (char **)malloc(sizeof(char *) * (wc + 1));
+	i = 0;
+	while (str[i])
+	{
+		while (str[i] && (str[i] == ' ' || str[i] == '\t' || str[i] == '\n' || str[i] == ','))
+			i++;
+		j = i;
+		while (str[i] && (str[i] != ' ' && str[i] != '\t' && str[i] != '\n' && str[i] != ','))
+			i++;
+		if (i > j)
+		{
+			out[k] = (char *)malloc(sizeof(char) * ((i - j) + 1));
+			ft_strncpy(out[k++], &str[j], i - j);
+		}
+	}
+	out[k] = NULL;
+	return (out);
+}
 char	**ft_split2(char *str)
 {
 	int i = 0;
@@ -228,4 +261,27 @@ char	**ft_split2(char *str)
 	}
 	out[k] = NULL;
 	return (out);
+}
+
+
+int		ft_atoi(char *str)
+{
+	int	sum;
+	int	sign;
+	int	found;
+
+	sum = 0;
+	sign = 1;
+	found = 1;
+	if (*str == '-')
+		return(-1);
+	while (*str && found)
+	{
+		if (*str >= '0' && *str <= '9')
+			sum = sum * 10 + *str - '0';
+		else
+			return(-1);
+		str++;
+	}
+	return (sign * sum);
 }

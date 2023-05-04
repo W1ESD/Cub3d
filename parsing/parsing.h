@@ -19,5 +19,7 @@ char**      parse_map(char *str);
 void        fill_map(char   **map,int fd);
 char	    *ft_strjoin(char const *s1, char const *s2);
 char		**ft_split(char const *s, char c);
-char	**ft_split2(char *str);
+char	    **ft_split2(char *str);
 void        parse_fill(char    **map);
+char	    **ft_split2_2(char *str);
+int	        ft_atoi(char *str);
