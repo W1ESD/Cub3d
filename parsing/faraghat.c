@@ -77,7 +77,7 @@ void    check_mochkil(char  **map,int   n,int   m)
                     if(champ(map[i-1][j])){
                         printf("ERROR\n");exit(0);}
                 }
-                if(i + 1 >= 0 && i + 1 < m) 
+                if(i + 1 >= 0 && i + 1 < m)      
                 {
                     if(champ(map[i+1][j])){
                         printf("ERROR\n");exit(0);}
