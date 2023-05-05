@@ -279,7 +279,7 @@ int		ft_atoi(char *str)
 	{
 		if (*str >= '0' && *str <= '9')
 			sum = sum * 10 + *str - '0';
-		else
+		else 
 			return(-1);
 		str++;
 	}

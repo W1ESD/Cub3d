@@ -117,6 +117,6 @@ int     main(int    ac,char     **av)
             return 0;
     }
     map = parse_map(av[1]);
-    parse_fill(map);
+    parse_fill(map); 
     return 0;
 }

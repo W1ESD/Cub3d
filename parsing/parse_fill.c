@@ -110,7 +110,7 @@ void    check_valid_bit(char    *line)
         exit(0);
     }
     int     c = ft_atoi(line);
-    printf("line is : %s int is : %d\n",line,c);
+    // printf("line is : %s int is : %d\n",line,c);
     if( c > 255 || c == -1)
     {
         printf("ERRRRRPRTKKKJK\n");
@@ -158,10 +158,110 @@ void    check_colors(char       **map)
     check_flor(map[5]);
 }
 
+void    check_vl(char   *s)
+{
+    int     i = 0;
+    while(s[i])
+    {
+        if(s[i] != '1' && s[i] != '0' && s[i] != 'N'  \
+            && s[i] != 'S' && s[i] != 'E' && s[i] != 'W' && s[i] != ' ')
+            printf("COMPOSANT WRONG\n");
+        i++;
+    }
+}
+void    check_different_digit(char  **map)
+{
+    int     i = 6;
+    while(map[i])
+    {
+        check_vl(map[i]);
+        i++;
+    }
+}
+void    check_player_duplicity(char **map)
+{
+    int     i = 6;
+    int     j;
+    int     count = 0;
+    while (map[i])
+    {
+        j=0;
+        while(map[i][j])
+        {
+            if(map[i][j] == 'N' || map[i][j] == 'E' || map[i][j] == 'W' || map[i][j] == 'S')
+                count ++;
+            j++;
+        }
+        i++;
+    }
+    if(count > 1)
+    {
+        printf("\nerrorduplicateplayer\n\n");
+        exit(0);
+    }
+}
+void    first_line(char *line)
+{
+    int     i = 0;
+    while(line[i])
+    {
+        if(line[i] != '1' && line[i] != ' ')
+        {
+            printf("errno\n");
+            exit(0);
+        }
+        i++;
+    }
+}
+void    check_first_last(char   *line)
+{
+    int     i=0;
+    if(line[i] != '1' && line[i] != ' ')
+    {
+        printf("ERROR foundddddd \n");
+        exit(0);
+    }
+    while(line[++i]);
+    if(line[i-1] != '1' && line[i-1] != ' ')
+    {
+        printf("NOT 1 FOUNDED\n");
+        exit(0);
+    }
+}
+void    check_lastline(char *line)
+{
+    int     i=0;
+    while(line[i])
+    {
+        if(line[i] != ' ' && line[i] != '1')
+        {
+            printf("DDDD_DDD LAST LINE");
+            exit(0);
+        }
+        i++;
+    }
+}
+void    enc_map(char **map)
+{
+    int     i=0;
+    while(map[i])
+    {
+        check_first_last(map[i]);
+        i++;
+    }
+    check_lastline(map[i-1]);
+}
+void    closed_map(char **map)
+{
+    first_line(map[0]);
+    enc_map(map);
+}
+
 void    check_map_game(char **map)
 {
-
-    
+    check_different_digit(map);
+    check_player_duplicity(map);
+    closed_map(map + 6);
 }
 
 void            parse_fill(char    **map)
@@ -170,4 +270,6 @@ void            parse_fill(char    **map)
     check_duplicity(map);
     check_colors(map);
     check_map_game(map);
+    check_lfaraghat(map+6);
 }
+ 

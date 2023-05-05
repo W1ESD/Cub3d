@@ -9,7 +9,7 @@ CFLANG = -Wall -Wextra -Werror
 OBJS = $(SRCS:.c=.o)
 
 
-all: $(NAME)
+all: $(NAME) 
 
 $(NAME): $(OBJS)
 	@$(CC) $(CFLAG) -o $(NAME) $(OBJS)
