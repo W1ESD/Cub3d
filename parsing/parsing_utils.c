@@ -273,7 +273,7 @@ int		ft_atoi(char *str)
 	sum = 0;
 	sign = 1;
 	found = 1;
-	if (*str == '-')
+	if (*str == '-') 
 		return(-1);
 	while (*str && found)
 	{ 

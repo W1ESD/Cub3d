@@ -266,7 +266,7 @@ void    check_map_game(char **map)
 
 void            parse_fill(char    **map)
 {
-    check_text(map);
+    check_text(map); 
     check_duplicity(map);
     check_colors(map);
     check_map_game(map); 

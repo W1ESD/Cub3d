@@ -3,7 +3,7 @@ SRCS = $(wildcard *.c)
 CC = gcc
 
 NAME = parsing
-
+ 
 CFLANG = -Wall -Wextra -Werror 
 
 OBJS = $(SRCS:.c=.o) 

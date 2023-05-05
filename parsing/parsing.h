@@ -13,7 +13,7 @@
 
 
 int         check_name(char *str);
-int         count_lines(int fd);
+int         count_lines(int fd); 
 char*       gnl(int fd);
 char**      parse_map(char *str);
 void        fill_map(char   **map,int fd);

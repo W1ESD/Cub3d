@@ -111,7 +111,7 @@ int     main(int    ac,char     **av)
 {
     char    **map;
     int     nbr; 
-    if(ac == 2)
+    if(ac == 2) 
     {
         if(check_name(av[1]))
             return 0;
