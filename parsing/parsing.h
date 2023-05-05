@@ -23,5 +23,4 @@ char	    **ft_split2(char *str);
 void        parse_fill(char    **map);
 char	    **ft_split2_2(char *str);
 int	        ft_atoi(char *str);
-void    encoutourd_map(char **map);
-void    check_lfaraghat(char    **map); 
+void        check_lfaraghat(char    **map);  

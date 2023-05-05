@@ -6,7 +6,7 @@ NAME = parsing
 
 CFLANG = -Wall -Wextra -Werror 
 
-OBJS = $(SRCS:.c=.o)
+OBJS = $(SRCS:.c=.o) 
 
 
 all: $(NAME) 

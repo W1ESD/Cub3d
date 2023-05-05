@@ -269,7 +269,7 @@ void            parse_fill(char    **map)
     check_text(map);
     check_duplicity(map);
     check_colors(map);
-    check_map_game(map);
+    check_map_game(map); 
     check_lfaraghat(map+6);
 }
  

@@ -276,7 +276,7 @@ int		ft_atoi(char *str)
 	if (*str == '-')
 		return(-1);
 	while (*str && found)
-	{
+	{ 
 		if (*str >= '0' && *str <= '9')
 			sum = sum * 10 + *str - '0';
 		else 

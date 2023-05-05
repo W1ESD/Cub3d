@@ -110,7 +110,7 @@ void    fill_map(char   **map,int fd)
 int     main(int    ac,char     **av)
 {
     char    **map;
-    int     nbr;
+    int     nbr; 
     if(ac == 2)
     {
         if(check_name(av[1]))
