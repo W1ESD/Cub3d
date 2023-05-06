@@ -11,8 +11,8 @@ void    check_duplicity(char    **map)
         {
             if(map[i][0] == map[j][0])
             {
-                printf("errrrrnoo duplicated identifier");
-                exit(-1);
+                printf("%s%s\n",ERROR,"Duplicate Identifier Founded\033[0m");
+                exit(1);
             }
             j++;
         }
@@ -26,6 +26,5 @@ void            parse_fill(t_data* data)
     check_duplicity(data->map);
     check_colors(data);
     check_map_game(data);
-    // system("leaks parsing");
     check_lfaraghat(data->map + 6,data);
 }

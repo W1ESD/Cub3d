@@ -6,7 +6,10 @@ void    check_vl(char   *s)
     {
         if(s[i] != '1' && s[i] != '0' && s[i] != 'N'  \
             && s[i] != 'S' && s[i] != 'E' && s[i] != 'W' && s[i] != ' ')
-            printf("COMPOSANT WRONG\n");
+            {
+                printf("%s%s\n",ERROR,"Invalid Map Element\033[0m");
+                exit(1);
+            }
         i++;
     }
 }
@@ -37,8 +40,13 @@ void    check_player_duplicity(t_data   *data)
     }
     if(count > 1)
     {
-        printf("\nerrorduplicateplayer\n\n");
-        exit(0);
+        printf("%s%s\n",ERROR,"Duplicate Player\033[0m");
+        exit(1);
+    }
+    if(count == 0)
+    {
+        printf("%s%s\n",ERROR,"No player Founded\033[0m");
+        exit(1);
     }
 }
 void    first_line(char *line)
@@ -48,27 +56,29 @@ void    first_line(char *line)
     {
         if(line[i] != '1' && line[i] != ' ')
         {
-            printf("errno\n");
-            exit(0);
+            printf("%s%s\n",ERROR,"Incorrect First Line\033[0m");
+            exit(1);
         }
         i++;
     }
 }
+
 void    check_first_last(char   *line)
 {
     int     i=0;
     if(line[i] != '1' && line[i] != ' ')
     {
-        printf("ERROR foundddddd \n");
-        exit(0);
+        printf("%s%s\n",ERROR,"Walls Error\033[0m");
+        exit(1);
     }
     while(line[++i]);
     if(line[i-1] != '1' && line[i-1] != ' ')
     {
-        printf("NOT 1 FOUNDED\n");
-        exit(0);
+        printf("%s%s\n",ERROR,"Walls Error\033[0m");
+        exit(1);
     }
 }
+
 void    check_lastline(char *line)
 {
     int     i=0;
@@ -76,12 +86,13 @@ void    check_lastline(char *line)
     {
         if(line[i] != ' ' && line[i] != '1')
         {
-            printf("DDDD_DDD LAST LINE");
-            exit(0);
+            printf("%s%s\n",ERROR,"Walls Error\033[0m");
+            exit(1);
         }
         i++;
     }
 }
+
 void    enc_map(char **map)
 {
     int     i=0;

@@ -1,5 +1,18 @@
 #include "parsing.h"
 
+void    add_text_to_struct(char *line,t_data*   data)
+{
+    if(line[0] == 'N')
+        data->north_txt = line;
+    if(line[0] == 'S')
+        data->south_txt = line;
+    if(line[0] == 'E')
+        data->east_txt = line;
+    if(line[0] == 'W')
+        data->west_txt = line;
+    printf("%s\n",data->east_txt);
+}
+
 int     check_path(char *str)
 {
     int fd;
@@ -15,36 +28,41 @@ int     check_identifier(char   *str)
     strcmp(str,"WE") && strcmp(str,"SO"));
 
 }
-void    check_validity(char *line)
+void    check_validity(char *line,t_data* data)
 {
     char    **split;
+    static int a;
     split = ft_split2(line);
     if(check_identifier(split[0]))
     {
-        printf("eeeee\n");
-        exit(0);
+        printf("%s%s\n",ERROR,"Invalid Identifier for Texter\033[0m");
+        exit(1);
     }
     if(split[1] == NULL)
     {
-        printf("eeeerrrrrooororooorr");
-        exit(0);
+        printf("%s%s\n",ERROR,"Invalid texter\033[0m");
+        exit(1);
     }
     if(check_path(split[1]) == 0 )
     {
-        printf("a77mikrchi\n");
-        exit(0);
+        printf("%s%s\n",ERROR,"Invalid texter path\033[0m");
+        exit(1);
     }
+
     if(split[2] != NULL)
     {
-        printf("MIMIMIMIMIMIMIMIMIMIMIM");
+        printf("%s%s\n",ERROR,"Invalid Line for texters\033[0m");
+        exit(1);
     }
-    int i=0;
-    while(split[i])
+    add_text_to_struct(split[1],data);
+    int i = 0;
+    while(split[i] && i != 1)
     {
         free(split[i]);
         i++;
     }
     free(split);
+    a++;
 }
 
 void    check_text(t_data* data)
@@ -53,7 +71,7 @@ void    check_text(t_data* data)
 
     while(i < 4)
     {
-        check_validity(data->map[i]);
+        check_validity(data->map[i],data);
         i++;
     }
 }

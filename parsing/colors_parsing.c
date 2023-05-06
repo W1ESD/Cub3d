@@ -37,22 +37,21 @@ void    check_valid_bit(char    *line)
 {
     if(!line)
     {
-        printf("ERROR");
-        exit(0);
+        printf("%s%s\n",ERROR,"Invalid rgb Color\033[0m");
+        exit(1);
     }
     if(count_bits(line))
     {
-        printf("EEEEERROROROROROROROORRORRRRRR\n");
-        exit(0);
+        printf("%s%s\n",ERROR,"Invalid rgb Color\033[0m");
+        exit(1);
     }
     int     c = ft_atoi(line);
     // printf("line is : %s int is : %d\n",line,c);
     if( c > 255 || c == -1)
     {
-        printf("ERRRRRPRTKKKJK\n");
-        exit(0);
+        printf("%s%s\n",ERROR,"Invalid rgb Color\033[0m");
+        exit(1);
     }
-
 }
 
 int     count_coma(char *line)
@@ -75,8 +74,8 @@ void    check_format(char   *line)
     int coma = count_coma(line + i);
     if(coma != 2)
     {
-        printf("ERROR");
-        exit(0);
+        printf("%s%s\n",ERROR,"Invalid rgb Color\033[0m");
+        exit(1);
     }
     char    **split = NULL;
     split = ft_split2_2(line + i);
@@ -93,13 +92,18 @@ void    check_format(char   *line)
         i++;
     }
     free(split);
+    if(i > 3)
+    {
+        printf("%s%s\n",ERROR,"Invalid Color\033[0m");
+        exit(1);
+    }
 }
 
 void    check_flor(char     *line)
 {
-    if(line[0] != 'F' && line[0] != 'C' && line[1] != ' ')
+    if((line[0] != 'F' && line[0] != 'C') || line[1] != ' ')
     {
-        printf("sshhhshshhs\n");
+        printf("%s%s\n",ERROR,"Invalid Color Identifier\033[0m");
         exit(0);
     }
     check_format(line + 1);

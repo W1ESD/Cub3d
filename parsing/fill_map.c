@@ -40,7 +40,7 @@ void    follow_to_map(char  **map,int   fd)
     if(line && n)
     {
         free(line);
-        printf("ERROOOOR\n");
+        printf("%s%s\n",ERROR,"Map Line Error \033[0m");
         exit(0);
     }
     char    **splited_map=NULL;
@@ -58,7 +58,7 @@ void    follow_to_map(char  **map,int   fd)
     map[i] = NULL;
     if(!map[6])
     {
-        printf("ERRRNRRRRRRRRENENENENEN");
+        printf("%s%s\n",ERROR,"Incomplete Map \033[0m");
         exit(0);
     }
     if(splited_map)
@@ -86,15 +86,13 @@ void    fill_map(char   **map,int fd,t_data *data)
         line = gnl(fd);
    }
    split = ft_split(liste,'\n');
-
    free(liste);
-
    if(count < 6)
    {
-        printf("Error Occured");
-        exit(0);
+        data->error_msg = "Incomplete Map\033[0m\n";
+        printf("%s%s",ERROR,data->error_msg);
+        exit(1);
    }
-
    while (split[i])
    {
         map[i] = split[i];

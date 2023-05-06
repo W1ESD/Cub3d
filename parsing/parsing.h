@@ -12,19 +12,21 @@
 #include<stdlib.h>
 #include "macros.h"
 
+
 typedef struct s_data
 {
-    char    *north_txt; 
-     char    *south_txt;
-     char    *west_txt; 
-    char    *east_txt;
-    int     floor_color;
-    int     ceiling_color;
-    int     found_error;
-    char    *error_msg;
-    char    **map;
-    char    **new_map;
+    char        *north_txt; 
+    char        *south_txt;
+    char        *west_txt; 
+    char        *east_txt;
+    int         floor_color;
+    int         ceiling_color;
+    int         found_error;
+    char        *error_msg;
+    char        **map;
+    char        **new_map;
 }t_data;
+
 
 int             check_name(char *str,t_data *data);
 int             count_lines(int fd);

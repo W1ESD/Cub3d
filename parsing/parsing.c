@@ -4,27 +4,17 @@ char**   parse_map(char *str,t_data *data)
 {
     int fd;
     char    **map;
-
     fd = open(str,O_RDONLY);
-
     if(fd < 0)
     {
-        printf("%s",FILE_NOT_FOUND);
+        printf("%s%s\n",ERROR,FILE_NOT_FOUND);
         exit(1);
     }
     int nbr_lines = count_lines(fd);
-
     fd = open(str,O_RDONLY);
-    
     map = NULL;
-
     map = malloc(sizeof(char*) * nbr_lines);
-
-
    	fill_map(map,fd,data);
-
-    
-
     return(map);
 }
 
@@ -70,6 +60,7 @@ int     main(int    ac,char     **av)
             return 0;
         }
         // destroy_data(data);
+        printf("%s\n",data->west_txt);
         // system("leaks parsing");
     }
     return 0;

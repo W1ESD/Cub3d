@@ -21,29 +21,36 @@ void    check_mochkil(char  **map,int   n,int   m)
                 if(i - 1 >= 0 && i - 1 <= m)
                 {
                     if(champ(map[i-1][j])){
-                        printf("ERROR\n");exit(0);}
+                        printf("%s%s\n",ERROR,"Space Error\033[0m");
+                        exit(1);
+                        }
                 }
                 if(i + 1 >= 0 && i + 1 < m)      
                 {
                     if(champ(map[i+1][j])){
-                        printf("ERROR\n");exit(0);}
+                        printf("%s%s\n",ERROR,"Space Error\033[0m");
+                        exit(1);
+                        }
                 }
                 if(j + 1 >= 0 && j + 1 <= n)
                 {
                     if(champ(map[i][j+1])){
-                        printf("ERROR\n");exit(0);}
+                    printf("%s%s\n",ERROR,"Space Error\033[0m");
+                    exit(1);
+                        }
                 }
                 if(j - 1 >= 0 && j - 1 <= n)
                 {
                     if(champ(map[i][j-1])){
-                        printf("ERROR L\n");exit(0);}
+                        printf("%s%s\n",ERROR,"Space Error\033[0m");
+                        exit(1);
+                        }
                 }
             }
             j++;
         }
         i++;
     }
-
 }
 void    fill_line(char  *line,char  *new_line,int max_line)
 {
@@ -75,7 +82,6 @@ void    fill_new_map(char   **map,char  **new_map,int max_line,t_data*   data)
     }
     free(new_map[i]);
     new_map[i] = map[i];
-    system("leaks parsing");
 }
 int     max_size(char   **map)
 {
@@ -119,11 +125,6 @@ void    check_lfaraghat(char    **map,t_data    *data)
     i = 0;
     fill_new_map(map,new_map,n,data);
     check_mochkil(new_map,n,collum);
-    while(data->new_map[i])
-    {
-        printf("%s\n",data->new_map[i]);
-        i++;
-    }
 }
 
 
