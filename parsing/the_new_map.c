@@ -1,59 +1,5 @@
 #include "parsing.h"
 
-int     max_size(char   **map)
-{
-    int     i   = 0;
-    int     nbr = 0;
-    int     max = 0;
-
-    while(map[i])
-    {
-        nbr = strlen(map[i]);
-        if(nbr > max)
-            max = nbr;
-        i++;
-    }
-    return(max);
-}
-
-int     nbr_colone(char **map)
-{
-    int     i = 0;
-    while(map[++i])
-        i++;
-    return(i);
-}
-void    fill_line(char  *line,char  *new_line,int max_line)
-{
-    int     i = 0;
-    static int f=0;
-
-    int a = strlen(line);
-    
-    while(i < max_line)
-    {
-        if(line[i] != ' ' && line[i])
-            new_line[i] = line[i];
-        else
-            new_line[i] = '+';
-        if(i > a)
-            new_line[i] = '+';
-        i++;
-    }
-    f++;
-    new_line[i] = '\0';
-}
-void    fill_new_map(char   **map,char  **new_map,int max_line)
-{
-    int     i=0;
-    while(map[i])
-    {
-        fill_line(map[i],new_map[i],max_line);
-        i++;
-    }
-    new_map[i] = map[i];
-}
-
 int     champ(char  c)
 {
     return(c == '0' || c == 'N' \
@@ -97,21 +43,88 @@ void    check_mochkil(char  **map,int   n,int   m)
         }
         i++;
     }
-    
 
 }
-void    check_lfaraghat(char    **map)
+void    fill_line(char  *line,char  *new_line,int max_line)
+{
+    int     i = 0;
+
+    int a = strlen(line);
+    
+    while(i < max_line)
+    {
+        if(line[i] != ' ' && line[i])
+            new_line[i] = line[i];
+        else
+            new_line[i] = '+';
+        if(i > a)
+            new_line[i] = '+';
+        i++;
+    }
+    new_line[i] = '\0';
+}
+
+void    fill_new_map(char   **map,char  **new_map,int max_line,t_data*   data)
+{
+    int     i=0;
+
+    while(map[i])
+    {
+        fill_line(map[i],new_map[i],max_line);
+        i++;
+    }
+    free(new_map[i]);
+    new_map[i] = map[i];
+    system("leaks parsing");
+}
+int     max_size(char   **map)
+{
+    int     i   = 0;
+    int     nbr = 0;
+    int     max = 0;
+
+    while(map[i])
+    {
+        nbr = strlen(map[i]);
+        if(nbr > max)
+            max = nbr;
+        i++;
+    }
+    return(max);
+}
+
+int     nbr_colone(char **map)
+{
+    int     i = 0;
+    while(map[++i])
+        i++;
+    return(i);
+}
+
+
+void    check_lfaraghat(char    **map,t_data    *data)
 {
     int     i=0;
     int     n = max_size(map);
     char    **new_map;
     int     collum  = nbr_colone(map) - 1;
     new_map = malloc(sizeof(char    *) * (collum + 1));
+    data->new_map =  new_map;
     while(i < collum + 1)
     {
         new_map[i] = malloc(n + 1);
+        data->new_map[i] = new_map[i];
         i++;
     }
-    fill_new_map(map,new_map,n);
+    i = 0;
+    fill_new_map(map,new_map,n,data);
     check_mochkil(new_map,n,collum);
+    while(data->new_map[i])
+    {
+        printf("%s\n",data->new_map[i]);
+        i++;
+    }
 }
+
+
+

@@ -1,122 +1,76 @@
 #include "parsing.h"
 
-int     valid_line(char *line)
+char**   parse_map(char *str,t_data *data)
 {
-    int     i = 0;
-    while(line[i])
+    int fd;
+    char    **map;
+
+    fd = open(str,O_RDONLY);
+
+    if(fd < 0)
     {
-        if(line[i] != ' ' && line[i] != '\t' && line[i] != '\v' && line[i] != '\n')
-            return(1);
-        i++;
+        printf("%s",FILE_NOT_FOUND);
+        exit(1);
     }
-    return(0);
+    int nbr_lines = count_lines(fd);
+
+    fd = open(str,O_RDONLY);
+    
+    map = NULL;
+
+    map = malloc(sizeof(char*) * nbr_lines);
+
+
+   	fill_map(map,fd,data);
+
+    
+
+    return(map);
 }
 
-void    follow_to_map(char  **map,int   fd)
-{
-    char    *line = gnl(fd);
-    char    *liste = NULL;
-    int     n;
 
-    map[6] = NULL;
-    if(line)
-        n = valid_line(line);
-    while(line && !n)
-    {
-        line = gnl(fd);
-        if(line)
-            n = valid_line(line);
-    }
-    int         i = 6;
-    while(1)
-    {
-        if(!line)
-            break;
-        liste = ft_strjoin(liste, line);
-        line = gnl(fd);
-        if(line)
-            n = valid_line(line);
-        if(!n || !line)
-            break;
-    }
-    while(line && !n)
-    {
-        line = gnl(fd);
-        if(line)
-            n = valid_line(line);
-    }
-    if(line && n)
-    {
-        printf("ERROOOOR\n");
-        exit(0);
-    }
-    char    **splited_map=NULL;
-    if(liste)
-        splited_map = ft_split(liste,'\n');
-    int     j = 0;
-    if(splited_map){
-    while(splited_map[j])
-    {   
-        map[i] = splited_map[j];
-        i++;
-        j++;
-    }}
-    map[i] = NULL;
-    if(!map[6])
-    {
-        printf("ERRRNRRRRRRRRENENENENEN");
-        exit(0);
-    }
+void    init_data(t_data    *data)
+{
+    data->north_txt = NULL;
+    data->south_txt = NULL;
+    data->west_txt = NULL;
+    data->east_txt = NULL;
+    data->floor_color = -1;
+    data->ceiling_color = -1;
+    data->found_error = 0;
+    data->error_msg = NULL;
+    data->map = NULL;
+    data->new_map = NULL;
+
 }
 
-void    fill_map(char   **map,int fd)
+void    parsing(t_data  *data,char  *map_name)
 {
-   char     *line;
-   int      count = 0;
-   line = gnl(fd);
-   char     *liste;
-
-   while (line)
-   {    
-        if(valid_line(line))
-        {
-            liste = ft_strjoin(liste,line);
-            count++;
-        }
-        if(count >= 6)
-            break;
-        line = gnl(fd);
-   }
-
-   char     **split;
-   int      i=0;
-   split = ft_split(liste,'\n');
-
-   if(count < 6)
-   {
-        printf("Error Occured");
-        exit(0);
-   }
-
-   while (split[i])
-   {
-        map[i] = split[i];
-        i++;
-   }
-   follow_to_map(map,fd);
+    init_data(data);
+    if(check_name(map_name,data))
+            return ;
+    data->map = parse_map(map_name,data);
+    parse_fill(data);
 }
-
 
 int     main(int    ac,char     **av)
 {
     char    **map;
-    int     nbr; 
-    if(ac == 2) 
+    t_data  *data;
+    if(ac == 2)
     {
-        if(check_name(av[1]))
+        data = malloc(sizeof(t_data));
+        parsing(data,av[1]);
+        if(data->found_error)
+        {
+            // destroy_data(data);
+            printf("%s :",ERROR);
+            printf("%s",data->error_msg);
+            system("leaks parsing");
             return 0;
+        }
+        // destroy_data(data);
+        // system("leaks parsing");
     }
-    map = parse_map(av[1]);
-    parse_fill(map); 
     return 0;
 }
