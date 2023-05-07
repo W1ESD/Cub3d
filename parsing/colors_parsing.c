@@ -112,6 +112,8 @@ void    check_flor(char     *line)
 
 void    check_colors(t_data      *data)
 {
+    printf("HELLO\n");
     check_flor(data->map[4]);
     check_flor(data->map[5]);
+    printf("HELLO\n");
 }

@@ -26,5 +26,7 @@ void            parse_fill(t_data* data)
     check_duplicity(data->map);
     check_colors(data);
     check_map_game(data);
+    printf("HELLO life\n");
     check_lfaraghat(data->map + 6,data);
+    printf("HELLO mio\n");
 }

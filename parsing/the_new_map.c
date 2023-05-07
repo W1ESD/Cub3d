@@ -124,7 +124,9 @@ void    check_lfaraghat(char    **map,t_data    *data)
     }
     i = 0;
     fill_new_map(map,new_map,n,data);
+    printf("HELLO ds\n");
     check_mochkil(new_map,n,collum);
+    printf("HELLO of\n");
 }
 
 
