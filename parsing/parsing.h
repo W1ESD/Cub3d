@@ -12,7 +12,6 @@
 #include<stdlib.h>
 #include "macros.h"
 
-
 typedef struct s_data
 {
     char        *north_txt; 
@@ -26,6 +25,7 @@ typedef struct s_data
     char        **map;
     char        **new_map;
 }t_data;
+
 
 
 int             check_name(char *str,t_data *data);
@@ -43,5 +43,7 @@ char	        **ft_split2_2(char *str);
 void            check_colors(t_data      *data);
 void            check_map_game(t_data *data);
 void            check_lfaraghat(char    **map,t_data    *data);
+
+
 
 #endif

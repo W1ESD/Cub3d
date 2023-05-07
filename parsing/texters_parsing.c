@@ -1,16 +1,15 @@
 #include "parsing.h"
 
-void    add_text_to_struct(char *line,t_data*   data)
+void    add_text_to_struct(char *ident,char *line,t_data*   data)
 {
-    if(line[0] == 'N')
-        data->north_txt = line;
-    if(line[0] == 'S')
-        data->south_txt = line;
-    if(line[0] == 'E')
-        data->east_txt = line;
-    if(line[0] == 'W')
-        data->west_txt = line;
-    printf("%s\n",data->east_txt);
+    if(ident[0] == 'N')
+        data->north_txt = strdup(line);
+    if(ident[0] == 'S')
+        data->south_txt = strdup(line);
+    if(ident[0] == 'E')
+        data->east_txt = strdup(line);
+    if(ident[0] == 'W')
+        data->west_txt = strdup(line);
 }
 
 int     check_path(char *str)
@@ -54,9 +53,9 @@ void    check_validity(char *line,t_data* data)
         printf("%s%s\n",ERROR,"Invalid Line for texters\033[0m");
         exit(1);
     }
-    add_text_to_struct(split[1],data);
+    add_text_to_struct(split[0],split[1],data);
     int i = 0;
-    while(split[i] && i != 1)
+    while(split[i])
     {
         free(split[i]);
         i++;
@@ -74,4 +73,8 @@ void    check_text(t_data* data)
         check_validity(data->map[i],data);
         i++;
     }
+    printf("%s\n",data->south_txt);
+    printf("%s\n",data->north_txt);
+    printf("%s\n",data->west_txt);
+    printf("%s\n",data->east_txt);
 }

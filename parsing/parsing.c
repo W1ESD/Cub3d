@@ -18,7 +18,6 @@ char**   parse_map(char *str,t_data *data)
     return(map);
 }
 
-
 void    init_data(t_data    *data)
 {
     data->north_txt = NULL;
@@ -60,8 +59,7 @@ int     main(int    ac,char     **av)
             return 0;
         }
         // destroy_data(data);
-        printf("%s\n",data->west_txt);
-        // system("leaks parsing");
+        system("leaks parsing");
     }
     return 0;
 }
