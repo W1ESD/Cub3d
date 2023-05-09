@@ -6,7 +6,7 @@
 /*   By: zanejar <zanejar@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 17:12:48 by zanejar           #+#    #+#             */
-/*   Updated: 2023/05/09 18:04:12 by zanejar          ###   ########.fr       */
+/*   Updated: 2023/05/10 00:26:18 by zanejar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,22 +32,23 @@
 #define WINDOW_HEIGHT (MAP_NUM_ROWS * PIXEL)
 #define PI 3.14159265358979323846
 
-typedef struct s_map
-{
-    int grid[MAP_NUM_ROWS][MAP_NUM_COLS];
-} t_map;
+// typedef struct s_map
+// {
+//     int grid[MAP_NUM_ROWS][MAP_NUM_COLS];
+// } t_map;
 
 typedef struct	s_player {
 	float	x;
 	float	y;
 	float	radius;
-	int	turnDirection;
-	int	walkDirection;
 	float	rotationAngle;
 	float	moveSpeed;
 	float	rotationSpeed;
 	float	height;
-	float  width;
+	float   width;
+	void	*mlx_ptr;
+	void	*win_ptr;
+	int 	grid[MAP_NUM_ROWS][MAP_NUM_COLS];
 }				t_player;
 
 #endif
