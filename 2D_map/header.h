@@ -6,7 +6,7 @@
 /*   By: zanejar <zanejar@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 17:12:48 by zanejar           #+#    #+#             */
-/*   Updated: 2023/05/09 05:40:53 by zanejar          ###   ########.fr       */
+/*   Updated: 2023/05/09 18:04:12 by zanejar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@
 # include<mlx.h>
 
 # define ESC 53
-# define UP 13
-# define LEFT 0
-# define DOWN 1 
-# define RIGHT 2 
+# define UP 126
+# define DOWN 125
+# define LEFT 123
+# define RIGHT 124
 
 #define PIXEL 32
 #define MAP_NUM_ROWS 11
@@ -38,16 +38,16 @@ typedef struct s_map
 } t_map;
 
 typedef struct	s_player {
-	double	x;
-	double	y;
-	double	radius;
-	double	turnDirection;
-	double	walkDirection;
-	double	rotationAngle;
-	double	moveSpeed;
-	double	rotationSpeed;
-	double	height;
-	double  width;
+	float	x;
+	float	y;
+	float	radius;
+	int	turnDirection;
+	int	walkDirection;
+	float	rotationAngle;
+	float	moveSpeed;
+	float	rotationSpeed;
+	float	height;
+	float  width;
 }				t_player;
 
 #endif
