@@ -6,7 +6,7 @@
 #    By: zanejar <zanejar@student.1337.ma>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/03 17:10:09 by zanejar           #+#    #+#              #
-#    Updated: 2023/05/03 17:13:46 by zanejar          ###   ########.fr        #
+#    Updated: 2023/05/10 16:28:17 by zanejar          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ CFLAGS = -Wall -Wextra -Werror
 
 LINK = -lmlx -framework OpenGL -framework AppKit
 
-SRC =	main.c
+SRC =	main.c player.c map.c hooks.c
 
 HEADER = cub3d.h
 
