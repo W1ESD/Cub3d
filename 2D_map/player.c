@@ -6,7 +6,7 @@
 /*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 16:28:04 by zanejar           #+#    #+#             */
-/*   Updated: 2023/05/11 14:12:40 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/05/11 15:19:10 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ void player_draw(t_player *player)
 			mlx_pixel_put(player->mlx_ptr, player->win_ptr, x + i, y - j, color);
 		}
 	}
+	line_drawing(player,x + cos(player->rotationAngle) * line_length \
+	,y +  sin(player->rotationAngle) * line_length);
 	ray_draw(player);
 }
 

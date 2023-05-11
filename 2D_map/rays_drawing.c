@@ -35,23 +35,25 @@ void	 line_drawing(t_player* player,  int end_x, int end_y)
 void	ray_draw(t_player*	player)
 {
 	int x;
+
 	int y;
 	
 	x = player->x;
 	
 	y = player->y;
 	
-	double	my_angle = player->rotationAngle - FOV/2;
+	double	my_angle = player->rotationAngle - FOV / 2;
 	
 	int i = NBR_RAYS;
-	
-	//my_angle will be increased with (FOV / WINDOW_WIDTH) (bach tkon wahd small angle bin ray w ray ghanhtajha bach nrsm kola line)
-	//i will be decreased to draw total of NBR_RAYS rays = WINDOW_WIDTH;
+
+	//-> ___my_angle will be increased with (FOV / WINDOW_WIDTH) (bach tkon wahd small angle bin ray w ray ghanhtajha bach nrsm kola line)
+	//-> ___i will be decreased to draw total of NBR_RAYS rays = WINDOW_WIDTH;
 	
 	while(i)
 	{
 		line_drawing(player, x + cos(my_angle) * line_length \
 				,y + sin(my_angle) * line_length);
+		cast_ray(player,my_angle);
 		my_angle += FOV / WINDOW_WIDTH;
 			i--;
 	}

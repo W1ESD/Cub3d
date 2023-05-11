@@ -6,7 +6,7 @@
 /*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 17:12:48 by zanejar           #+#    #+#             */
-/*   Updated: 2023/05/11 14:12:49 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/05/11 17:55:49 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,5 +67,6 @@ int				update(t_player *player) ;
 void	 		line_drawing(t_player* player,  int end_x, int end_y);
 int     		able_to_move(t_player*  player,int  move);
 void			ray_draw(t_player*	player);
+void    		cast_ray(t_player*  player,double my_angle);
 
 #endif

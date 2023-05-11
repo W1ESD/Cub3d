@@ -6,7 +6,7 @@
 /*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 10:57:06 by wiessaiy          #+#    #+#             */
-/*   Updated: 2023/05/11 14:12:38 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/05/11 15:58:05 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,10 @@ int     able_to_walk_up(t_player* player)
         
     	my_x = cos(player->rotationAngle) * player->moveSpeed + player->x;
 		my_y = sin(player->rotationAngle) * player->moveSpeed + player->y;
-        if(player->grid[my_y/PIXEL][my_x/PIXEL] == 1)
+        my_x = floor(my_x/PIXEL);
+        my_y = floor(my_y/PIXEL);
+        
+        if(player->grid[my_y][my_x] == 1)
             return 0;
         return 1;
 }
@@ -32,8 +35,11 @@ int     able_to_walk_down(t_player* player)
 		
         my_x = player->x - cos(player->rotationAngle) * player->moveSpeed;
 		my_y = player->y - sin(player->rotationAngle) * player->moveSpeed;
-
-        if(player->grid[my_y/PIXEL][my_x/PIXEL] == 1)
+    
+        my_x = floor(my_x/PIXEL);
+        my_y = floor(my_y/PIXEL);
+        
+        if(player->grid[my_y][my_x] == 1)
             return 0;
         return 1;
 }
@@ -45,8 +51,11 @@ int     able_to_turn_left(t_player *player)
 
     my_x = player->x - player->moveSpeed;
     my_y = player->y;
-    if(player->grid[my_y/PIXEL][my_x/PIXEL] == 1)
-        return 0;
+    my_x = floor(my_x/PIXEL);
+    my_y = floor(my_y/PIXEL);
+        
+    if(player->grid[my_y][my_x] == 1)
+            return 0;
     return 1;
 }
 int     able_to_turn_right(t_player *player)
@@ -57,7 +66,10 @@ int     able_to_turn_right(t_player *player)
 
     my_x = player->x + player->moveSpeed;
     my_y = player->y;
-    if(player->grid[my_y/PIXEL][my_x/PIXEL] == 1)
+    my_x = floor(my_x/PIXEL);
+    my_y = floor(my_y/PIXEL);
+        
+    if(player->grid[my_y][my_x] == 1)
         return 0;
     return 1;
 }
