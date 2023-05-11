@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: zanejar <zanejar@student.1337.ma>          +#+  +:+       +#+         #
+#    By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/03 17:10:09 by zanejar           #+#    #+#              #
-#    Updated: 2023/05/10 16:28:17 by zanejar          ###   ########.fr        #
+#    Updated: 2023/05/11 10:58:11 by wiessaiy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ CFLAGS = -Wall -Wextra -Werror
 
 LINK = -lmlx -framework OpenGL -framework AppKit
 
-SRC =	main.c player.c map.c hooks.c
+SRC =	main.c player.c map.c hooks.c line_drawing.c movement.c
 
 HEADER = cub3d.h
 

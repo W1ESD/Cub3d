@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   header.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zanejar <zanejar@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 17:12:48 by zanejar           #+#    #+#             */
-/*   Updated: 2023/05/10 17:47:35 by zanejar          ###   ########.fr       */
+/*   Updated: 2023/05/11 10:57:56 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # define LEFT_KEY 123
 # define RIGHT_KEY 124
 
+#define WHITE_COLOR  0xFFFFFF
 #define PIXEL 32
 #define MAP_NUM_ROWS 11
 #define MAP_NUM_COLS 15
@@ -56,12 +57,14 @@ typedef struct	s_player {
 	int 	grid[MAP_NUM_ROWS][MAP_NUM_COLS];
 }				t_player;
 
-void	render_map(t_player *player);
-int		close_window(void);
-int		key_pressed(int keycode, t_player *player);
-int		key_released(int keycode, t_player *player);
-void	player_draw(t_player *player);
-void	render_player(t_player *player);
-int	update(t_player *player) ;
+void		render_map(t_player *player);
+int			close_window(void);
+int			key_pressed(int keycode, t_player *player);
+int			key_released(int keycode, t_player *player);
+void		player_draw(t_player *player);
+void		render_player(t_player *player);
+int			update(t_player *player) ;
+void	 line_drawing(t_player* player,  int end_x, int end_y);
+int     able_to_move(t_player*  player,int  move);
 
 #endif

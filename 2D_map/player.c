@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zanejar <zanejar@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 16:28:04 by zanejar           #+#    #+#             */
-/*   Updated: 2023/05/10 18:06:52 by zanejar          ###   ########.fr       */
+/*   Updated: 2023/05/11 11:28:01 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
+
 
 void player_draw(t_player *player)
 {
@@ -38,10 +39,9 @@ void player_draw(t_player *player)
 			mlx_pixel_put(player->mlx_ptr, player->win_ptr, x + i, y - j, color);
 		}
 	}
-	int line_length = 40;
-	// for(int i = 0; i < line_length; i++)
-		mlx_pixel_put(player->mlx_ptr, player->win_ptr, x + cos(player->rotationAngle) * line_length,\
-		y + sin(player->rotationAngle) * line_length, color);
+	int line_length = 50;
+	line_drawing(player, x + cos(player->rotationAngle) * line_length \
+	,y + sin(player->rotationAngle) * line_length);
 }
 
 
@@ -49,15 +49,15 @@ void render_player(t_player *player)
 {
 	player->x = WINDOW_WIDTH / 2;
 	player->y = WINDOW_HEIGHT / 2;
-	player->width = 2.5;
-	player->height = 2.5;
+	player->width = 5;
+	player->height = 5;
 	player->sideDirection = 0;
 	player->walkDirection = 0;
 	player->rotationAngle = PI / 2;
 	player->moveSpeed = 7;
-	player->rotationSpeed = 7 * (PI / 180);
-	float x, y;
-	int color;
+	player->rotationSpeed = ( PI  /  4 );
+	float 	x, y;
+	int 	color;
 	x = player->x;
 	y = player->y;
 	color = 0xFFFFFF;

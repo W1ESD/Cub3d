@@ -21,7 +21,7 @@ int main()
     	    player.grid[i][j] = array[i][j];
 	
     player.mlx_ptr = mlx_init();
-	player.win_ptr = mlx_new_window(player.mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT, "cub3d");
+	player.win_ptr = mlx_new_window(player.mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT, "cub_2_d");
 
 	render_map(&player);
 	render_player(&player);
