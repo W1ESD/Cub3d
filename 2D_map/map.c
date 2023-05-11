@@ -6,12 +6,12 @@
 /*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 16:27:55 by zanejar           #+#    #+#             */
-/*   Updated: 2023/05/11 14:12:37 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/05/11 18:28:44 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
- 
+  
 void render_map(t_player *player) 
 {
     int x, y, color;
