@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zanejar <zanejar@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 16:27:55 by zanejar           #+#    #+#             */
-/*   Updated: 2023/05/10 16:27:56 by zanejar          ###   ########.fr       */
+/*   Updated: 2023/05/11 14:12:37 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
-
+ 
 void render_map(t_player *player) 
 {
     int x, y, color;

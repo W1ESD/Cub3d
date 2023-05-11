@@ -6,12 +6,11 @@
 /*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 16:28:04 by zanejar           #+#    #+#             */
-/*   Updated: 2023/05/11 11:28:01 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/05/11 14:12:40 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
-
 
 void player_draw(t_player *player)
 {
@@ -39,9 +38,7 @@ void player_draw(t_player *player)
 			mlx_pixel_put(player->mlx_ptr, player->win_ptr, x + i, y - j, color);
 		}
 	}
-	int line_length = 50;
-	line_drawing(player, x + cos(player->rotationAngle) * line_length \
-	,y + sin(player->rotationAngle) * line_length);
+	ray_draw(player);
 }
 
 
@@ -55,7 +52,7 @@ void render_player(t_player *player)
 	player->walkDirection = 0;
 	player->rotationAngle = PI / 2;
 	player->moveSpeed = 7;
-	player->rotationSpeed = ( PI  /  4 );
+	player->rotationSpeed =  PI / 4 ;
 	float 	x, y;
 	int 	color;
 	x = player->x;
@@ -83,7 +80,7 @@ void direction(t_player *player)
 }
 
 int update(t_player *player) 
-{
+{ 
 	mlx_hook(player->win_ptr, 2, 0, key_pressed, player);
 	direction(player);
 	mlx_hook(player->win_ptr, 3, 0, key_released, player);

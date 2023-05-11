@@ -6,14 +6,14 @@
 /*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 10:57:06 by wiessaiy          #+#    #+#             */
-/*   Updated: 2023/05/11 11:40:39 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/05/11 14:12:38 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "header.h"
 
-int     able_to_walk_up(t_player* player)
+int     able_to_walk_up(t_player* player) 
 {
         int my_x;
         int my_y;

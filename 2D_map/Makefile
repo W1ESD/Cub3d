@@ -6,11 +6,11 @@
 #    By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/03 17:10:09 by zanejar           #+#    #+#              #
-#    Updated: 2023/05/11 10:58:11 by wiessaiy         ###   ########.fr        #
+#    Updated: 2023/05/11 14:13:04 by wiessaiy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = cub3d
+NAME = cub_2_d
 
 CC = gcc
 
@@ -18,9 +18,9 @@ CFLAGS = -Wall -Wextra -Werror
 
 LINK = -lmlx -framework OpenGL -framework AppKit
 
-SRC =	main.c player.c map.c hooks.c line_drawing.c movement.c
+SRC =	main.c player.c map.c hooks.c rays_drawing.c movement.c
 
-HEADER = cub3d.h
+HEADER = header.h
 
 OBJ = $(SRC:.c=.o)
 
