@@ -24,7 +24,7 @@ void	 line_drawing(t_player* player,  int end_x, int end_y)
 	printf("test");
 
 	if(pixel_x == 50)
-		printf("asfas");
+		printf("asfaasass");
     while (pixels)
     {
         mlx_pixel_put(player->mlx_ptr, player->win_ptr, pixel_x, pixel_y, pixels_color);
