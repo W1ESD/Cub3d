@@ -31,6 +31,7 @@ void	 line_drawing(t_player* player,  int end_x, int end_y)
         pixel_y += distance_y;
         --pixels;
     }
+	printf("testetetstrttetrtrr");
 }
    
 void	ray_draw(t_player*	player)
