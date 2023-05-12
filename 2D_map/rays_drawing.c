@@ -20,8 +20,7 @@ void	 line_drawing(t_player* player,  int end_x, int end_y)
 
 	double pixel_x = player->x;
 	double pixel_y = player->y; 
-	printf("fasfas");
-	printf("test");
+
 
 
     while (pixels)
@@ -56,6 +55,6 @@ void	ray_draw(t_player*	player)
 				,y + sin(my_angle) * line_length);
 		cast_ray(player,my_angle);
 		my_angle += FOV / WINDOW_WIDTH;
-			i--;
+			i--;			
 	}
 }
