@@ -20,7 +20,8 @@ void	 line_drawing(t_player* player,  int end_x, int end_y)
 
 	double pixel_x = player->x;
 	double pixel_y = player->y; 
-
+	printf("fasfas");
+	printf("test");
 
 
     while (pixels)
