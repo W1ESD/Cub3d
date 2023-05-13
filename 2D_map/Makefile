@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+         #
+#    By: zanejar <zanejar@student.1337.ma>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/03 17:10:09 by zanejar           #+#    #+#              #
-#    Updated: 2023/05/11 17:49:14 by wiessaiy         ###   ########.fr        #
+#    Updated: 2023/05/13 06:44:58 by zanejar          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ RM = rm -rf
 
 all :		$(NAME) 
 
-$(NAME):	$(OBJ)
+$(NAME):	$(OBJ) $(HEADER)
 			$(CC) $(CFLAGS) $(LINK) $(OBJ) -o $(NAME)
 
 clean :

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zanejar <zanejar@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 16:27:55 by zanejar           #+#    #+#             */
-/*   Updated: 2023/05/11 18:28:44 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/05/13 02:19:30 by zanejar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,10 @@ void render_map(t_player *player)
             color = player->grid[i][j] == 1 ? 0x0FFFFF : 0x005FFF;
             for (int dx = 0; dx < PIXEL; dx++) {
                 for (int dy = 0; dy < PIXEL; dy++) {
-                    mlx_pixel_put(player->mlx_ptr, player->win_ptr, x + dx, y + dy, color);
+                    my_mlx_pixel_put(&player->img, x + dx, y + dy, color);
                 }
             }
         }
     }
+	// mlx_put_image_to_window(player->mlx_ptr, player->win_ptr, player->img.img_ptr, 0, 0);
 }

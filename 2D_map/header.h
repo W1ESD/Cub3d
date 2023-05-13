@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+ /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   header.h                                           :+:      :+:    :+:   */
@@ -37,8 +37,16 @@
 #define PI 3.14159265358979323846
 
 #define NBR_RAYS WINDOW_WIDTH
-#define line_length  100
+#define line_length  150
 
+typedef struct s_img
+{
+	void	*img_ptr;
+	char	*addr;
+	int		bits_per_pixel;
+	int		lineLength;
+	int		endian;
+}				t_img;
 
 typedef struct	s_player {
 	float	x;
@@ -55,6 +63,7 @@ typedef struct	s_player {
 	void	*mlx_ptr;
 	void	*win_ptr;
 	int 	grid[MAP_NUM_ROWS][MAP_NUM_COLS];
+	t_img	img;
 }				t_player;
 
 void			render_map(t_player *player);
@@ -68,5 +77,8 @@ void	 		line_drawing(t_player* player,  int end_x, int end_y);
 int     		able_to_move(t_player*  player,int  move);
 void			ray_draw(t_player*	player);
 void    		cast_ray(t_player*  player,double my_angle);
+void			my_mlx_pixel_put(t_img *data, int x, int y, int color);
+
+int handle_wall_collisions(t_player *player);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zanejar <zanejar@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 16:28:02 by zanejar           #+#    #+#             */
-/*   Updated: 2023/05/11 14:12:32 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/05/13 06:47:26 by zanejar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,22 +19,25 @@ int	close_window(void)
 
 int key_pressed(int keycode, t_player *player)
 {
-    if (keycode == W_KEY && able_to_move(player,1))
-        player->walkDirection = 1;
-    else if (keycode == S_KEY && able_to_move(player,2))
-        player->walkDirection = -1;
-    else if (keycode == A_KEY && able_to_move(player,3))
-        player->sideDirection = -1;
-    else if (keycode == D_KEY && able_to_move(player,4))
-        player->sideDirection = 1;
-	else if (keycode == LEFT_KEY)
-		player->rotationAngle   -=  player->rotationSpeed;
-	else if (keycode == RIGHT_KEY)
-		player->rotationAngle   +=  player->rotationSpeed;
-	else if (keycode == ESC)
+	if (handle_wall_collisions(player))
+	{
+    	if (keycode == W_KEY /*&& able_to_move(player,1)*/)
+    	    player->walkDirection = 1;
+    	else if (keycode == S_KEY /*&& able_to_move(player,2)*/)
+    	    player->walkDirection = -1;
+    	else if (keycode == A_KEY /*&& able_to_move(player,3)*/)
+    	    player->sideDirection = -1;
+    	else if (keycode == D_KEY /*&& able_to_move(player,4)*/)
+    	    player->sideDirection = 1;
+		if (keycode == LEFT_KEY)
+			player->rotationAngle -=  player->rotationSpeed;
+		else if (keycode == RIGHT_KEY)
+			player->rotationAngle +=  player->rotationSpeed;
+	}
+	if (keycode == ESC)
 		close_window();
     return (0);
-}    
+}
 
 int key_released(int keycode, t_player *player)
 {
