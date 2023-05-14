@@ -37,7 +37,7 @@
 #define PI 3.14159265358979323846
 
 #define NBR_RAYS WINDOW_WIDTH
-#define line_length  150
+#define line_length  300
 
 typedef struct s_img
 {

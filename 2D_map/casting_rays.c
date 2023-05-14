@@ -6,7 +6,7 @@
 /*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 11:11:36 by wiessaiy          #+#    #+#             */
-/*   Updated: 2023/05/14 15:09:58 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/05/14 15:19:11 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int found_Wall(long x,long y,t_player *player)
     long my_y;
     my_x = x / PIXEL;
     my_y = y / PIXEL;
-    if(player->grid[my_x][my_y] == 1)
+    if(player->grid[my_y][my_x] == 1)
     {
         printf("{%ld -- %ld}",my_x ,my_y);
         return 1;
@@ -43,6 +43,8 @@ int   horizontal_intersection(t_player*   player,double my_angle,int ray_directi
     int         found;
     
     found = 0;
+
+    
 
     //first of all when need to find the closest intersection with the horizontel line (x_intercept)&(y_intercept);
 
@@ -90,9 +92,7 @@ void    cast_ray(t_player*  player,double my_angle)
     int     hit_wallx = 0; // position x when the ray was casted
     int     hit_wally = 0; // position y when the ray was casted
     double    distance_hit = 0; //distance between the player and the colision 
-
-    // (void)hit_wallx;
-    // (void)hit_wally;
+    
     (void)distance_hit;
     int     ray_direction_du = 0;
     int     ray_direction_rf = 0;
