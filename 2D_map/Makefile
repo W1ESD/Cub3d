@@ -3,14 +3,14 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+         #
+#    By: zanejar <zanejar@student.1337.ma>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/03 17:10:09 by zanejar           #+#    #+#              #
-#    Updated: 2023/05/14 11:32:28 by wiessaiy         ###   ########.fr        #
+#    Updated: 2023/05/16 00:36:45 by zanejar          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = cub_2_d
+NAME = cub
 
 CC = gcc
 
