@@ -6,7 +6,7 @@
 /*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 16:28:04 by zanejar           #+#    #+#             */
-/*   Updated: 2023/05/16 20:14:30 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/05/17 00:44:34 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,22 +69,22 @@ void direction(t_player *player)
 	// if (able_to_move(player,1) && able_to_move(player,2) && \
 	// able_to_move(player,3) && able_to_move(player,4))
 	// {
-		if (player->walkDirection == 1)
+		if (player->walkDirection == 1 && able_to_walk_up(player))
 		{
 			player->x += cos(player->rotationAngle) * player->moveSpeed;
 			player->y += sin(player->rotationAngle) * player->moveSpeed;
 		}
-		else if (player->walkDirection == -1)
+		else if (player->walkDirection == -1 && able_to_walk_down(player))
 		{
 			player->x -= cos(player->rotationAngle) * player->moveSpeed;
 			player->y -= sin(player->rotationAngle) * player->moveSpeed;
 		}
-		if (player->sideDirection == 1) 
+		if (player->sideDirection == 1 && able_to_turn_left(player)) 
 		{
    			player->x += cos(player->rotationAngle + (PI / 2)) * player->moveSpeed;
    			player->y += sin(player->rotationAngle + (PI / 2)) * player->moveSpeed;
 		}
-		else if (player->sideDirection == -1) 
+		else if (player->sideDirection == -1 && able_to_turn_right(player)) 
 		{
 		    player->x -= cos(player->rotationAngle + (PI / 2)) * player->moveSpeed;
 		    player->y -= sin(player->rotationAngle + (PI / 2)) * player->moveSpeed;

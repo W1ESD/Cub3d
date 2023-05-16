@@ -85,5 +85,10 @@ void   	horizontal_intersection(t_player*   player,double my_angle  ,int	ray_dir
 void   	vertical_intersection(t_player*   player,double my_angle , int	ray_direction_du,int ray_direction_rf,int *hitx,int *hity);
 void    cast_ray(t_player*  player,double my_angle);
 double     Distance_between_xy(t_player* player,int    *hit_x,int      *hit_y);
+int     	able_to_turn_right(t_player *player);
+int     able_to_walk_up(t_player* player);
+int     able_to_walk_down(t_player* player);
+int     able_to_turn_left(t_player *player);
+
 
 #endif

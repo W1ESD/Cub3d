@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zanejar <zanejar@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 16:28:02 by zanejar           #+#    #+#             */
-/*   Updated: 2023/05/16 00:38:00 by zanejar          ###   ########.fr       */
+/*   Updated: 2023/05/17 00:44:10 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@ int	close_window(void)
 
 int key_pressed(int keycode, t_player *player)
 {
-		if (keycode == W_KEY && able_to_move(player,1))
+		if (keycode == W_KEY )
     	    player->walkDirection = 1;
-    	else if (keycode == S_KEY && able_to_move(player,2))
+    	else if (keycode == S_KEY )
     	    player->walkDirection = -1;
-    	else if (keycode == A_KEY && able_to_move(player,3))
+    	else if (keycode == A_KEY )
     	    player->sideDirection = -1;
-    	else if (keycode == D_KEY && able_to_move(player,4))
+    	else if (keycode == D_KEY )
     	    player->sideDirection = 1;
 		if (keycode == LEFT_KEY)
 			player->rotationAngle -=  player->rotationSpeed;
