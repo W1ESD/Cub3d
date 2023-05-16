@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   casting_rays.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zanejar <zanejar@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 11:11:36 by wiessaiy          #+#    #+#             */
-/*   Updated: 2023/05/16 22:00:05 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/05/16 23:48:00 by zanejar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,15 +31,12 @@ int found_Wall(long x,long y,t_player *player)
     my_x = floor(x / PIXEL);
     my_y = floor(y / PIXEL);
     if(player->grid[my_y][my_x] == 1)
-    {
-        // printf("{%ld -- %ld}",my_x ,my_y);
-        return 1;
-    }
+    	return 1;
     return 0;
 }
 
-int   horizontal_intersection(t_player*   player,double my_angle, \
-        int ray_direction_du,int ray_direction_rf,int *hitx,int *hity)
+void   horizontal_intersection(t_player*   player,double my_angle, \
+int ray_direction_du,int ray_direction_rf,int *hitx,int *hity)
 {
     long        x_intercept;
     long        y_intercept;
@@ -47,19 +44,11 @@ int   horizontal_intersection(t_player*   player,double my_angle, \
     long        y_step;
     long        next_x;
     long        next_y;
-    int         found;
-    
-    found = 0;
 
-    //first of all when need to find the closest intersection with the horizontel line (x_intercept)&(y_intercept);
-    //find the y-cordonate of the nearest horiz
     y_intercept = floor(player->y/PIXEL) * PIXEL;
     if(ray_direction_du == 1)
         y_intercept += PIXEL;
-    //find the x-cordonate d a9rab horizontal
-    x_intercept = player->x + (y_intercept - player->y)/tan(my_angle);
-    // printf("|%ld|\n",x_intercept);
-    //x_step && y_step calculation
+    x_intercept = player->x + (y_intercept - player->y) / tan(my_angle);
     y_step = PIXEL;
     if(ray_direction_du == 2)
         y_step *= -1;
@@ -77,11 +66,9 @@ int   horizontal_intersection(t_player*   player,double my_angle, \
     {
         if(found_Wall(next_x,next_y,player))
         {
-                //we found a wall hit;
-                found = 2;
                 *hitx = next_x;
                 *hity = next_y;
-                //line_drawing(player, hitx ,hity);
+                // line_drawing(player, *hitx , *hity);
                 break;
         }
         else
@@ -90,34 +77,35 @@ int   horizontal_intersection(t_player*   player,double my_angle, \
             next_y += y_step;
         }
     }
-    return (found);
 }
 
-int   vertical_intersection(t_player*   player,double my_angle,\
+void   vertical_intersection(t_player*   player,double my_angle,\
 int ray_direction_du,int ray_direction_rf,int *hitx,int *hity)
 {
-	 long        x_intercept;
+	long        x_intercept;
     long        y_intercept;
     long        x_step;
     long        y_step;
     long        next_x;
     long        next_y;
-    int         found; 
-    found = 0;
 
     x_intercept = floor(player->x/PIXEL) * PIXEL;
-    if(ray_direction_rf == 1)
+	if(ray_direction_rf == 1)
         x_intercept += PIXEL;
-    y_intercept = player->y + (x_intercept - player->x)/tan(my_angle);
-    x_step = PIXEL;
-    if(ray_direction_rf == 2)
+    
+	y_intercept = player->y + (x_intercept - player->x) * tan(my_angle);
+    
+	x_step = PIXEL;   
+	if(ray_direction_rf == 2)
         x_step *= -1;
-    y_step  = PIXEL * tan(my_angle);
+    
+	y_step  = PIXEL * tan(my_angle);
     if(y_step > 0  && ray_direction_du == 2)
         y_step *= -1;
-	if(y_step < 0 && ray_direction_du == 1)
+	else if(y_step < 0 && ray_direction_du == 1)
 		y_step *= -1;
-    next_x = x_intercept ;
+    
+	next_x = x_intercept ;
     next_y = y_intercept ;
 	
 	if (ray_direction_rf == 2)
@@ -126,7 +114,6 @@ int ray_direction_du,int ray_direction_rf,int *hitx,int *hity)
     {
         if(found_Wall(next_x,next_y,player))
         {
-                found = 1;
                 *hitx = next_x;
                 *hity = next_y;
                 // line_drawing(player, *hitx ,*hity);
@@ -138,9 +125,19 @@ int ray_direction_du,int ray_direction_rf,int *hitx,int *hity)
             next_y += y_step;
         }
     }
-    return (found);
 }
 
+void ray_direction(double my_angle,int *ray_direction_du,int *ray_direction_rf)
+{
+	if (my_angle > 0 && my_angle < PI)
+			*ray_direction_du = 1; //down
+	else if( !(my_angle > 0 && my_angle < PI))
+			*ray_direction_du = 2; //up
+	if (my_angle < PI / 2 || my_angle > 3 * PI / 2)
+			*ray_direction_rf = 1; //right
+	else if(!(my_angle < PI / 2 || my_angle > 3 * PI / 2))
+			*ray_direction_rf = 2; //left
+}
 
 void    cast_ray(t_player*  player,double my_angle)
 {
@@ -160,25 +157,13 @@ void    cast_ray(t_player*  player,double my_angle)
     int     ray_direction_rf = 0;
 
     my_angle = adjust_angle(my_angle);
-
-    if(my_angle > 0 && my_angle < PI)
-            ray_direction_du = 1; //down
-    else
-        if(!(my_angle > 0 && my_angle < PI))
-            ray_direction_du = 2; //up
-    if(my_angle < PI / 2 || my_angle > 3 * PI / 2)
-            ray_direction_rf = 1; //right
-    else
-        if(!(my_angle < PI / 2 || my_angle > 3 * PI / 2))
-            ray_direction_rf = 2; //left
-	int h=horizontal_intersection(player,my_angle,ray_direction_du,ray_direction_rf,&hit_wallx_h,&hit_wally_h);
-	//int v=vertical_intersection(player,my_angle,ray_direction_du,ray_direction_rf,&hit_wallx_v,&hit_wally_v);
-    //calculate distances then choose the smullest value ;
-    int v = 0;
-    if(h)
-        dh = Distance_between_xy(player,&hit_wallx_h,&hit_wally_h);
-    if(v)
-        dv = Distance_between_xy(player,&hit_wallx_v,&hit_wally_v);
+	ray_direction(my_angle,&ray_direction_du,&ray_direction_rf);
+	
+	horizontal_intersection(player,my_angle,ray_direction_du,ray_direction_rf,&hit_wallx_h,&hit_wally_h);
+	vertical_intersection(player,my_angle,ray_direction_du,ray_direction_rf,&hit_wallx_v,&hit_wally_v);
+    // calculate distances then choose the smullest value ;
+	dh = Distance_between_xy(player,&hit_wallx_h,&hit_wally_h);
+	dv = Distance_between_xy(player,&hit_wallx_v,&hit_wally_v);
     if(dh < dv){
         wall_hit_x = hit_wallx_h;
         wall_hit_y = hit_wally_h;
