@@ -81,8 +81,9 @@ void			my_mlx_pixel_put(t_img *data, int x, int y, int color);
 
 double adjust_angle(double angle);
 int found_Wall(long x,long y,t_player *player);
-int   horizontal_intersection(t_player*   player,double my_angle\
-,int ray_direction_du,int ray_direction_rf,int hitx,int hity);
+int   	horizontal_intersection(t_player*   player,double my_angle  ,int	ray_direction_du,int ray_direction_rf,int *hitx,int *hity);
+int   	vertical_intersection(t_player*   player,double my_angle , int	ray_direction_du,int ray_direction_rf,int *hitx,int *hity);
 void    cast_ray(t_player*  player,double my_angle);
+double     Distance_between_xy(t_player* player,int    *hit_x,int      *hit_y);
 
 #endif

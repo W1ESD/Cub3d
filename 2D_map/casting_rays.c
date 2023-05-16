@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   casting_rays.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zanejar <zanejar@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 11:11:36 by wiessaiy          #+#    #+#             */
-/*   Updated: 2023/05/16 18:49:12 by zanejar          ###   ########.fr       */
+/*   Updated: 2023/05/16 22:00:05 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ int found_Wall(long x,long y,t_player *player)
     return 0;
 }
 
-int   horizontal_intersection(t_player*   player,double my_angle,\
-int ray_direction_du,int ray_direction_rf,int hitx,int hity)
+int   horizontal_intersection(t_player*   player,double my_angle, \
+        int ray_direction_du,int ray_direction_rf,int *hitx,int *hity)
 {
     long        x_intercept;
     long        y_intercept;
@@ -73,15 +73,15 @@ int ray_direction_du,int ray_direction_rf,int hitx,int hity)
 	
 	if (ray_direction_du == 2)
 		next_y--;
-    while(next_x >= 0 && next_x <= WINDOW_WIDTH && next_y >=0 && next_y <= WINDOW_HEIGHT )
+    while(next_x >= 0 &&  next_x <= WINDOW_WIDTH && next_y >=0 && next_y <= WINDOW_HEIGHT )
     {
         if(found_Wall(next_x,next_y,player))
         {
                 //we found a wall hit;
-                found = 1;
-                hitx = next_x;
-                hity = next_y;
-                line_drawing(player, hitx ,hity);
+                found = 2;
+                *hitx = next_x;
+                *hity = next_y;
+                //line_drawing(player, hitx ,hity);
                 break;
         }
         else
@@ -90,11 +90,11 @@ int ray_direction_du,int ray_direction_rf,int hitx,int hity)
             next_y += y_step;
         }
     }
-    return 1;
+    return (found);
 }
 
 int   vertical_intersection(t_player*   player,double my_angle,\
-int ray_direction_du,int ray_direction_rf,int hitx,int hity)
+int ray_direction_du,int ray_direction_rf,int *hitx,int *hity)
 {
 	 long        x_intercept;
     long        y_intercept;
@@ -127,9 +127,9 @@ int ray_direction_du,int ray_direction_rf,int hitx,int hity)
         if(found_Wall(next_x,next_y,player))
         {
                 found = 1;
-                hitx = next_x;
-                hity = next_y;
-                line_drawing(player, hitx ,hity);
+                *hitx = next_x;
+                *hity = next_y;
+                // line_drawing(player, *hitx ,*hity);
                 break;
         }
         else
@@ -138,15 +138,22 @@ int ray_direction_du,int ray_direction_rf,int hitx,int hity)
             next_y += y_step;
         }
     }
-    return 1;
+    return (found);
 }
 
 
 void    cast_ray(t_player*  player,double my_angle)
 {
-    int     hit_wallx = 0; // position x when the ray was casted
-    int     hit_wally = 0; // position y when the ray was casted
+    int     hit_wally_v = 0; // position x when the ray was casted
+    int     hit_wallx_v = 0; // position y when the ray was casted
+    int     hit_wally_h = 0; 
+    int     hit_wallx_h = 0;
+    int     wall_hit_x=0;
+    int     wall_hit_y=0;
+    
     double    distance_hit = 0; //distance between the player and the colision 
+    double dh=1000000;
+    double dv=1000000;
     
     (void)distance_hit;
     int     ray_direction_du = 0;
@@ -155,17 +162,42 @@ void    cast_ray(t_player*  player,double my_angle)
     my_angle = adjust_angle(my_angle);
 
     if(my_angle > 0 && my_angle < PI)
-            ray_direction_du = 1;//down
+            ray_direction_du = 1; //down
     else
         if(!(my_angle > 0 && my_angle < PI))
-            ray_direction_du = 2;//up
+            ray_direction_du = 2; //up
     if(my_angle < PI / 2 || my_angle > 3 * PI / 2)
-            ray_direction_rf = 1;//right
+            ray_direction_rf = 1; //right
     else
         if(!(my_angle < PI / 2 || my_angle > 3 * PI / 2))
-            ray_direction_rf = 2;//left
-	 horizontal_intersection(player,my_angle,ray_direction_du,ray_direction_rf,hit_wallx,hit_wally);
-	//vertical_intersection(player,my_angle,ray_direction_du,ray_direction_rf,hit_wallx,hit_wally);
+            ray_direction_rf = 2; //left
+	int h=horizontal_intersection(player,my_angle,ray_direction_du,ray_direction_rf,&hit_wallx_h,&hit_wally_h);
+	//int v=vertical_intersection(player,my_angle,ray_direction_du,ray_direction_rf,&hit_wallx_v,&hit_wally_v);
+    //calculate distances then choose the smullest value ;
+    int v = 0;
+    if(h)
+        dh = Distance_between_xy(player,&hit_wallx_h,&hit_wally_h);
+    if(v)
+        dv = Distance_between_xy(player,&hit_wallx_v,&hit_wally_v);
+    if(dh < dv){
+        wall_hit_x = hit_wallx_h;
+        wall_hit_y = hit_wally_h;
+        distance_hit =  dh;
+    }
+    else
+    {
+        wall_hit_x = hit_wallx_v;
+        wall_hit_y = hit_wally_v;
+        distance_hit = dv;
+    }
+    line_drawing(player,wall_hit_x,wall_hit_y);
     return;
 
+}
+double     Distance_between_xy(t_player* player,int    *hit_x,int      *hit_y)
+{
+    double distance;
+    distance = sqrt((*hit_x - player->x)*(*hit_x - player->x) + \
+      (*hit_y - player->y)*(*hit_y - player->y));
+    return (distance);
 }

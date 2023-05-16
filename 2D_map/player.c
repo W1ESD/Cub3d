@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zanejar <zanejar@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 16:28:04 by zanejar           #+#    #+#             */
-/*   Updated: 2023/05/16 18:44:06 by zanejar          ###   ########.fr       */
+/*   Updated: 2023/05/16 20:14:30 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void render_player(t_player *player)
 	player->height = 5;
 	player->sideDirection = 0;
 	player->walkDirection = 0;
-	player->rotationAngle = -PI / 2;
+	player->rotationAngle = PI / 2;
 	player->moveSpeed = 2;
 	player->rotationSpeed =  (3 * PI) / 120;
 	float 	x, y;
