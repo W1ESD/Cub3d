@@ -37,7 +37,29 @@
 #define PI 3.14159265358979323846
 
 #define NBR_RAYS WINDOW_WIDTH
-#define line_length  300
+#define line_length  30
+
+typedef struct s_ray
+{
+	long	x_intercept;
+    long	y_intercept;
+    long	x_step;
+    long	y_step;
+    long	next_x;
+    long	next_y;
+}				t_ray;
+
+typedef struct s_hit
+{
+	int hit_x_v;
+	int hit_y_v;
+	int hit_x_h;
+	int hit_y_h;
+	int hit_x;
+	int hit_y;
+	double dh;
+    double dv;
+}				t_hit;
 
 typedef struct s_img
 {
@@ -52,7 +74,6 @@ typedef struct	s_player {
 	float	x;
 	float	y;  
 	float	radius;
-	// int		turnDirection;
 	int		walkDirection;
 	int 	sideDirection;
 	float	rotationAngle;
@@ -64,6 +85,9 @@ typedef struct	s_player {
 	void	*win_ptr;
 	int 	grid[MAP_NUM_ROWS][MAP_NUM_COLS];
 	t_img	img;
+	t_ray	ray;
+	t_hit	hit;
+	int		hit_distance;
 }				t_player;
 
 void			render_map(t_player *player);
@@ -75,20 +99,25 @@ void			render_player(t_player *player);
 int				update(t_player *player) ;
 void	 		line_drawing(t_player* player,  int end_x, int end_y);
 int     		able_to_move(t_player*  player,int  move);
-void			ray_draw(t_player*	player);
+void			ray_caster(t_player*	player);
 void    		cast_ray(t_player*  player,double my_angle);
 void			my_mlx_pixel_put(t_img *data, int x, int y, int color);
+int				able_to_walk_up(t_player* player);
+int				able_to_walk_down(t_player* player);
+int				able_to_turn_left(t_player* player);
+int				able_to_turn_right(t_player* player);
+void			ray_direction(double my_angle,int *ray_direction_du,int *ray_direction_rf);
+double			adjust_angle(double angle);
+int				found_Wall(int x,int y,t_player *player);
+void			horizontal_intersection(t_player* player,double my_angle ,int *hitx,int *hity);
+void			vertical_intersection(t_player* player,double my_angle , int *hitx,int *hity);
+void			cast_ray(t_player*  player,double my_angle);
+int				distance_between_xy(t_player* player,int *hit_x,int *hit_y);
+void			dist_cacl(t_player*  player);
+// void			draw_line(t_player* player, int WallHitX, int WallHitY);
 
-double adjust_angle(double angle);
-int found_Wall(long x,long y,t_player *player);
-void   	horizontal_intersection(t_player*   player,double my_angle  ,int	ray_direction_du,int ray_direction_rf,int *hitx,int *hity);
-void   	vertical_intersection(t_player*   player,double my_angle , int	ray_direction_du,int ray_direction_rf,int *hitx,int *hity);
-void    cast_ray(t_player*  player,double my_angle);
-double     Distance_between_xy(t_player* player,int    *hit_x,int      *hit_y);
-int     	able_to_turn_right(t_player *player);
-int     able_to_walk_up(t_player* player);
-int     able_to_walk_down(t_player* player);
-int     able_to_turn_left(t_player *player);
+int is_ray_facing_right(double my_angle);
+int is_ray_facing_down(double my_angle);
 
 
 #endif

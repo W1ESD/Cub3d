@@ -6,7 +6,7 @@
 #    By: zanejar <zanejar@student.1337.ma>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/03 17:10:09 by zanejar           #+#    #+#              #
-#    Updated: 2023/05/16 00:36:45 by zanejar          ###   ########.fr        #
+#    Updated: 2023/05/17 05:15:57 by zanejar          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ CFLAGS = -Wall -Wextra -Werror
 
 LINK = -lmlx -framework OpenGL -framework AppKit
 
-SRC =	main.c player.c map.c hooks.c rays_drawing.c movement.c casting_rays.c
+SRC =	main.c player.c map.c hooks.c ray_casting.c movement.c casting_utils.c
 
 HEADER = header.h
 
