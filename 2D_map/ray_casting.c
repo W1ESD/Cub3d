@@ -31,8 +31,8 @@ void	 line_drawing(t_player* player,  int end_x, int end_y)
 {
 	int	pixels_color = WHITE_COLOR;
 
-	double distance_x = end_x - player->x;
-	double distance_y = end_y - player->y;
+	float distance_x = end_x - player->x;
+	float distance_y = end_y - player->y;
 
 	int pixels = sqrt((distance_x * distance_x) + (distance_y * distance_y));
 
@@ -40,8 +40,8 @@ void	 line_drawing(t_player* player,  int end_x, int end_y)
 	distance_y /= pixels;
 
 
-	double pixel_x = player->x;
-	double pixel_y = player->y; 
+	float pixel_x = player->x;
+	float pixel_y = player->y; 
 
     while (pixels > 0)
     {
@@ -54,17 +54,13 @@ void	 line_drawing(t_player* player,  int end_x, int end_y)
    
 void	ray_caster(t_player*	player)
 {
-	double	ray_angle = player->rotationAngle - (FOV / 2);
-	double	inc_angle = FOV / NBR_RAYS; 
+	float	ray_angle = player->rotationAngle - (FOV / 2);
+	float	inc_angle = FOV / NBR_RAYS; 
 	int i = 0;
 
 	while(i < NBR_RAYS)
 	{
-		ray_angle = adjust_angle(ray_angle);
-		horizontal_intersection(player, ray_angle, &player->hit.hit_x_h, &player->hit.hit_y_h);
-		vertical_intersection(player, ray_angle, &player->hit.hit_x_v, &player->hit.hit_y_v);
-		dist_cacl(player);
-		line_drawing(player, player->hit.hit_x, player->hit.hit_y);
+		cast_ray(player, ray_angle);
 		ray_angle += inc_angle;
 		i++;
 	}

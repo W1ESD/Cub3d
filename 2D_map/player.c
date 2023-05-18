@@ -6,7 +6,7 @@
 /*   By: zanejar <zanejar@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 16:28:04 by zanejar           #+#    #+#             */
-/*   Updated: 2023/05/17 05:26:29 by zanejar          ###   ########.fr       */
+/*   Updated: 2023/05/18 05:35:30 by zanejar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void player_draw(t_player *player)
 		}
 	}
 	ray_caster(player);
+	printf("%f\n", player->hit_distance);
 }
 
 
@@ -31,8 +32,8 @@ void render_player(t_player *player)
 {
 	player->x = WINDOW_WIDTH / 2;
 	player->y = WINDOW_HEIGHT / 2;
-	player->width = 5;
-	player->height = 5;
+	player->width = 1;
+	player->height = 1;
 	player->sideDirection = 0;
 	player->walkDirection = 0;
 	player->rotationAngle = PI / 2;

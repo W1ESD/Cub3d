@@ -39,6 +39,7 @@
 #define NBR_RAYS WINDOW_WIDTH
 #define line_length  30
 
+
 typedef struct s_ray
 {
 	long	x_intercept;
@@ -51,14 +52,14 @@ typedef struct s_ray
 
 typedef struct s_hit
 {
-	int hit_x_v;
-	int hit_y_v;
-	int hit_x_h;
-	int hit_y_h;
-	int hit_x;
-	int hit_y;
-	double dh;
-    double dv;
+	float hit_x_v;
+	float hit_y_v;
+	float hit_x_h;
+	float hit_y_h;
+	float hit_x;
+	float hit_y;
+	float dh;
+    float dv;
 }				t_hit;
 
 typedef struct s_img
@@ -87,7 +88,7 @@ typedef struct	s_player {
 	t_img	img;
 	t_ray	ray;
 	t_hit	hit;
-	int		hit_distance;
+	float	hit_distance;
 }				t_player;
 
 void			render_map(t_player *player);
@@ -98,26 +99,24 @@ void			player_draw(t_player *player);
 void			render_player(t_player *player);
 int				update(t_player *player) ;
 void	 		line_drawing(t_player* player,  int end_x, int end_y);
-int     		able_to_move(t_player*  player,int  move);
 void			ray_caster(t_player*	player);
-void    		cast_ray(t_player*  player,double my_angle);
+void    		cast_ray(t_player*  player,float my_angle);
 void			my_mlx_pixel_put(t_img *data, int x, int y, int color);
 int				able_to_walk_up(t_player* player);
 int				able_to_walk_down(t_player* player);
 int				able_to_turn_left(t_player* player);
 int				able_to_turn_right(t_player* player);
-void			ray_direction(double my_angle,int *ray_direction_du,int *ray_direction_rf);
-double			adjust_angle(double angle);
+float			adjust_angle(float angle);
 int				found_Wall(int x,int y,t_player *player);
-void			horizontal_intersection(t_player* player,double my_angle ,int *hitx,int *hity);
-void			vertical_intersection(t_player* player,double my_angle , int *hitx,int *hity);
-void			cast_ray(t_player*  player,double my_angle);
-int				distance_between_xy(t_player* player,int *hit_x,int *hit_y);
+void			horizontal_intersection(t_player* player,float my_angle);
+void			vertical_intersection(t_player* player,float my_angle);
+void			cast_ray(t_player*  player,float my_angle);
+float			distance_between_xy(t_player* player,float *hit_x,float *hit_y);
 void			dist_cacl(t_player*  player);
-// void			draw_line(t_player* player, int WallHitX, int WallHitY);
+void			draw_line(t_player* player, int WallHitX, int WallHitY);
 
-int is_ray_facing_right(double my_angle);
-int is_ray_facing_down(double my_angle);
+int is_ray_facing_right(float my_angle);
+int is_ray_facing_down(float my_angle);
 
 
 #endif
