@@ -6,7 +6,7 @@
 /*   By: zanejar <zanejar@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 16:28:02 by zanejar           #+#    #+#             */
-/*   Updated: 2023/05/17 03:45:17 by zanejar          ###   ########.fr       */
+/*   Updated: 2023/05/20 05:14:04 by zanejar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,31 +17,31 @@ int	close_window(void)
 	exit (0);
 }
 
-int key_pressed(int keycode, t_player *player)
+int key_pressed(int keycode, t_data *data)
 {
 		if (keycode == W_KEY )
-    	    player->walkDirection = 1;
+    	    data->player.walkDirection = 1;
     	else if (keycode == S_KEY )
-    	    player->walkDirection = -1;
+    	    data->player.walkDirection = -1;
     	else if (keycode == A_KEY )
-    	    player->sideDirection = -1;
+    	    data->player.sideDirection = -1;
     	else if (keycode == D_KEY )
-    	    player->sideDirection = 1;
+    	    data->player.sideDirection = 1;
 		if (keycode == LEFT_KEY)
-			player->rotationAngle -=  player->rotationSpeed;
+			data->player.rotationAngle -=  data->player.rotationSpeed;
 		else if (keycode == RIGHT_KEY)
-			player->rotationAngle +=  player->rotationSpeed;
+			data->player.rotationAngle +=  data->player.rotationSpeed;
 	if (keycode == ESC)
 		close_window();
     return (0);
 }
 
-int key_released(int keycode, t_player *player)
+int key_released(int keycode, t_data *data)
 {
 
     if (keycode == W_KEY || keycode == S_KEY)
-        player->walkDirection = 0;
+        data->player.walkDirection = 0;
     else if (keycode == A_KEY || keycode == D_KEY)
-        player->sideDirection = 0;
+        data->player.sideDirection = 0;
     return (0);
 }

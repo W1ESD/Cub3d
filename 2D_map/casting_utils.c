@@ -6,7 +6,7 @@
 /*   By: zanejar <zanejar@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 11:11:36 by wiessaiy          #+#    #+#             */
-/*   Updated: 2023/05/18 05:55:07 by zanejar          ###   ########.fr       */
+/*   Updated: 2023/05/20 05:16:53 by zanejar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ float adjust_angle(float angle)
     return angle;
 }
 
-int found_Wall(int x, int y, t_player *player)
+int found_Wall(t_data *data, int x, int y)
 {
     int my_x;
     int my_y;
@@ -30,7 +30,7 @@ int found_Wall(int x, int y, t_player *player)
     }
     my_x = floor(x / PIXEL);
     my_y = floor(y / PIXEL);
-    if(player->grid[my_y][my_x] == 1)
+    if(data->grid[my_y][my_x] == 1)
     	return 1;
     return 0;
 }
@@ -49,121 +49,121 @@ int is_ray_facing_right(float my_angle)
 	return 0;
 }
 
-void   horizontal_intersection(t_player*   player, float my_angle)
+void   horizontal_intersection(t_data *data, int i)
 {
-    player->ray.y_intercept = floor(player->y / PIXEL) * PIXEL;
-    if(is_ray_facing_down(my_angle))
-        player->ray.y_intercept += PIXEL;
+    data->ray[i].y_intercept = floor(data->player.y / PIXEL) * PIXEL;
+    if(is_ray_facing_down(data->ray[i].ray_angle))
+        data->ray[i].y_intercept += PIXEL;
 	
-    player->ray.x_intercept = player->x + (player->ray.y_intercept - player->y) / tan(my_angle);
+    data->ray[i].x_intercept = data->player.x + (data->ray[i].y_intercept - data->player.y) / tan(data->ray[i].ray_angle);
     
-	player->ray.y_step = PIXEL;
-    if(!is_ray_facing_down(my_angle))
-        player->ray.y_step *= -1;
+	data->ray[i].y_step = PIXEL;
+    if(!is_ray_facing_down(data->ray[i].ray_angle))
+        data->ray[i].y_step *= -1;
     
-	player->ray.x_step  = PIXEL / tan(my_angle);
-    if(player->ray.x_step > 0  && !is_ray_facing_right(my_angle))
-        player->ray.x_step *= -1;
-	if(player->ray.x_step < 0 && is_ray_facing_right(my_angle))
-		player->ray.x_step *= -1;
+	data->ray[i].x_step  = PIXEL / tan(data->ray[i].ray_angle);
+    if(data->ray[i].x_step > 0  && !is_ray_facing_right(data->ray[i].ray_angle))
+        data->ray[i].x_step *= -1;
+	if(data->ray[i].x_step < 0 && is_ray_facing_right(data->ray[i].ray_angle))
+		data->ray[i].x_step *= -1;
     
-	player->ray.next_x = player->ray.x_intercept ;
-    player->ray.next_y = player->ray.y_intercept ;
+	data->ray[i].next_x = data->ray[i].x_intercept ;
+    data->ray[i].next_y = data->ray[i].y_intercept ;
 	
-	if (!is_ray_facing_down(my_angle))
-		player->ray.next_y--;
-    
-	while(player->ray.next_x >= 0 &&  player->ray.next_x <= WINDOW_WIDTH \
-	&& player->ray.next_y >=0 && player->ray.next_y <= WINDOW_HEIGHT )
+	if (!is_ray_facing_down(data->ray[i].ray_angle))
+		data->ray[i].next_y--;
+	
+	while(data->ray[i].next_x >= 0 &&  data->ray[i].next_x <= WINDOW_WIDTH \
+	&& data->ray[i].next_y >=0 && data->ray[i].next_y <= WINDOW_HEIGHT )
     {
-        if(found_Wall(player->ray.next_x,player->ray.next_y,player))
+        if(found_Wall(data, data->ray[i].next_x,data->ray[i].next_y))
         {
-                player->hit.hit_x_h = player->ray.next_x;
-                player->hit.hit_y_h = player->ray.next_y;
-                // line_drawing(player, player->hit.hit_x_h, player->hit.hit_y_h);
+                data->hit.hit_x_h = data->ray[i].next_x;
+                data->hit.hit_y_h = data->ray[i].next_y;
+                // line_drawing(data, data->hit.hit_x_h, data->hit.hit_y_h);
                 break;
         }
         else
         {
-            player->ray.next_x += player->ray.x_step;
-            player->ray.next_y += player->ray.y_step;
+            data->ray[i].next_x += data->ray[i].x_step;
+            data->ray[i].next_y += data->ray[i].y_step;
         }
-    }
+	}
 }
 
-void   vertical_intersection(t_player*   player, float my_angle)
+void   vertical_intersection(t_data *data, int i)
 {
-	player->ray.x_intercept = floor(player->x/PIXEL) * PIXEL;
-	if(is_ray_facing_right(my_angle))
-        player->ray.x_intercept += PIXEL;
+	data->ray[i].x_intercept = floor(data->player.x/PIXEL) * PIXEL;
+	if(is_ray_facing_right(data->ray[i].ray_angle))
+        data->ray[i].x_intercept += PIXEL;
     
-	player->ray.y_intercept = player->y + (player->ray.x_intercept - player->x) * tan(my_angle);
+	data->ray[i].y_intercept = data->player.y + (data->ray[i].x_intercept - data->player.x) * tan(data->ray[i].ray_angle);
     
-	player->ray.x_step = PIXEL;
-	if(!is_ray_facing_right(my_angle))
-        player->ray.x_step *= -1;
+	data->ray[i].x_step = PIXEL;
+	if(!is_ray_facing_right(data->ray[i].ray_angle))
+        data->ray[i].x_step *= -1;
     
-	player->ray.y_step  = PIXEL * tan(my_angle);
-    if(player->ray.y_step > 0  && !is_ray_facing_down(my_angle))
-        player->ray.y_step *= -1;
-	else if(player->ray.y_step < 0 && is_ray_facing_down(my_angle))
-		player->ray.y_step *= -1;
+	data->ray[i].y_step  = PIXEL * tan(data->ray[i].ray_angle);
+    if(data->ray[i].y_step > 0  && !is_ray_facing_down(data->ray[i].ray_angle))
+        data->ray[i].y_step *= -1;
+	else if(data->ray[i].y_step < 0 && is_ray_facing_down(data->ray[i].ray_angle))
+		data->ray[i].y_step *= -1;
     
-	player->ray.next_x = player->ray.x_intercept ;
-    player->ray.next_y = player->ray.y_intercept ;
+	data->ray[i].next_x = data->ray[i].x_intercept ;
+    data->ray[i].next_y = data->ray[i].y_intercept ;
 	
-	if (!is_ray_facing_right(my_angle))
-		player->ray.next_x--;
-    while(player->ray.next_x >= 0 && player->ray.next_x <= WINDOW_WIDTH && \
-	player->ray.next_y >=0 && player->ray.next_y <= WINDOW_HEIGHT )
+	if (!is_ray_facing_right(data->ray[i].ray_angle))
+		data->ray[i].next_x--;
+    while(data->ray[i].next_x >= 0 && data->ray[i].next_x <= WINDOW_WIDTH && \
+	data->ray[i].next_y >=0 && data->ray[i].next_y <= WINDOW_HEIGHT )
     {
-        if(found_Wall(player->ray.next_x,player->ray.next_y,player))
+        if(found_Wall(data, data->ray[i].next_x, data->ray[i].next_y))
         {
-                player->hit.hit_x_v = player->ray.next_x;
-                player->hit.hit_y_v = player->ray.next_y;
-                // line_drawing(player, player->hit.hit_x_v, player->hit.hit_y_v);
+                data->hit.hit_x_v = data->ray[i].next_x;
+                data->hit.hit_y_v = data->ray[i].next_y;
+                // line_drawing(data, data->hit.hit_x_v, data->hit.hit_y_v);
                 break;
         }
         else
         {
-            player->ray.next_x += player->ray.x_step;
-            player->ray.next_y += player->ray.y_step;
+            data->ray[i].next_x += data->ray[i].x_step;
+            data->ray[i].next_y += data->ray[i].y_step;
         }
     }
 }
 
-void    cast_ray(t_player*  player,float my_angle)
+void    cast_ray(t_data *data, int i)
 {
-    my_angle = adjust_angle(my_angle);
-	horizontal_intersection(player, my_angle);
-	vertical_intersection(player, my_angle);
-	dist_cacl(player);
-    line_drawing(player, player->hit.hit_x, player->hit.hit_y);
+    data->ray[i].ray_angle = adjust_angle(data->ray[i].ray_angle);
+	horizontal_intersection(data, i);
+	vertical_intersection(data, i);
+	dist_calc(data, i);
+    line_drawing(data, data->hit.hit_x, data->hit.hit_y);
     return;
 }
 
-void dist_cacl(t_player*  player)
+void dist_calc(t_data *data, int i)
 {
-	player->hit.dh = distance_between_xy(player, &player->hit.hit_x_h, &player->hit.hit_y_h);
-	player->hit.dv = distance_between_xy(player, &player->hit.hit_x_v, &player->hit.hit_y_v);
-    if(player->hit.dh < player->hit.dv)
+	data->hit.dh = distance_between_xy(data, &data->hit.hit_x_h, &data->hit.hit_y_h);
+	data->hit.dv = distance_between_xy(data, &data->hit.hit_x_v, &data->hit.hit_y_v);
+    if(data->hit.dh < data->hit.dv)
 	{
-        player->hit.hit_x = player->hit.hit_x_h;
-        player->hit.hit_y = player->hit.hit_y_h;
-        player->hit_distance = player->hit.dh;
+        data->hit.hit_x = data->hit.hit_x_h;
+        data->hit.hit_y = data->hit.hit_y_h;
+        data->ray[i].ray_distance = data->hit.dh;
     }
     else
     {
-        player->hit.hit_x = player->hit.hit_x_v;
-        player->hit.hit_y = player->hit.hit_y_v;
-        player->hit_distance = player->hit.dv;
+        data->hit.hit_x = data->hit.hit_x_v;
+        data->hit.hit_y = data->hit.hit_y_v;
+        data->ray[i].ray_distance = data->hit.dv;
     }
 }
 
-float	distance_between_xy(t_player* player,float *hit_x, float *hit_y)
+float	distance_between_xy(t_data *data, float *hit_x, float *hit_y)
 {
     float distance;
-    distance = sqrt((*hit_x - player->x)*(*hit_x - player->x) + \
-      (*hit_y - player->y)*(*hit_y - player->y));
+    distance = sqrt((*hit_x - data->player.x)*(*hit_x - data->player.x) + \
+      (*hit_y - data->player.y)*(*hit_y - data->player.y));
     return (distance);
 }

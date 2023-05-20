@@ -6,71 +6,83 @@
 /*   By: zanejar <zanejar@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 16:28:04 by zanejar           #+#    #+#             */
-/*   Updated: 2023/05/18 05:35:30 by zanejar          ###   ########.fr       */
+/*   Updated: 2023/05/20 06:53:59 by zanejar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-void player_draw(t_player *player)
+void player_draw(t_data *data)
 {
 	int x, y, color;
-	x = player->x;
-	y = player->y;
-	color = 0xFFFFFF;
-	for (int i = 0; i < player->width; i++) {
-		for (int j = 0; j < player->height; j++) {
-			my_mlx_pixel_put(&player->img, x + i, y + j, color);
+	x = data->player.x;
+	y = data->player.y;
+	color = WHITE_COLOR;
+	for (int i = 0; i < data->player.width; i++) {
+		for (int j = 0; j < data->player.height; j++) {
+			my_mlx_pixel_put(&data->img, (x + i) * MINI_MAP_SCALE_FACTOR, \
+			(y + j) * MINI_MAP_SCALE_FACTOR, color);
 		}
 	}
-	ray_caster(player);
-	printf("%f\n", player->hit_distance);
 }
 
-
-void render_player(t_player *player)
+void render_player(t_data *data)
 {
-	player->x = WINDOW_WIDTH / 2;
-	player->y = WINDOW_HEIGHT / 2;
-	player->width = 1;
-	player->height = 1;
-	player->sideDirection = 0;
-	player->walkDirection = 0;
-	player->rotationAngle = PI / 2;
-	player->moveSpeed = 2;
-	player->rotationSpeed = (3 * PI) / 100;
-	player_draw(player);
+	data->player.x = WINDOW_WIDTH / 2;
+	data->player.y = WINDOW_HEIGHT / 2;
+	data->player.width = 1;
+	data->player.height = 1;
+	data->player.sideDirection = 0;
+	data->player.walkDirection = 0;
+	data->player.rotationAngle = PI / 2;
+	data->player.moveSpeed = 2;
+	data->player.rotationSpeed = (3 * PI) / 100;
+	player_draw(data);
 }
 
-void direction(t_player *player)
+void direction(t_data *data)
 {		
-	if (player->walkDirection == 1 && able_to_walk_up(player))
+	if (data->player.walkDirection == 1 && able_to_walk_up(data))
 	{
-		player->x += cos(player->rotationAngle) * player->moveSpeed;
-		player->y += sin(player->rotationAngle) * player->moveSpeed;
+		data->player.x += cos(data->player.rotationAngle) * data->player.moveSpeed;
+		data->player.y += sin(data->player.rotationAngle) * data->player.moveSpeed;
 	}
-	else if (player->walkDirection == -1 && able_to_walk_down(player))
+	else if (data->player.walkDirection == -1 && able_to_walk_down(data))
 	{
-		player->x -= cos(player->rotationAngle) * player->moveSpeed;
-		player->y -= sin(player->rotationAngle) * player->moveSpeed;
+		data->player.x -= cos(data->player.rotationAngle) * data->player.moveSpeed;
+		data->player.y -= sin(data->player.rotationAngle) * data->player.moveSpeed;
 	}
-	if (player->sideDirection == 1 && able_to_turn_left(player)) 
+	if (data->player.sideDirection == 1 && able_to_turn_left(data)) 
 	{
-   		player->x += cos(player->rotationAngle + (PI / 2)) * player->moveSpeed;
-   		player->y += sin(player->rotationAngle + (PI / 2)) * player->moveSpeed;
+   		data->player.x += cos(data->player.rotationAngle + (PI / 2)) * data->player.moveSpeed;
+   		data->player.y += sin(data->player.rotationAngle + (PI / 2)) * data->player.moveSpeed;
 	}
-	else if (player->sideDirection == -1 && able_to_turn_right(player)) 
+	else if (data->player.sideDirection == -1 && able_to_turn_right(data)) 
 	{
-	    player->x -= cos(player->rotationAngle + (PI / 2)) * player->moveSpeed;
-	    player->y -= sin(player->rotationAngle + (PI / 2)) * player->moveSpeed;
+	    data->player.x -= cos(data->player.rotationAngle + (PI / 2)) * data->player.moveSpeed;
+	    data->player.y -= sin(data->player.rotationAngle + (PI / 2)) * data->player.moveSpeed;
 	}
 }
 
-int update(t_player *player) 
+void mlx_clear_image(t_data *data)
 {
-	direction(player);
-	render_map(player);
-	player_draw(player);
-	mlx_put_image_to_window(player->mlx_ptr, player->win_ptr, player->img.img_ptr, 0, 0);
+	int x, y;
+	int color = BLACK_COLOR;
+	for (x = 0; x < WINDOW_WIDTH; x++)
+	{
+		for (y = 0; y < WINDOW_HEIGHT; y++)
+			my_mlx_pixel_put(&data->img, x, y, color);
+	}
+}
+
+int update(t_data *data) 
+{
+	direction(data);
+	render_map(data);
+	player_draw(data);
+	ray_caster(data);
+	mlx_clear_image(data);
+	render_walls(data);
+	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.img_ptr, 0, 0);
 	return (0);
 }
