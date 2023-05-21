@@ -5,16 +5,16 @@ void	 line_drawing(t_data *data,  int end_x, int end_y)
 {
 	int	pixels_color = WHITE_COLOR;
 
-	float distance_x = end_x - data->player.x;
-	float distance_y = end_y - data->player.y;
+	double distance_x = end_x - data->player.x;
+	double distance_y = end_y - data->player.y;
 
 	int pixels = sqrt((distance_x * distance_x) + (distance_y * distance_y));
 
 	distance_x /= pixels;
 	distance_y /= pixels;
 
-	float pixel_x = data->player.x;
-	float pixel_y = data->player.y; 
+	double pixel_x = data->player.x;
+	double pixel_y = data->player.y; 
 
     while (pixels > 0)
     {
@@ -28,16 +28,20 @@ void	 line_drawing(t_data *data,  int end_x, int end_y)
 
 void	ray_caster(t_data *data)
 {
-	data->wall.proj = (WINDOW_WIDTH / 2) / tan(FOV / 2);
-	// float	inc_angle = FOV / NBR_RAYS; 
-	// data->ray[i].ray_angle = data->ray[i].rotationAngle - (FOV / 2);
+	data->wall.projection = (WINDOW_WIDTH / 2) / tan(FOV / 2);
+	double	inc_angle = FOV / NBR_RAYS;
 	int i = 0;
 
+	data->ray[i].ray_angle = data->player.rotationAngle - (FOV / 2);
 	while(i < NBR_RAYS)
 	{
-		data->ray[i].ray_angle = data->player.rotationAngle + atan((i - NBR_RAYS / 2) / data->wall.proj);
+		// data->ray[i].ray_angle = data->player.rotationAngle + atan((i - NBR_RAYS / 2) / data->wall.projection);
 		cast_ray(data, i);
-		// player->ray.ray_angle += inc_angle;
+		line_drawing(data, data->ray[i].hit_x, data->ray[i].hit_y);
+		if (i + 1 < NBR_RAYS)
+			data->ray[i + 1].ray_angle = data->ray[i].ray_angle + inc_angle;
+		// line_drawing(data, data->ray[i].hit_x, data->ray[i].hit_y);
+		// data->ray[i].ray_angle += inc_angle;
 		i++;
 	}
 }

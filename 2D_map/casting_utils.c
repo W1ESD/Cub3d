@@ -6,13 +6,13 @@
 /*   By: zanejar <zanejar@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 11:11:36 by wiessaiy          #+#    #+#             */
-/*   Updated: 2023/05/20 05:16:53 by zanejar          ###   ########.fr       */
+/*   Updated: 2023/05/21 03:32:08 by zanejar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-float adjust_angle(float angle) 
+double adjust_angle(double angle) 
 {
     angle = fmod(angle, 2 * PI);
     if (angle < 0) {
@@ -35,21 +35,21 @@ int found_Wall(t_data *data, int x, int y)
     return 0;
 }
 
-int is_ray_facing_down(float my_angle)
+int is_ray_facing_down(double my_angle)
 {
 	if (my_angle > 0 && my_angle < PI)
 		return 1;
 	return 0;
 }
 
-int is_ray_facing_right(float my_angle)
+int is_ray_facing_right(double my_angle)
 {
 	if (my_angle < PI / 2 || my_angle > 3 * PI / 2)
 		return 1;
 	return 0;
 }
 
-void   horizontal_intersection(t_data *data, int i)
+int   horizontal_intersection(t_data *data, int i)
 {
     data->ray[i].y_intercept = floor(data->player.y / PIXEL) * PIXEL;
     if(is_ray_facing_down(data->ray[i].ray_angle))
@@ -67,31 +67,32 @@ void   horizontal_intersection(t_data *data, int i)
 	if(data->ray[i].x_step < 0 && is_ray_facing_right(data->ray[i].ray_angle))
 		data->ray[i].x_step *= -1;
     
-	data->ray[i].next_x = data->ray[i].x_intercept ;
-    data->ray[i].next_y = data->ray[i].y_intercept ;
+	data->ray[i].next_horz_x = data->ray[i].x_intercept ;
+    data->ray[i].next_horz_y = data->ray[i].y_intercept ;
 	
 	if (!is_ray_facing_down(data->ray[i].ray_angle))
-		data->ray[i].next_y--;
+		data->ray[i].next_horz_y--;
 	
-	while(data->ray[i].next_x >= 0 &&  data->ray[i].next_x <= WINDOW_WIDTH \
-	&& data->ray[i].next_y >=0 && data->ray[i].next_y <= WINDOW_HEIGHT )
+	while(data->ray[i].next_horz_x >= 0 &&  data->ray[i].next_horz_x <= WINDOW_WIDTH \
+	&& data->ray[i].next_horz_y >=0 && data->ray[i].next_horz_y <= WINDOW_HEIGHT )
     {
-        if(found_Wall(data, data->ray[i].next_x,data->ray[i].next_y))
+        if(found_Wall(data, data->ray[i].next_horz_x, data->ray[i].next_horz_y))
         {
-                data->hit.hit_x_h = data->ray[i].next_x;
-                data->hit.hit_y_h = data->ray[i].next_y;
-                // line_drawing(data, data->hit.hit_x_h, data->hit.hit_y_h);
-                break;
+                data->ray[i].hit_x_h = data->ray[i].next_horz_x;
+                data->ray[i].hit_y_h = data->ray[i].next_horz_y;
+                // line_drawing(data, data->ray[i].hit_x_h, data->ray[i].hit_y_h);
+                return 1;
         }
         else
         {
-            data->ray[i].next_x += data->ray[i].x_step;
-            data->ray[i].next_y += data->ray[i].y_step;
+            data->ray[i].next_horz_x += data->ray[i].x_step;
+            data->ray[i].next_horz_y += data->ray[i].y_step;
         }
 	}
+	return 0;
 }
 
-void   vertical_intersection(t_data *data, int i)
+int   vertical_intersection(t_data *data, int i)
 {
 	data->ray[i].x_intercept = floor(data->player.x/PIXEL) * PIXEL;
 	if(is_ray_facing_right(data->ray[i].ray_angle))
@@ -109,61 +110,71 @@ void   vertical_intersection(t_data *data, int i)
 	else if(data->ray[i].y_step < 0 && is_ray_facing_down(data->ray[i].ray_angle))
 		data->ray[i].y_step *= -1;
     
-	data->ray[i].next_x = data->ray[i].x_intercept ;
-    data->ray[i].next_y = data->ray[i].y_intercept ;
+	data->ray[i].next_vert_x = data->ray[i].x_intercept ;
+    data->ray[i].next_vert_y = data->ray[i].y_intercept ;
 	
 	if (!is_ray_facing_right(data->ray[i].ray_angle))
-		data->ray[i].next_x--;
-    while(data->ray[i].next_x >= 0 && data->ray[i].next_x <= WINDOW_WIDTH && \
-	data->ray[i].next_y >=0 && data->ray[i].next_y <= WINDOW_HEIGHT )
+		data->ray[i].next_vert_x--;
+    while(data->ray[i].next_vert_x >= 0 && data->ray[i].next_vert_x <= WINDOW_WIDTH && \
+	data->ray[i].next_vert_y >=0 && data->ray[i].next_vert_y <= WINDOW_HEIGHT )
     {
-        if(found_Wall(data, data->ray[i].next_x, data->ray[i].next_y))
+        if(found_Wall(data, data->ray[i].next_vert_x, data->ray[i].next_vert_y))
         {
-                data->hit.hit_x_v = data->ray[i].next_x;
-                data->hit.hit_y_v = data->ray[i].next_y;
-                // line_drawing(data, data->hit.hit_x_v, data->hit.hit_y_v);
-                break;
+                data->ray[i].hit_x_v = data->ray[i].next_vert_x;
+                data->ray[i].hit_y_v = data->ray[i].next_vert_y;
+                // line_drawing(data, data->ray[i].hit_x_v, data->ray[i].hit_y_v);
+                return 1;
         }
         else
         {
-            data->ray[i].next_x += data->ray[i].x_step;
-            data->ray[i].next_y += data->ray[i].y_step;
+            data->ray[i].next_vert_x += data->ray[i].x_step;
+            data->ray[i].next_vert_y += data->ray[i].y_step;
         }
     }
+	return 0;
 }
 
 void    cast_ray(t_data *data, int i)
 {
     data->ray[i].ray_angle = adjust_angle(data->ray[i].ray_angle);
-	horizontal_intersection(data, i);
-	vertical_intersection(data, i);
-	dist_calc(data, i);
-    line_drawing(data, data->hit.hit_x, data->hit.hit_y);
+	int h = horizontal_intersection(data, i);
+	int v = vertical_intersection(data, i);
+	dist_calc(data, i, h, v);
     return;
 }
 
-void dist_calc(t_data *data, int i)
+void dist_calc(t_data *data, int i, int h, int v)
 {
-	data->hit.dh = distance_between_xy(data, &data->hit.hit_x_h, &data->hit.hit_y_h);
-	data->hit.dv = distance_between_xy(data, &data->hit.hit_x_v, &data->hit.hit_y_v);
-    if(data->hit.dh < data->hit.dv)
+	
+	data->ray[i].dh = distance_between_xy(data, data->ray[i].hit_x_h, data->ray[i].hit_y_h);
+	data->ray[i].dv = distance_between_xy(data, data->ray[i].hit_x_v, data->ray[i].hit_y_v);
+    if (h == 0)
 	{
-        data->hit.hit_x = data->hit.hit_x_h;
-        data->hit.hit_y = data->hit.hit_y_h;
-        data->ray[i].ray_distance = data->hit.dh;
+		data->ray[i].hit_x = data->ray[i].hit_x_v;
+        data->ray[i].hit_y = data->ray[i].hit_y_v;
+        data->ray[i].ray_distance = data->ray[i].dv;
+		return;
+	}
+	if (data->ray[i].dh < data->ray[i].dv || (v == 0))
+	{
+        data->ray[i].hit_x = data->ray[i].hit_x_h;
+        data->ray[i].hit_y = data->ray[i].hit_y_h;
+        data->ray[i].ray_distance = data->ray[i].dh;
+		return;
     }
-    else
-    {
-        data->hit.hit_x = data->hit.hit_x_v;
-        data->hit.hit_y = data->hit.hit_y_v;
-        data->ray[i].ray_distance = data->hit.dv;
-    }
+	else 
+	{
+		data->ray[i].hit_x = data->ray[i].hit_x_v;
+		data->ray[i].hit_y = data->ray[i].hit_y_v;
+		data->ray[i].ray_distance = data->ray[i].dv;
+		return;
+	}
 }
 
-float	distance_between_xy(t_data *data, float *hit_x, float *hit_y)
+double	distance_between_xy(t_data *data, double hit_x, double hit_y)
 {
-    float distance;
-    distance = sqrt((*hit_x - data->player.x)*(*hit_x - data->player.x) + \
-      (*hit_y - data->player.y)*(*hit_y - data->player.y));
+    double distance;
+    distance = sqrt((hit_x - data->player.x)*(hit_x - data->player.x) + \
+      (hit_y - data->player.y)*(hit_y - data->player.y));
     return (distance);
 }
