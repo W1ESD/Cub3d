@@ -6,7 +6,7 @@
 /*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 16:28:04 by zanejar           #+#    #+#             */
-/*   Updated: 2023/05/23 08:41:07 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/05/23 23:03:02 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,8 @@ void mlx_clear_image(t_data *data)
 
 int update(t_data *data) 
 {
+	data->player.slide_left=0;
+	data->player.slide_right=0;
 	direction(data);
 	render_map(data);
 	player_draw(data);

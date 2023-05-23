@@ -6,7 +6,7 @@
 /*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 16:28:02 by zanejar           #+#    #+#             */
-/*   Updated: 2023/05/23 08:41:29 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/05/23 23:03:42 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,15 @@ int key_pressed(int keycode, t_data *data)
     	else if (keycode == D_KEY )
     	    data->player.sideDirection = 1;
 		if (keycode == LEFT_KEY)
+		{
+			data->player.slide_left = 1;
 			data->player.rotationAngle -=  data->player.rotationSpeed;
+		}
 		else if (keycode == RIGHT_KEY)
+		{
+			data->player.slide_right = 1;
 			data->player.rotationAngle +=  data->player.rotationSpeed;
+		}
 	if (keycode == ESC)
 		close_window();
     return (0);

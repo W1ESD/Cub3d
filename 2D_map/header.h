@@ -104,6 +104,8 @@ typedef struct	s_player {
 	double	radius;
 	int		walkDirection;
 	int 	sideDirection;
+	int		slide_right;
+	int		slide_left;
 	double	rotationAngle;
 	double	moveSpeed;
 	double	rotationSpeed;
