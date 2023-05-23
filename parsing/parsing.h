@@ -1,5 +1,17 @@
-#ifndef PARSING_H
-#define PARSING_H
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/23 00:51:58 by wiessaiy          #+#    #+#             */
+/*   Updated: 2023/05/23 08:40:19 by wiessaiy         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef PARS_H
+#define PARS_H
 
 
 
@@ -12,7 +24,7 @@
 #include<stdlib.h>
 #include "macros.h"
 
-typedef struct s_data
+typedef struct s_data_parsing
 {
     char        *north_txt; 
     char        *south_txt;
@@ -24,25 +36,29 @@ typedef struct s_data
     char        *error_msg;
     char        **map;
     char        **new_map;
-}t_data;
+
+}t_data_parsing; 
 
 
 
-int             check_name(char *str,t_data *data);
+int             check_name(char *str,t_data_parsing *data);
 int             count_lines(int fd);
-char**          parse_map(char *str,t_data *data);
-void            fill_map(char   **map,int fd,t_data *data);
+char**          parse_map(char *str,t_data_parsing *data);
+void            fill_map(char   **map,int fd,t_data_parsing *data);
 int             valid_line(char *line);
 char	        *ft_strjoin(char  *s1, char  *s2);
 char*           gnl(int fd);
 char	        **ft_split(char const *s, char c);
-void            check_text(t_data* data);
-void            parse_fill(t_data* data);
+void            check_text(t_data_parsing* data);
+void            parse_fill(t_data_parsing* data);
 char	        **ft_split2(char *str);
 char	        **ft_split2_2(char *str);
-void            check_colors(t_data      *data);
-void            check_map_game(t_data *data);
-void            check_lfaraghat(char    **map,t_data    *data);
+void            check_colors(t_data_parsing      *data);
+void            check_map_game(t_data_parsing *data);
+void            check_lfaraghat(char    **map,t_data_parsing    *data);
+void            fill_spaces_with_walls(t_data_parsing* data);
+void            parsing(t_data_parsing  *data,char  *map_name);
+
 
 
 

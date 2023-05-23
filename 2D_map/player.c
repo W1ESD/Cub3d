@@ -3,20 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zanejar <zanejar@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 16:28:04 by zanejar           #+#    #+#             */
-/*   Updated: 2023/05/21 03:32:35 by zanejar          ###   ########.fr       */
+/*   Updated: 2023/05/23 08:41:07 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-void player_draw(t_data *data)
+void player_draw(t_data *data) 
 {
 	int x, y, color;
+	
 	x = data->player.x;
+	
 	y = data->player.y;
+	    
 	color = WHITE_COLOR;
 	for (int i = 0; i < data->player.width; i++) {
 		for (int j = 0; j < data->player.height; j++) {
@@ -26,7 +29,7 @@ void player_draw(t_data *data)
 	}
 }
 
-void render_player(t_data *data)
+void render_player(t_data *data,t_data_parsing *parsing)
 {
 	data->player.x = WINDOW_WIDTH / 2;
 	data->player.y = WINDOW_HEIGHT / 2;
@@ -34,7 +37,7 @@ void render_player(t_data *data)
 	data->player.height = 5;
 	data->player.sideDirection = 0;
 	data->player.walkDirection = 0;
-	data->player.rotationAngle = PI / 2;
+	data->player.rotationAngle = get_angle(parsing);
 	data->player.moveSpeed = 2;
 	data->player.rotationSpeed = (3 * PI) / 100;
 	player_draw(data);

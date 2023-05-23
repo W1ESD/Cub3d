@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zanejar <zanejar@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 16:28:02 by zanejar           #+#    #+#             */
-/*   Updated: 2023/05/20 05:14:04 by zanejar          ###   ########.fr       */
+/*   Updated: 2023/05/23 08:41:29 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header.h"
- 
+#include "header.h"  
+    
 int	close_window(void)
 {
 	exit (0);

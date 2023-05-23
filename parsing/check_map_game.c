@@ -1,6 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_map_game.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/23 00:50:41 by wiessaiy          #+#    #+#             */
+/*   Updated: 2023/05/23 08:40:41 by wiessaiy         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "parsing.h"
+
 void    check_vl(char   *s)
-{
+{     
     int     i = 0;
     while(s[i])
     {
@@ -13,7 +26,8 @@ void    check_vl(char   *s)
         i++;
     }
 }
-void    check_different_digit(t_data  *data)
+
+void    check_different_digit(t_data_parsing  *data)
 {
     int     i = 6;
     while(data->map[i])
@@ -22,7 +36,7 @@ void    check_different_digit(t_data  *data)
         i++;
     }
 }
-void    check_player_duplicity(t_data   *data)
+void    check_player_duplicity(t_data_parsing   *data)
 {
     int     i = 6;
     int     j;
@@ -81,7 +95,7 @@ void    check_first_last(char   *line)
 
 void    check_lastline(char *line)
 {
-    int     i=0;
+    int     i = 0;
     while(line[i])
     {
         if(line[i] != ' ' && line[i] != '1')
@@ -103,12 +117,14 @@ void    enc_map(char **map)
     }
     check_lastline(map[i-1]);
 }
+
 void    closed_map(char **map)
 {
     first_line(map[0]);
     enc_map(map);
 }
-void    check_map_game(t_data *data)
+
+void    check_map_game(t_data_parsing *data)
 {
     check_different_digit(data);
     check_player_duplicity(data);

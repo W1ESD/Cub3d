@@ -1,6 +1,18 @@
-#include "parsing.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/23 00:51:52 by wiessaiy          #+#    #+#             */
+/*   Updated: 2023/05/23 08:40:17 by wiessaiy         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-char**   parse_map(char *str,t_data *data)
+#include    "parsing.h"
+
+char**   parse_map(char *str,t_data_parsing *data)
 {
     int fd;
     char    **map;
@@ -10,7 +22,7 @@ char**   parse_map(char *str,t_data *data)
         printf("%s%s\n",ERROR,FILE_NOT_FOUND);
         exit(1);
     }
-    int nbr_lines = count_lines(fd);
+    int     nbr_lines = count_lines(fd);
     fd = open(str,O_RDONLY);
     map = NULL;
     map = malloc(sizeof(char*) * nbr_lines);
@@ -18,48 +30,26 @@ char**   parse_map(char *str,t_data *data)
     return(map);
 }
 
-void    init_data(t_data    *data)
+void    init_data(t_data_parsing    *data)
 {
     data->north_txt = NULL;
     data->south_txt = NULL;
     data->west_txt = NULL;
     data->east_txt = NULL;
-    data->floor_color = -1;
-    data->ceiling_color = -1;
-    data->found_error = 0;
+    data->floor_color = 0;
+    data->ceiling_color = 0;
     data->error_msg = NULL;
     data->map = NULL;
     data->new_map = NULL;
 
 }
 
-void    parsing(t_data  *data,char  *map_name)
+void    parsing(t_data_parsing  *data,char  *map_name)
 {
     init_data(data);
     if(check_name(map_name,data))
             return ;
     data->map = parse_map(map_name,data);
     parse_fill(data);
-}
-
-int     main(int    ac,char     **av)
-{
-    char    **map;
-    t_data  *data;
-    if(ac == 2)
-    {
-        data = malloc(sizeof(t_data));
-        parsing(data,av[1]);
-        if(data->found_error)
-        {
-            // destroy_data(data);
-            printf("%s :",ERROR);
-            printf("%s",data->error_msg);
-            system("leaks parsing");
-            return 0;
-        }
-        // destroy_data(data);
-        system("leaks parsing");
-    }
-    return 0;
-}
+    fill_spaces_with_walls(data);
+} 

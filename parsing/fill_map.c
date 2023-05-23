@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fill_map.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/23 00:50:55 by wiessaiy          #+#    #+#             */
+/*   Updated: 2023/05/23 08:40:37 by wiessaiy         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "parsing.h"
 
 
@@ -50,7 +62,7 @@ void    follow_to_map(char  **map,int   fd)
     int     j = 0;
     if(splited_map){
     while(splited_map[j])
-    {   
+    {       
         map[i] = splited_map[j];
         i++;
         j++;
@@ -61,17 +73,17 @@ void    follow_to_map(char  **map,int   fd)
         printf("%s%s\n",ERROR,"Incomplete Map \033[0m");
         exit(0);
     }
-    if(splited_map)
-        free(splited_map);
+    free(splited_map);
 }
 
-void    fill_map(char   **map,int fd,t_data *data)
+void    fill_map(char   **map,int fd,t_data_parsing *data)
 {
    char     *line;
    int      count = 0;
    char     *liste;
    char     **split;
-   int      i=0;
+   int      i = 0;
+   
    line = gnl(fd);
    while (line)
    {    
@@ -93,6 +105,7 @@ void    fill_map(char   **map,int fd,t_data *data)
         printf("%s%s",ERROR,data->error_msg);
         exit(1);
    }
+   
    while (split[i])
    {
         map[i] = split[i];
@@ -102,4 +115,3 @@ void    fill_map(char   **map,int fd,t_data *data)
    follow_to_map(map,fd);
    data->map = map;
 }
-

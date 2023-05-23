@@ -3,22 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   casting_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zanejar <zanejar@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 11:11:36 by wiessaiy          #+#    #+#             */
-/*   Updated: 2023/05/21 03:32:08 by zanejar          ###   ########.fr       */
+/*   Updated: 2023/05/23 08:41:35 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header.h"
+#include "header.h"   
 
-double adjust_angle(double angle) 
+double adjust_angle(double angle)   
 {
-    angle = fmod(angle, 2 * PI);
+    angle = fmod(angle, 2 * PI);      
     if (angle < 0) {
         angle = (2 * PI) + angle;
-    }
-    return angle;
+    }   
+    return angle;   
 }
 
 int found_Wall(t_data *data, int x, int y)

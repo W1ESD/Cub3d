@@ -11,10 +11,17 @@
 /* ************************************************************************** */
 
 #ifndef HEADER_H
-# define HEADER_H
+# define HEADER_H   
 # include <math.h>
 # include <stdio.h>
-# include <stdlib.h>
+# include <stdlib.h>    
+#ifndef PARSER
+#define PARSER
+
+#include "../parsing/macros.h"
+#include "../parsing/parsing.h"
+
+#endif
 # include <unistd.h>
 # include <fcntl.h>
 # include<mlx.h>
@@ -111,6 +118,8 @@ typedef struct s_data {
 	t_img		img;
 	t_ray		ray[NBR_RAYS];
 	t_wall		wall;
+	long int color_floor;
+	long int color_ceiling;
 	t_player	player;
 }				t_data;
 
@@ -119,8 +128,8 @@ int				close_window(void);
 int				key_pressed(int keycode, t_data *data);
 int				key_released(int keycode, t_data *data);
 void			player_draw(t_data *data);
-void			render_player(t_data *data);
-int				update(t_data *data) ;
+void 			render_player(t_data *data,t_data_parsing *parsing);
+int 			update(t_data *data);
 void	 		line_drawing(t_data *data,  int end_x, int end_y);
 void			ray_caster(t_data *data);
 void			my_mlx_pixel_put(t_img *data, int x, int y, int color);
@@ -139,9 +148,13 @@ void			dist_calc(t_data *data, int i, int h, int v);
 int				is_ray_facing_right(double my_angle);
 int				is_ray_facing_down(double my_angle);
 
-void			render_3d(t_data *data);
+void 			render_3d(t_data *data);
 void 			render_walls(t_data *data, int i);
-void			render_ceiling(t_data *data, int i);
-void			render_floor(t_data *data, int i);
+int 			calcul_rows(char **map);
+int 			calcul_col(char **map);
+int 			fill_int(char c);
+double			get_angle(t_data_parsing *data);
+
+
 
 #endif

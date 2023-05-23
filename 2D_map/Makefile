@@ -3,23 +3,35 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: zanejar <zanejar@student.1337.ma>          +#+  +:+       +#+         #
+#    By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/03 17:10:09 by zanejar           #+#    #+#              #
-#    Updated: 2023/05/20 06:59:07 by zanejar          ###   ########.fr        #
+#    Updated: 2023/05/23 08:41:25 by wiessaiy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = cub
-
+NAME = Cub3d
+    
 CC = gcc
 
 CFLAGS = -Wall -Wextra -Werror
 
 LINK = -lmlx -framework OpenGL -framework AppKit
 
-SRC =	main.c player.c map.c hooks.c ray_casting.c movement.c \
-		casting_utils.c walls_rendering.c
+SRC =	casting_utils.c hooks.c main.c map.c movement.c player.c ray_casting.c walls_rendering.c  utils_merging.c   \
+							../parsing/check_map_game.c \
+							../parsing/colors_parsing.c \
+							../parsing/fill_map.c \
+							../parsing/ft_split.c  \
+							../parsing/get_next_line.c \
+							../parsing/libft_utils.c  \
+							../parsing/new_map.c \
+							../parsing/parse_fill.c \
+							../parsing/parsing_utils.c \
+							../parsing/parsing.c \
+							../parsing/split2.c \
+							../parsing/texters_parsing.c \
+							../parsing/the_new_map.c \
 
 HEADER = header.h
 
@@ -40,4 +52,4 @@ fclean :	clean
 
 re :		fclean all
 
-.PHONY :	all clean fclean re 
+.PHONY :	all clean fclean re

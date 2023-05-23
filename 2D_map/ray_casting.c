@@ -1,19 +1,34 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ray_casting.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/22 04:17:26 by wiessaiy          #+#    #+#             */
+/*   Updated: 2023/05/23 08:40:55 by wiessaiy         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 
 #include "header.h"
-
+ 
 void	 line_drawing(t_data *data,  int end_x, int end_y)
-{
+{   
 	int	pixels_color = WHITE_COLOR;
 
 	double distance_x = end_x - data->player.x;
+	
 	double distance_y = end_y - data->player.y;
 
 	int pixels = sqrt((distance_x * distance_x) + (distance_y * distance_y));
 
 	distance_x /= pixels;
+	
 	distance_y /= pixels;
 
 	double pixel_x = data->player.x;
+	
 	double pixel_y = data->player.y; 
 
     while (pixels > 0)
@@ -35,13 +50,10 @@ void	ray_caster(t_data *data)
 	data->ray[i].ray_angle = data->player.rotationAngle - (FOV / 2);
 	while(i < NBR_RAYS)
 	{
-		// data->ray[i].ray_angle = data->player.rotationAngle + atan((i - NBR_RAYS / 2) / data->wall.projection);
 		cast_ray(data, i);
 		line_drawing(data, data->ray[i].hit_x, data->ray[i].hit_y);
 		if (i + 1 < NBR_RAYS)
 			data->ray[i + 1].ray_angle = data->ray[i].ray_angle + inc_angle;
-		// line_drawing(data, data->ray[i].hit_x, data->ray[i].hit_y);
-		// data->ray[i].ray_angle += inc_angle;
 		i++;
 	}
 }

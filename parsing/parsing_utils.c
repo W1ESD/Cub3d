@@ -1,9 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing_utils.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/23 00:51:44 by wiessaiy          #+#    #+#             */
+/*   Updated: 2023/05/23 08:40:22 by wiessaiy         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+
 #include "parsing.h"
+    
 
-
-
-
-int check_name(char *str,t_data *data)
+int check_name(char *str,t_data_parsing *data)
 {   
     int  i = -1;
 
@@ -49,4 +60,3 @@ int     valid_line(char *line)
     }
     return(0);
 }
-

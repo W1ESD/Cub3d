@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   texters_parsing.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/23 00:52:11 by wiessaiy          #+#    #+#             */
+/*   Updated: 2023/05/23 08:40:12 by wiessaiy         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "parsing.h"
 
-void    add_text_to_struct(char *ident,char *line,t_data*   data)
+void    add_text_to_struct(char *ident,char *line,t_data_parsing*   data)
 {
     if(ident[0] == 'N')
         data->north_txt = strdup(line);
@@ -11,7 +23,7 @@ void    add_text_to_struct(char *ident,char *line,t_data*   data)
     if(ident[0] == 'W')
         data->west_txt = strdup(line);
 }
-
+ 
 int     check_path(char *str)
 {
     int fd;
@@ -24,57 +36,61 @@ int     check_path(char *str)
 int     check_identifier(char   *str)
 {
     return(strcmp(str,"NO") && strcmp(str,"EA") &&  \
-    strcmp(str,"WE") && strcmp(str,"SO"));
+    strcmp(str,"WE") && strcmp(str,"SO") && strcmp(str,"C") && strcmp(str,"F"));
 
 }
-void    check_validity(char *line,t_data* data)
+void    check_validity(char *line,t_data_parsing* data)
 {
     char    **split;
-    static int a;
     split = ft_split2(line);
     if(check_identifier(split[0]))
     {
         printf("%s%s\n",ERROR,"Invalid Identifier for Texter\033[0m");
         exit(1);
     }
+    if( strcmp(split[0],"C") && strcmp(split[0],"F") )
+    {
     if(split[1] == NULL)
-    {
-        printf("%s%s\n",ERROR,"Invalid texter\033[0m");
-        exit(1);
-    }
+        {
+            printf("%s%s\n",ERROR,"Invalid texter\033[0m");
+            exit(1);
+        }
     if(check_path(split[1]) == 0 )
-    {
-        printf("%s%s\n",ERROR,"Invalid texter path\033[0m");
-        exit(1);
-    }
+        {
+            printf("%s%s\n",ERROR,"Invalid texter path\033[0m");
+            exit(1);
+        }
 
     if(split[2] != NULL)
-    {
-        printf("%s%s\n",ERROR,"Invalid Line for texters\033[0m");
-        exit(1);
-    }
+        {
+            printf("%s%s\n",ERROR,"Invalid Line for texters\033[0m");
+            exit(1);
+        }
     add_text_to_struct(split[0],split[1],data);
+    }
     int i = 0;
+    
     while(split[i])
     {
         free(split[i]);
         i++;
     }
     free(split);
-    a++;
 }
 
-void    check_text(t_data* data)
+void    check_text(t_data_parsing* data)
 {
     int i = 0;
-
-    while(i < 4)
+    // //system("leaks Cub3d");
+    while(i < 6)
     {
         check_validity(data->map[i],data);
         i++;
     }
-    printf("%s\n",data->south_txt);
-    printf("%s\n",data->north_txt);
-    printf("%s\n",data->west_txt);
-    printf("%s\n",data->east_txt);
+    // //system("leaks Cub3d");
+    // printf("%s\n",data->south_txt);
+    // printf("%s\n",data->north_txt);
+    // printf("%s\n",data->west_txt);
+    // printf("%s\n",data->east_txt);
+    // printf("HELLOOOOOO\n");
 }

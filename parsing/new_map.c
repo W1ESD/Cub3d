@@ -1,46 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   new_map.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/23 00:51:06 by wiessaiy          #+#    #+#             */
-/*   Updated: 2023/05/23 08:40:33 by wiessaiy         ###   ########.fr       */
+/*   Created: 2023/05/23 01:18:28 by wiessaiy          #+#    #+#             */
+/*   Updated: 2023/05/23 08:40:26 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-    
-
-
-char*        gnl(int fd)
+void    fill_spaces_with_walls(t_data_parsing* data)
 {
-
-char    bit;
-
-char    result[20000];
-
-int     i=0;
-
-int n;
-
-n = read(fd,&bit,1);
-
-while(n > 0)
-{
-    result[i++] = bit;
-    if(bit == '\n')
-        break;
-    n = read(fd,&bit,1);
-}
-
-if(i == 0 && n <= 0)
-    return 0;
-
-result[i] = '\0';
-
-return(strdup(result));
-
+    int i=0;
+    int j=0;
+    while(data->new_map[i])
+    {    
+        j=0;
+        while(data->new_map[i][j])
+        {
+            if(data->new_map[i][j] == '+')
+                    data->new_map[i][j] = '1';
+            j++;
+        }
+        i++;
+    }
+    return;    
 }

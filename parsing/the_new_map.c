@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   the_new_map.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/23 00:52:16 by wiessaiy          #+#    #+#             */
+/*   Updated: 2023/05/23 08:40:10 by wiessaiy         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "parsing.h"
 
 int     champ(char  c)
@@ -34,7 +46,7 @@ void    check_mochkil(char  **map,int   n,int   m)
                 }
                 if(j + 1 >= 0 && j + 1 <= n)
                 {
-                    if(champ(map[i][j+1])){
+                if(champ(map[i][j+1])){
                     printf("%s%s\n",ERROR,"Space Error\033[0m");
                     exit(1);
                         }
@@ -44,7 +56,7 @@ void    check_mochkil(char  **map,int   n,int   m)
                     if(champ(map[i][j-1])){
                         printf("%s%s\n",ERROR,"Space Error\033[0m");
                         exit(1);
-                        }
+                  }
                 }
             }
             j++;
@@ -71,22 +83,23 @@ void    fill_line(char  *line,char  *new_line,int max_line)
     new_line[i] = '\0';
 }
 
-void    fill_new_map(char   **map,char  **new_map,int max_line,t_data*   data)
+void    fill_new_map(char   **map,char  **new_map,int max_line,t_data_parsing*   data)
 {
-    int     i=0;
-
+    int     i = 0;
+    (void)data;
     while(map[i])
     {
         fill_line(map[i],new_map[i],max_line);
         i++;
     }
-    free(new_map[i]);
+    if (new_map[i])
+        free(new_map[i]);
     new_map[i] = map[i];
 }
 int     max_size(char   **map)
 {
     int     i   = 0;
-    int     nbr = 0;
+    int     nbr = 0; 
     int     max = 0;
 
     while(map[i])
@@ -108,26 +121,20 @@ int     nbr_colone(char **map)
 }
 
 
-void    check_lfaraghat(char    **map,t_data    *data)
+void    check_lfaraghat(char    **map,t_data_parsing    *data)
 {
     int     i=0;
     int     n = max_size(map);
     char    **new_map;
     int     collum  = nbr_colone(map) - 1;
-    new_map = malloc(sizeof(char    *) * (collum + 1));
+    new_map = malloc(sizeof(char  *) * (collum + 1));
     data->new_map =  new_map;
     while(i < collum + 1)
     {
         new_map[i] = malloc(n + 1);
-        data->new_map[i] = new_map[i];
+        data->new_map[i] = new_map[i]; 
         i++;
     }
-    i = 0;
     fill_new_map(map,new_map,n,data);
-    printf("HELLO ds\n");
     check_mochkil(new_map,n,collum);
-    printf("HELLO of\n");
 }
-
-
-
