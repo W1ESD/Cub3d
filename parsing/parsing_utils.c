@@ -6,7 +6,7 @@
 /*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 00:51:44 by wiessaiy          #+#    #+#             */
-/*   Updated: 2023/05/23 08:40:22 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/05/23 23:46:04 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 #include "parsing.h"
     
 
-int check_name(char *str,t_data_parsing *data)
+int check_name(char *str)
 {   
     int  i = -1;
+    
 
     while(str[++i]);
     
@@ -26,9 +27,9 @@ int check_name(char *str,t_data_parsing *data)
         return 0;
     else
     {
-        data->error_msg = NAME_ERROR;
-        data->found_error = 1;
-        return 1;
+        printf("%s",ERROR);
+        printf("Wrong Extention File \n");
+        exit(1);
     }
 }
 

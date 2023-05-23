@@ -6,7 +6,7 @@
 /*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 00:51:52 by wiessaiy          #+#    #+#             */
-/*   Updated: 2023/05/23 08:40:17 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/05/23 23:46:45 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void    init_data(t_data_parsing    *data)
 void    parsing(t_data_parsing  *data,char  *map_name)
 {
     init_data(data);
-    if(check_name(map_name,data))
+    if(check_name(map_name))
             return ;
     data->map = parse_map(map_name,data);
     parse_fill(data);

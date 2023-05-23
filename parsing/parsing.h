@@ -6,7 +6,7 @@
 /*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 00:51:58 by wiessaiy          #+#    #+#             */
-/*   Updated: 2023/05/23 08:40:19 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/05/23 23:46:16 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ typedef struct s_data_parsing
 
 
 
-int             check_name(char *str,t_data_parsing *data);
+int             check_name(char *str);
 int             count_lines(int fd);
 char**          parse_map(char *str,t_data_parsing *data);
 void            fill_map(char   **map,int fd,t_data_parsing *data);

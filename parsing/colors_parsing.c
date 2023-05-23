@@ -6,7 +6,7 @@
 /*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 00:50:48 by wiessaiy          #+#    #+#             */
-/*   Updated: 2023/05/23 08:40:39 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/05/23 09:13:23 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -198,7 +198,7 @@ void    check_colors(t_data_parsing      *data)
     }
     if(count != 2)
     {
-        printf("bzf d colors kaynin hna akhy diali\n");
+        printf("Invalid Colors\n");
         exit(1);
     }
 }
