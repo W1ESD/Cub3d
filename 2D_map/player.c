@@ -6,7 +6,7 @@
 /*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 16:28:04 by zanejar           #+#    #+#             */
-/*   Updated: 2023/05/25 08:38:52 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/05/26 05:45:39 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,15 +157,102 @@ void ft_mini_map_player_render(t_data *data)
 	}
 }
 
+
+
+// char	**ft_add_map(int fd)
+// {
+// 	char	**map;
+// 	char	*saver;
+// 	char	*buff;
+// 	int		rb;
+
+// 	buff = calloc(2, sizeof(char));
+// 	if (!buff)
+// 		return (NULL);
+// 	saver = strdup("");
+// 	rb = 1;
+// 	while (rb != 0)
+// 	{
+// 		rb = read(fd, buff, 1);
+// 		if (rb == -1)
+// 		{
+// 			free(buff);
+// 			return (NULL);
+// 		}
+// 		if (rb != 0)
+// 			saver = ft_strjoin(saver, buff);
+// 	}
+// 	free(buff);
+// 	map = ft_split(saver, '\n');
+// 	free(saver);
+// 	return (map);
+// }
+
+// void	func_picture(t_data* data)
+// {
+// 	int		w;
+// 	int		h;
+// 	char	**path;
+// 	int		fd;
+// 	int		i;
+
+// 	fd = open("gun.txt", O_RDONLY);
+// 	path = ft_add_map(fd);
+// 	i = 0;
+// 	while (path[i])
+// 		i++;
+// 	data->iimg = (void **)malloc(sizeof(void *) * i);
+// 	i = 0;
+// 	while (path[i])
+// 	{
+// 		data->iimg[i] = mlx_xpm_file_to_image(data->mlx_ptr, path[i], &w, &h);
+// 		i++;
+// 	}
+// 	data->iimg[i] = NULL;
+// 	i = 0;
+// 	while (data->iimg[i])
+// 	{
+// 		update2(data);
+// 		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->iimg[i], 0, 0);
+// 		mlx_do_sync(data->mlx_ptr);
+// 		i++;
+// 	}
+// }
+
+void	render_animation(t_data* data)
+{
+	if(data->op){
+	int pid=fork();
+	if(!pid)
+	{
+	char *a = "/usr/bin/afplay";
+    char *cmd[3];
+    cmd[0] = "afplay";
+    cmd[1] = "../../audio1.wav";
+    cmd[2]  = NULL;
+    execve(a, cmd, NULL);
+	}
+	int i=10;
+
+	while (i < 84)
+	{
+			update2(data);
+			mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->iimg[i], 0, 0);
+			mlx_do_sync(data->mlx_ptr);
+			i++;
+ 		}
+		data->op = 0;
+}
+	return ;
+}
+
+
 int update(t_data *data) 
 {
 	void	*img1_ptr;
 	int width = WINDOW_WIDTH;
 	int height = WINDOW_HEIGHT;
-	if(data->op % 2 == 0)
-		img1_ptr = mlx_xpm_file_to_image(data->mlx_ptr, "frame1.xpm", &width, &height);
-	else	
-		img1_ptr = mlx_xpm_file_to_image(data->mlx_ptr, "img.xpm", &width, &height);
+	img1_ptr = mlx_xpm_file_to_image(data->mlx_ptr, "./reload/1.xpm", &width, &height);
 	direction(data);
 	render_map(data);
 	player_draw(data);
@@ -174,6 +261,7 @@ int update(t_data *data)
 	ft_mini_map(data);
 	ft_mini_map_player_render(data);
 	ray_caster(data);
+	render_animation(data);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.img_ptr, 0, 0);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, img1_ptr, 0, 0);
 	mlx_clear_image(data);

@@ -6,7 +6,7 @@
 /*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 17:12:48 by zanejar           #+#    #+#             */
-/*   Updated: 2023/05/25 08:35:10 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/05/26 04:48:09 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,7 @@ typedef struct s_player
 
 typedef struct s_data
 {
+	void		**iimg;
 	int			grid[MAP_NUM_ROWS][MAP_NUM_COLS];
 	void		*mlx_ptr;
 	void		*win_ptr;
@@ -122,11 +123,14 @@ typedef struct s_data
 	t_wall		wall;
 	long int	color_floor;
 	int 		op;
+	int 		m;
+	int			n;
 	long int	color_ceiling;
 	t_player	player;
 }				t_data;
 
 void			render_map(t_data *data);
+int 			update2(t_data *data) ;
 void 			mlx_clear_image(t_data *data);
 void 			direction(t_data *data);
 int				close_window(void);
