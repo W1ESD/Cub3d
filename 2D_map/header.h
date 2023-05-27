@@ -6,7 +6,7 @@
 /*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 17:12:48 by zanejar           #+#    #+#             */
-/*   Updated: 2023/05/27 10:29:33 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/05/27 16:49:01 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@
 # define BLUE_COLOR 0x0000FF
 # define YELLOW_COLOR 0xFFFF00
 # define PURPLE_COLOR 0x800080
+# define WALLS_SKALE 4
 # define ROSE_COLOR 0xFF00FF
 # define GREY_COLOR 0x808080
 # define BROWN_COLOR 0x964B00

@@ -6,7 +6,7 @@
 /*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 16:28:04 by zanejar           #+#    #+#             */
-/*   Updated: 2023/05/27 15:32:26 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/05/27 16:51:07 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,9 @@ void	wall_collision_gliss(t_data* data,int indice)
 
 int really_able(t_data* data,double end_x,double end_y)
 {
+	(void)end_x;
+	(void)end_y;
+	(void)data;
 	int 	a=0;
 	int  	my_x;
 	int 	my_y;
@@ -87,7 +90,6 @@ int really_able(t_data* data,double end_x,double end_y)
 		return (0);
 	else	
 		return (1);
-
 }
 
 void direction(t_data *data)

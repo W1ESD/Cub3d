@@ -6,7 +6,7 @@
 /*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 10:57:06 by wiessaiy          #+#    #+#             */
-/*   Updated: 2023/05/24 08:29:58 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/05/27 16:06:40 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,11 @@ int     able_to_walk_up(t_data *data)
     my_x = cos(data->player.rotationAngle) * data->player.moveSpeed + data->player.x;
 	my_y = sin(data->player.rotationAngle) * data->player.moveSpeed + data->player.y;
     
-    my_x += 21*(cos(data->player.rotationAngle) * data->player.moveSpeed);
-    my_y += 21*(sin(data->player.rotationAngle) * data->player.moveSpeed);
+    if(my_y % PIXEL == 0)
+        my_y--;
+        
+    my_x += WALLS_SKALE*(cos(data->player.rotationAngle) * data->player.moveSpeed);
+    my_y += WALLS_SKALE*(sin(data->player.rotationAngle) * data->player.moveSpeed);
     
     my_x = floor(my_x/PIXEL);
     my_y = floor(my_y/PIXEL);
@@ -32,6 +35,7 @@ int     able_to_walk_up(t_data *data)
     if(data->grid[my_y][my_x] == 1)
         return 0;
     return 1;
+    
 }
 
 int     able_to_walk_down(t_data *data)
@@ -42,6 +46,8 @@ int     able_to_walk_down(t_data *data)
     my_x = data->player.x - cos(data->player.rotationAngle) * data->player.moveSpeed;
 	my_y = data->player.y - sin(data->player.rotationAngle) * data->player.moveSpeed;
     
+    my_x = WALLS_SKALE * (data->player.x - cos(data->player.rotationAngle) * data->player.moveSpeed);
+    my_y = WALLS_SKALE * (data->player.y - sin(data->player.rotationAngle) * data->player.moveSpeed);
     
     my_x = floor(my_x/PIXEL);
     my_y = floor(my_y/PIXEL);
@@ -58,6 +64,8 @@ int     able_to_turn_left(t_data *data)
 
     my_x = data->player.x - data->player.moveSpeed;
     my_y = data->player.y;
+    my_x = WALLS_SKALE * (data->player.x - data->player.moveSpeed);
+    my_y = WALLS_SKALE * (data->player.y);
     my_x = floor(my_x/PIXEL);
     my_y = floor(my_y/PIXEL);
         
@@ -73,6 +81,10 @@ int     able_to_turn_right(t_data *data)
 
     my_x = data->player.x + data->player.moveSpeed;
     my_y = data->player.y;
+    
+    my_x = WALLS_SKALE * (data->player.x + data->player.moveSpeed);
+    my_y = WALLS_SKALE * (data->player.y);
+    
     my_x = floor(my_x/PIXEL);
     my_y = floor(my_y/PIXEL);
         
