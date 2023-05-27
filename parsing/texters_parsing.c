@@ -6,7 +6,7 @@
 /*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 00:52:11 by wiessaiy          #+#    #+#             */
-/*   Updated: 2023/05/23 08:40:12 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/05/26 12:36:19 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,8 @@ void    check_validity(char *line,t_data_parsing* data)
     
     while(split[i])
     {
-        free(split[i]);
+        data->leaks_task[data->index_leaks++]=split[i];
+            //free(split[i]);
         i++;
     }
     free(split);
@@ -81,16 +82,10 @@ void    check_validity(char *line,t_data_parsing* data)
 void    check_text(t_data_parsing* data)
 {
     int i = 0;
-    // //system("leaks Cub3d");
+
     while(i < 6)
     {
         check_validity(data->map[i],data);
         i++;
     }
-    // //system("leaks Cub3d");
-    // printf("%s\n",data->south_txt);
-    // printf("%s\n",data->north_txt);
-    // printf("%s\n",data->west_txt);
-    // printf("%s\n",data->east_txt);
-    // printf("HELLOOOOOO\n");
 }

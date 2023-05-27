@@ -6,7 +6,7 @@
 /*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 00:50:48 by wiessaiy          #+#    #+#             */
-/*   Updated: 2023/05/23 09:13:23 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/05/26 12:26:09 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,9 +106,11 @@ void    check_format(char   *line,t_data_parsing *data,int color)
     i=0;
     while (split[i])
     {
-        free(split[i]);
+        data->leaks_task[data->index_leaks++]=split[i];
+        //free(split[i]);
         i++;
     }
+    //data->leaks_task[data->index_leaks++] = split;
     free(split);
     if(i > 3)
     {
@@ -134,7 +136,7 @@ int color_valid(char *s)
     return 1;
 }
 
-int     is_color(char *str)
+int     is_color(char *str,t_data_parsing* data)
 {
     char **result = ft_split2(str);
     int i = 0;
@@ -144,7 +146,8 @@ int     is_color(char *str)
     i = 0;
     while(result[i])
     {
-        free(result[i]);
+        data->leaks_task[data->index_leaks++]=result[i];
+        //free(result[i]);
         i++;
     }
     free(result);
@@ -162,7 +165,7 @@ int ceiling(char *s)
         return 1;
     return 0;
 }
-int     color_type(char *s)
+int     color_type(char *s,t_data_parsing* data)
 {   
 
     char **result = ft_split2(s);
@@ -175,7 +178,8 @@ int     color_type(char *s)
     i = 0;
     while(result[i])
     {
-        free(result[i]);
+        data->leaks_task[data->index_leaks++]=result[i];
+        // free(result[i]);
         i++;
     }
     free(result);
@@ -189,9 +193,9 @@ void    check_colors(t_data_parsing      *data)
         
     while(i < 6)
     {
-        if(is_color(data->map[i]))
+        if(is_color(data->map[i],data))
         {
-            check_flor(data->map[i],data,color_type(data->map[i]));
+            check_flor(data->map[i],data,color_type(data->map[i],data));
                 count++;
         }
         i++;

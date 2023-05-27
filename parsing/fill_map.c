@@ -6,14 +6,14 @@
 /*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 00:50:55 by wiessaiy          #+#    #+#             */
-/*   Updated: 2023/05/23 08:40:37 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/05/26 12:26:40 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
 
-void    follow_to_map(char  **map,int   fd)
+void    follow_to_map(char  **map,int   fd,t_data_parsing *data)
 {
     char    *line = gnl(fd);
     char    *liste = NULL;
@@ -25,7 +25,8 @@ void    follow_to_map(char  **map,int   fd)
         n = valid_line(line);
     while(line && !n)
     {
-        free(line);
+        data->leaks_task[data->index_leaks++] = line;
+        //free(line);
         line = gnl(fd);
         if(line)
             n = valid_line(line);
@@ -34,8 +35,9 @@ void    follow_to_map(char  **map,int   fd)
     {
         if(!line)
             break;
-        liste = ft_strjoin(liste, line);
-        free(line);
+        liste = ft_strjoin(liste, line,data);
+        data->leaks_task[data->index_leaks++] = line;
+        // free(line);
         line = gnl(fd);
         if(line)
             n = valid_line(line);
@@ -44,21 +46,24 @@ void    follow_to_map(char  **map,int   fd)
     }
     while(line && !n)
     {
-        free(line);
+        data->leaks_task[data->index_leaks++] = line;
+        // free(line);
         line = gnl(fd);
         if(line)
             n = valid_line(line);
     }
     if(line && n)
     {
-        free(line);
+        data->leaks_task[data->index_leaks++] = line;
+        // free(line);
         printf("%s%s\n",ERROR,"Map Line Error \033[0m");
         exit(0);
     }
     char    **splited_map=NULL;
     if(liste)
-        splited_map = ft_split(liste,'\n');
-    free(liste);
+        splited_map = ft_split(liste,'\n',data);
+    data->leaks_task[data->index_leaks++] = liste;
+    // free(liste);
     int     j = 0;
     if(splited_map){
     while(splited_map[j])
@@ -89,29 +94,32 @@ void    fill_map(char   **map,int fd,t_data_parsing *data)
    {    
         if(valid_line(line))
         {
-            liste = ft_strjoin(liste,line);
+            liste = ft_strjoin(liste,line,data);
             count++;
         }
-        free(line);
+        data->leaks_task[data->index_leaks++]=line;
+        //free(line);
         if(count >= 6)
             break;
         line = gnl(fd);
    }
-   split = ft_split(liste,'\n');
-   free(liste);
+   split = ft_split(liste,'\n',data);
+   data->leaks_task[data->index_leaks++]=liste;
+//    free(liste);
    if(count < 6)
    {
         data->error_msg = "Incomplete Map\033[0m\n";
         printf("%s%s",ERROR,data->error_msg);
         exit(1);
    }
-   
+
    while (split[i])
    {
+       
         map[i] = split[i];
         i++;
    }
    free(split);
-   follow_to_map(map,fd);
+   follow_to_map(map,fd,data);
    data->map = map;
 }

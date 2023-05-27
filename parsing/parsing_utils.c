@@ -6,7 +6,7 @@
 /*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 00:51:44 by wiessaiy          #+#    #+#             */
-/*   Updated: 2023/05/23 23:46:04 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/05/26 12:25:49 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int check_name(char *str)
 }
 
 
-int     count_lines(int fd)
+int     count_lines(int fd,t_data_parsing *data)
 {
     int count = 0;
     char    *line;
@@ -43,7 +43,8 @@ int     count_lines(int fd)
     while(line)
     {
         count++;
-        free(line);
+        data->leaks_task[data->index_leaks++] = line;
+        // (line);
         line = gnl(fd);
     }
     close(fd);

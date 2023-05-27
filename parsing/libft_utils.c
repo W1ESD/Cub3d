@@ -6,7 +6,7 @@
 /*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 00:51:12 by wiessaiy          #+#    #+#             */
-/*   Updated: 2023/05/26 05:08:07 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/05/26 12:25:49 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
  
 
-char	*ft_strjoin(char  *s1, char  *s2)
+char	*ft_strjoin(char  *s1, char  *s2,t_data_parsing *data)
 {
 	int		i;
 	int		len1;
@@ -46,7 +46,10 @@ char	*ft_strjoin(char  *s1, char  *s2)
 			m = 1;
 		}
 		if(!m)
-			free(s1);
+		{
+			data->leaks_task[data->index_leaks++] = s1;
+			// (s1);
+		}
 		i = -1;
         if(s2)
         {

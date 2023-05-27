@@ -6,7 +6,7 @@
 /*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 00:52:16 by wiessaiy          #+#    #+#             */
-/*   Updated: 2023/05/23 09:11:57 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/05/26 12:25:49 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,8 +92,10 @@ void    fill_new_map(char   **map,char  **new_map,int max_line,t_data_parsing*  
         fill_line(map[i],new_map[i],max_line);
         i++;
     }
-    if (new_map[i])
-        free(new_map[i]);
+    if (new_map[i]){
+        // (new_map[i]);
+        data->leaks_task[data->index_leaks++]=new_map[i];
+        }
     new_map[i] = map[i];
 }
 int     max_size(char   **map)
