@@ -6,7 +6,7 @@
 /*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 16:28:04 by zanejar           #+#    #+#             */
-/*   Updated: 2023/05/26 05:45:39 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/05/27 15:32:26 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ void player_draw(t_data *data)
 
 void render_player(t_data *data,t_data_parsing *parsing)
 {
-	data->player.x = WINDOW_WIDTH / 2;
-	data->player.y = WINDOW_HEIGHT / 2;
+	data->player.x = (parsing->player_x) * PIXEL;
+	data->player.y = (parsing->player_y) * PIXEL;
 	data->player.width = 5;
 	data->player.height = 5;
 	data->player.sideDirection = 0;
@@ -65,12 +65,39 @@ void	wall_collision_gliss(t_data* data,int indice)
 		data->player.x += cos(data->player.rotationAngle) * data->player.moveSpeed;
 	return ;
 }
+
+int really_able(t_data* data,double end_x,double end_y)
+{
+	int 	a=0;
+	int  	my_x;
+	int 	my_y;
+
+	my_x = floor(end_x/PIXEL);
+	my_y = floor(data->player.y / PIXEL);
+	
+	if(data->grid[my_y][my_x] == 1)
+		a++;
+	
+	my_x = floor(data->player.x / PIXEL);
+	my_y = floor(end_y / PIXEL);
+	if(data->grid[my_y][my_x] == 1)
+		a++;
+	printf("{%d}\n",a);
+	if(a == 2)
+		return (0);
+	else	
+		return (1);
+
+}
+
 void direction(t_data *data)
 {		
 	if (data->player.walkDirection == 1)
 	{
-			if(able_to_walk_up(data))
+			if(able_to_walk_up(data) && really_able(data,(data->player.x + cos(data->player.rotationAngle) * data->player.moveSpeed), \
+			(data->player.y + sin(data->player.rotationAngle) * data->player.moveSpeed)))
 			{
+				
 				data->player.x += cos(data->player.rotationAngle) * data->player.moveSpeed;
 				data->player.y += sin(data->player.rotationAngle) * data->player.moveSpeed;
 			}
@@ -79,7 +106,8 @@ void direction(t_data *data)
 	}
 	else if (data->player.walkDirection == -1)
 	{
-			if(able_to_walk_down(data))
+			if(able_to_walk_down(data) && really_able(data,data->player.x - cos(data->player.rotationAngle) * data->player.moveSpeed \
+			, data->player.y - sin(data->player.rotationAngle) * data->player.moveSpeed ))
 			{
 				data->player.x -= cos(data->player.rotationAngle) * data->player.moveSpeed;
 				data->player.y -= sin(data->player.rotationAngle) * data->player.moveSpeed;
@@ -89,7 +117,8 @@ void direction(t_data *data)
 	}
 	if (data->player.sideDirection == 1) 
 	{
-		if(able_to_turn_left(data))
+		if(able_to_turn_left(data) && really_able(data,(data->player.x + cos(data->player.rotationAngle + (PI / 2)) * data->player.moveSpeed) \
+		,(data->player.y + sin(data->player.rotationAngle + (PI / 2)) * data->player.moveSpeed)))
 		{
    			data->player.x += cos(data->player.rotationAngle + (PI / 2)) * data->player.moveSpeed;
    			data->player.y += sin(data->player.rotationAngle + (PI / 2)) * data->player.moveSpeed;
@@ -99,7 +128,8 @@ void direction(t_data *data)
 	}
 	else if (data->player.sideDirection == -1) 
 	{
-		if(able_to_turn_right(data))
+		if(able_to_turn_right(data) && really_able(data,data->player.x - cos(data->player.rotationAngle + (PI / 2)) * data->player.moveSpeed, \
+		data->player.y - sin(data->player.rotationAngle + (PI / 2)) * data->player.moveSpeed))
 		{	    
 		data->player.x -= cos(data->player.rotationAngle + (PI / 2)) * data->player.moveSpeed;
 	    data->player.y -= sin(data->player.rotationAngle + (PI / 2)) * data->player.moveSpeed;
@@ -228,31 +258,29 @@ void	render_animation(t_data* data)
 	char *a = "/usr/bin/afplay";
     char *cmd[3];
     cmd[0] = "afplay";
-    cmd[1] = "../../audio1.wav";
+    cmd[1] = "audio1.wav";
     cmd[2]  = NULL;
     execve(a, cmd, NULL);
 	}
-	int i=10;
+	int i=0;
 
-	while (i < 84)
+	while (i < 29)
 	{
-			update2(data);
-			mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->iimg[i], 0, 0);
-			mlx_do_sync(data->mlx_ptr);
-			i++;
- 		}
+		update2(data);
+		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->iimg[i], 0, 0);
+		mlx_do_sync(data->mlx_ptr);
+		printf("%d\n",i);
+		i++;
+ 	}
 		data->op = 0;
-}
+	}
 	return ;
 }
 
 
 int update(t_data *data) 
 {
-	void	*img1_ptr;
-	int width = WINDOW_WIDTH;
-	int height = WINDOW_HEIGHT;
-	img1_ptr = mlx_xpm_file_to_image(data->mlx_ptr, "./reload/1.xpm", &width, &height);
+	
 	direction(data);
 	render_map(data);
 	player_draw(data);
@@ -263,7 +291,8 @@ int update(t_data *data)
 	ray_caster(data);
 	render_animation(data);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.img_ptr, 0, 0);
-	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, img1_ptr, 0, 0);
+	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img1_ptr, 0, 0);
 	mlx_clear_image(data);
+	
 	return (0);
 }

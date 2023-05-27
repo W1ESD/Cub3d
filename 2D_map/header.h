@@ -6,7 +6,7 @@
 /*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 17:12:48 by zanejar           #+#    #+#             */
-/*   Updated: 2023/05/26 04:48:09 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/05/27 10:29:33 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,7 @@ typedef struct s_data
 	t_wall		wall;
 	long int	color_floor;
 	int 		op;
+	void		*img1_ptr;
 	int 		m;
 	int			n;
 	long int	color_ceiling;
@@ -162,6 +163,7 @@ void			render_walls(t_data *data, int i);
 int				calcul_rows(char **map);
 int				calcul_col(char **map);
 int				fill_int(char c);
+
 double			get_angle(t_data_parsing *data);
 
 #endif
