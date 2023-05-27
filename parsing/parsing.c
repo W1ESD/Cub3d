@@ -6,7 +6,7 @@
 /*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 00:51:52 by wiessaiy          #+#    #+#             */
-/*   Updated: 2023/05/27 14:54:35 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/05/27 15:46:18 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,9 @@ void    save_player_position(char **map,t_data_parsing* data)
         {
             if(map[i][j] == 'N' || map[i][j] == 'E' || map[i][j] == 'W' || map[i][j] == 'S')
             {
-                        data->player_y = i;
-                        data->player_x = j;
-                                return ;
+                    data->player_y = i;
+                    data->player_x = j;
+                return ;
             }
             j++;
         }
