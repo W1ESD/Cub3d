@@ -6,7 +6,7 @@
 /*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 16:28:04 by zanejar           #+#    #+#             */
-/*   Updated: 2023/05/28 23:13:34 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/05/29 00:04:08 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,16 +43,16 @@ void render_player(t_data *data,t_data_parsing *parsing)
 	player_draw(data);
 }
 
-int able_to_move(t_data *data)
+int able_to_x(t_data *data)
 {
 	int my_x;
 
     int my_y;
 
 	int x;
-	
+
 	int y;
-	
+
     my_x =  data->player.x + cos(data->player.rotationAngle) * data->player.moveSpeed;
 	my_y =  data->player.y;
 
@@ -65,12 +65,38 @@ int able_to_move(t_data *data)
 
 	return 1;
 }
+int able_to_y(t_data *data)
+{
+	int my_x;
+
+    int my_y;
+
+	int x;
+
+	int y;
+
+    my_x =  data->player.x;
+	my_y =  data->player.y + sin(data->player.rotationAngle) * data->player.moveSpeed;
+
+
+    x = floor(my_x/PIXEL);
+    y = floor(my_y/PIXEL);
+
+	if(data->grid[y][x] == 1)
+        return 0;
+
+	return 1;
+}
 void	wall_collision_gliss(t_data* data)
 {
-	if(able_to_move(data))
+	if(able_to_x(data))
 	{
-		data->player.x = data->player.x + cos(data->player.rotationAngle) * data->player.moveSpeed;
+		data->player.x +=  cos(data->player.rotationAngle) * data->player.moveSpeed;
 		printf("yes able to move\n");
+	}
+	if(able_to_y(data))
+	{
+		data->player.y += sin(data->player.rotationAngle) * data->player.moveSpeed;
 	}
 	return ;
 }
