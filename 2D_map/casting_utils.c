@@ -6,7 +6,7 @@
 /*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 11:11:36 by wiessaiy          #+#    #+#             */
-/*   Updated: 2023/05/23 08:41:35 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/05/28 23:09:59 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int found_Wall(t_data *data, int x, int y)
     my_y = floor(y / PIXEL);
     if(data->grid[my_y][my_x] == 1)
     	return 1;
-    return 0;
+    return 0; 
 }
 
 int is_ray_facing_down(double my_angle)

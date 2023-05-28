@@ -6,7 +6,7 @@
 /*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 16:28:02 by zanejar           #+#    #+#             */
-/*   Updated: 2023/05/26 03:14:06 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/05/28 23:09:56 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,7 +186,7 @@ int update2(t_data *data)
 // 		i++;
 // 	}
 // 	data->iimg[i] = NULL;
-// 	i = 0;
+// 	i = 0; 
 // 	while (data->iimg[i])
 // 	{
 // 		update2(data);

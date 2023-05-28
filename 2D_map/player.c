@@ -6,7 +6,7 @@
 /*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 16:28:04 by zanejar           #+#    #+#             */
-/*   Updated: 2023/05/27 16:51:07 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/05/28 23:13:34 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,101 +43,110 @@ void render_player(t_data *data,t_data_parsing *parsing)
 	player_draw(data);
 }
 
-int able_to_move(t_data *data,double end_x)
+int able_to_move(t_data *data)
 {
 	int my_x;
-    
+
     int my_y;
-      
-    my_x =  end_x + data->player.x;
+
+	int x;
+	
+	int y;
+	
+    my_x =  data->player.x + cos(data->player.rotationAngle) * data->player.moveSpeed;
 	my_y =  data->player.y;
 
-    my_x = floor(my_x/PIXEL);
-    my_y = floor(my_y/PIXEL);
-    if(data->grid[my_y][my_x] == 1)
+
+    x = floor(my_x/PIXEL);
+    y = floor(my_y/PIXEL);
+
+	if(data->grid[y][x] == 1)
         return 0;
-    return 1;
+
+	return 1;
 }
-void	wall_collision_gliss(t_data* data,int indice)
+void	wall_collision_gliss(t_data* data)
 {
-	(void)data;
-	if(indice == 1 && able_to_move(data,cos(data->player.rotationAngle) * data->player.moveSpeed))
-		data->player.x += cos(data->player.rotationAngle) * data->player.moveSpeed;
+	if(able_to_move(data))
+	{
+		data->player.x = data->player.x + cos(data->player.rotationAngle) * data->player.moveSpeed;
+		printf("yes able to move\n");
+	}
 	return ;
 }
 
-int really_able(t_data* data,double end_x,double end_y)
+int really_able(t_data* data,int ind)
 {
-	(void)end_x;
-	(void)end_y;
-	(void)data;
-	int 	a=0;
+	int 	a = 0;
 	int  	my_x;
 	int 	my_y;
+	int 	new_x;
+	int 	new_y;
 
-	my_x = floor(end_x/PIXEL);
-	my_y = floor(data->player.y / PIXEL);
-	
+	if(ind == 1)
+	{
+
+	my_x = data->player.x + cos(data->player.rotationAngle) * data->player.moveSpeed;
+	my_y = data->player.y;
+
+	new_x = floor(my_x/PIXEL);
+	new_y = floor(my_y/PIXEL);
+
+	if(data->grid[new_y][new_x] == 1)
+		a++;
+
+	my_x = data->player.x;
+	my_y = data->player.y + sin(data->player.rotationAngle) * data->player.moveSpeed;
+
+	if(my_y % PIXEL == 0)
+		my_y--;
+	new_x = floor(my_x/PIXEL);
+	new_y = floor(my_y/PIXEL);
+
 	if(data->grid[my_y][my_x] == 1)
 		a++;
-	
-	my_x = floor(data->player.x / PIXEL);
-	my_y = floor(end_y / PIXEL);
-	if(data->grid[my_y][my_x] == 1)
-		a++;
-	printf("{%d}\n",a);
-	if(a == 2)
+	if(a == 2 || a == 1)
 		return (0);
-	else	
-		return (1);
+	}
+
+	return 1;
 }
 
 void direction(t_data *data)
 {		
 	if (data->player.walkDirection == 1)
 	{
-			if(able_to_walk_up(data) && really_able(data,(data->player.x + cos(data->player.rotationAngle) * data->player.moveSpeed), \
-			(data->player.y + sin(data->player.rotationAngle) * data->player.moveSpeed)))
+			if(able_to_walk_up(data) && really_able(data,1))
 			{
-				
 				data->player.x += cos(data->player.rotationAngle) * data->player.moveSpeed;
 				data->player.y += sin(data->player.rotationAngle) * data->player.moveSpeed;
 			}
 			else
-				wall_collision_gliss(data,1);
+				wall_collision_gliss(data);
 	}
 	else if (data->player.walkDirection == -1)
 	{
-			if(able_to_walk_down(data) && really_able(data,data->player.x - cos(data->player.rotationAngle) * data->player.moveSpeed \
-			, data->player.y - sin(data->player.rotationAngle) * data->player.moveSpeed ))
+			if(able_to_walk_down(data))
 			{
 				data->player.x -= cos(data->player.rotationAngle) * data->player.moveSpeed;
 				data->player.y -= sin(data->player.rotationAngle) * data->player.moveSpeed;
 			}
-			else 
-				wall_collision_gliss(data,2);
 	}
 	if (data->player.sideDirection == 1) 
 	{
-		if(able_to_turn_left(data) && really_able(data,(data->player.x + cos(data->player.rotationAngle + (PI / 2)) * data->player.moveSpeed) \
-		,(data->player.y + sin(data->player.rotationAngle + (PI / 2)) * data->player.moveSpeed)))
+		if(able_to_turn_left(data))
 		{
    			data->player.x += cos(data->player.rotationAngle + (PI / 2)) * data->player.moveSpeed;
    			data->player.y += sin(data->player.rotationAngle + (PI / 2)) * data->player.moveSpeed;
 		}
-		else
-			wall_collision_gliss(data,3);
 	}
 	else if (data->player.sideDirection == -1) 
 	{
-		if(able_to_turn_right(data) && really_able(data,data->player.x - cos(data->player.rotationAngle + (PI / 2)) * data->player.moveSpeed, \
-		data->player.y - sin(data->player.rotationAngle + (PI / 2)) * data->player.moveSpeed))
+		if(able_to_turn_right(data))
 		{	    
 		data->player.x -= cos(data->player.rotationAngle + (PI / 2)) * data->player.moveSpeed;
 	    data->player.y -= sin(data->player.rotationAngle + (PI / 2)) * data->player.moveSpeed;
 		}
-		else
-			wall_collision_gliss(data,4);
 	}
 }
 

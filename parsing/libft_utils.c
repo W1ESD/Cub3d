@@ -6,7 +6,7 @@
 /*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 00:51:12 by wiessaiy          #+#    #+#             */
-/*   Updated: 2023/05/26 12:25:49 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/05/28 23:09:07 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*ft_strjoin(char  *s1, char  *s2,t_data_parsing *data)
 	int		len2;
 	char	*str;
 	int		m=0;
-
+ 
 	if (s1 || s2)
 	{
         if(s1)

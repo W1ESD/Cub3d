@@ -6,7 +6,7 @@
 /*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 00:51:44 by wiessaiy          #+#    #+#             */
-/*   Updated: 2023/05/26 12:25:49 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/05/28 23:08:54 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int check_name(char *str)
         printf("%s",ERROR);
         printf("Wrong Extention File \n");
         exit(1);
-    }
+    } 
 }
 
 

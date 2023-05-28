@@ -11,8 +11,8 @@ SRC =	casting_utils.c hooks.c main.c map.c movement.c player.c ray_casting.c wal
 							../parsing/check_map_game.c \
 							../parsing/colors_parsing.c \
 							../parsing/fill_map.c \
-							../parsing/ft_split.c  \
-							../parsing/get_next_line.c \
+			 				../parsing/ft_split.c  \
+				 			../parsing/get_next_line.c \
 							../parsing/libft_utils.c  \
 							../parsing/new_map.c \
 							../parsing/parse_fill.c \

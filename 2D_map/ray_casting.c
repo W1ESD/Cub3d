@@ -6,7 +6,7 @@
 /*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 04:17:26 by wiessaiy          #+#    #+#             */
-/*   Updated: 2023/05/24 01:17:19 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/05/28 23:09:40 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	 line_drawing(t_data *data,  int end_x, int end_y)
 	double pixel_x = data->player.x;
 	
 	double pixel_y = data->player.y; 
-
+ 
     while (pixels > 0)
     {
         my_mlx_pixel_put(&data->img, pixel_x * MINI_MAP_SCALE_FACTOR,\

@@ -6,7 +6,7 @@
 /*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 00:51:52 by wiessaiy          #+#    #+#             */
-/*   Updated: 2023/05/27 15:46:18 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/05/28 23:08:50 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,5 +87,5 @@ void    parsing(t_data_parsing  *data,char  *map_name)
 //         // while(data.leaks_task[i])
 //             // free(data.leaks_task[i++]);
 //          system("leaks Cub3d");
-//     }
+//     } 
 // }

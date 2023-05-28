@@ -6,7 +6,7 @@
 /*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 00:50:48 by wiessaiy          #+#    #+#             */
-/*   Updated: 2023/05/26 12:26:09 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/05/28 23:09:22 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int     count_bits(char     *line)
         if(i > 2)
             return (1);
         i++;
-    }
+    } 
     return(0);
 }
 

@@ -9,3 +9,4 @@ int main()
     cmd[2]  = NULL;
     execve(a, cmd, NULL);
 }
+  

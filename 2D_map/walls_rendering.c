@@ -6,7 +6,7 @@
 /*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 22:13:46 by zanejar           #+#    #+#             */
-/*   Updated: 2023/05/23 08:40:43 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/05/28 23:09:29 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void render_3d(t_data *data)
 {
 	int i;
 	double perp_distance;
-
+ 
 	i = -1;
 	while (++i < NBR_RAYS)
 	{

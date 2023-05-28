@@ -6,7 +6,7 @@
 /*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 04:17:43 by wiessaiy          #+#    #+#             */
-/*   Updated: 2023/05/27 14:42:31 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/05/28 23:09:54 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,11 @@ char	**ft_add_map(int fd,t_data_parsing *data_parsing)
 
 	buff = calloc(2, sizeof(char));
 	if (!buff)
-		return (NULL);
+		return (NULL); 
 	saver = strdup("");
 	rb = 1;
 	while (rb != 0)
-	{
+	{ 
 		rb = read(fd, buff, 1);
 		if (rb == -1)
 		{

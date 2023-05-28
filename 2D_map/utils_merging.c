@@ -6,7 +6,7 @@
 /*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 04:38:00 by wiessaiy          #+#    #+#             */
-/*   Updated: 2023/05/27 14:09:10 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/05/28 23:09:31 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int calcul_rows(char **map)
 	return(i);
 }
 int calcul_col(char **map)
-{
+{ 
 int i=0;
 int j=0;
 while (map[i])

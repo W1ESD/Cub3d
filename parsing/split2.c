@@ -6,7 +6,7 @@
 /*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 00:52:05 by wiessaiy          #+#    #+#             */
-/*   Updated: 2023/05/23 08:40:14 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/05/28 23:08:45 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ char	**ft_split2_2(char *str)
 			wc++;
 		while (str[i] && (str[i] != ' ' && str[i] != '\t' && str[i] != '\n' && str[i] != ','))
 			i++;
-	}
+	} 
 	char **out = (char **)malloc(sizeof(char *) * (wc + 1));
 	i = 0;
 	while (str[i])

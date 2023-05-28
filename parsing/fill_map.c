@@ -6,7 +6,7 @@
 /*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 00:50:55 by wiessaiy          #+#    #+#             */
-/*   Updated: 2023/05/26 12:26:40 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/05/28 23:09:20 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void    follow_to_map(char  **map,int   fd,t_data_parsing *data)
     char    *liste = NULL;
     int     n;
     int         i = 6;
-
+ 
     map[6] = NULL;
     if(line)
         n = valid_line(line);

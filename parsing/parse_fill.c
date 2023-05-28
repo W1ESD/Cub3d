@@ -6,7 +6,7 @@
 /*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 00:51:38 by wiessaiy          #+#    #+#             */
-/*   Updated: 2023/05/26 10:37:40 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/05/28 23:08:56 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void    check_duplicity(char    **map)
             }
             j++;
         }
-        i++;
+        i++; 
     }
     // printf("hello\n");
 }

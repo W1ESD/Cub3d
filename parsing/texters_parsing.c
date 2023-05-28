@@ -6,7 +6,7 @@
 /*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 00:52:11 by wiessaiy          #+#    #+#             */
-/*   Updated: 2023/05/26 12:36:19 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/05/28 23:08:43 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int     check_identifier(char   *str)
     return(strcmp(str,"NO") && strcmp(str,"EA") &&  \
     strcmp(str,"WE") && strcmp(str,"SO") && strcmp(str,"C") && strcmp(str,"F"));
 
-}
+} 
 void    check_validity(char *line,t_data_parsing* data)
 {
     char    **split;
