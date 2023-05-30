@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zanejar <zanejar@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 00:51:58 by wiessaiy          #+#    #+#             */
-/*   Updated: 2023/05/28 23:08:48 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/05/30 16:02:45 by zanejar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ typedef struct s_list
 
 typedef struct s_data_parsing
 {
+	int i;
+	int j;
     char        *north_txt; 
     char        *south_txt;
     char        *west_txt; 
