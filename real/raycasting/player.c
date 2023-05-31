@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zanejar <zanejar@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 16:28:04 by zanejar           #+#    #+#             */
-/*   Updated: 2023/05/31 13:34:23 by zanejar          ###   ########.fr       */
+/*   Updated: 2023/05/31 15:51:15 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,18 +87,6 @@ int able_to_y(t_data *data)
 
 	return 1;
 }
-void	wall_collision_gliss(t_data* data)
-{
-	if(able_to_x(data))
-	{
-		data->player.x +=  cos(data->player.rotationAngle) * data->player.moveSpeed;
-	}
-	if(able_to_y(data))
-	{
-		data->player.y += sin(data->player.rotationAngle) * data->player.moveSpeed;
-	}
-	return ;
-}
 
 int really_able(t_data* data,int ind)
 {
@@ -146,8 +134,6 @@ void direction(t_data *data)
 				data->player.x += cos(data->player.rotationAngle) * data->player.moveSpeed;
 				data->player.y += sin(data->player.rotationAngle) * data->player.moveSpeed;
 			}
-			else
-				wall_collision_gliss(data);
 	}
 	else if (data->player.walkDirection == -1)
 	{
@@ -186,132 +172,6 @@ void mlx_clear_image(t_data *data)
 	}
 }
 
-void	ft_mini_map(t_data* data)
-{
-	
-	int x, y, color;
-    for (int i = 0; i < MAP_NUM_ROWS; i++) {
-        for (int j = 0; j < MAP_NUM_COLS; j++) {
-            x = j * PIXEL;
-            y = i * PIXEL;
-            color = data->grid[i][j] == 1 ? 0x0FFFFF : 0x005FFF;
-            for (int dx = 0; dx < PIXEL; dx++) {
-                for (int dy = 0; dy < PIXEL; dy++) {
-                    my_mlx_pixel_put(&data->img, (x + dx) * MINI_MAP_SCALE_FACTOR, \
-					(y + dy) * MINI_MAP_SCALE_FACTOR, color);
-                }
-            }
-        }
-    }
-	
-}
-
-void ft_mini_map_player_render(t_data *data) 
-{
-	int x, y, color;
-	
-	x = data->player.x;
-	
-	y = data->player.y;
-	    
-	color = WHITE_COLOR;
-	for (int i = 0; i < data->player.width; i++) {
-		for (int j = 0; j < data->player.height; j++) {
-			my_mlx_pixel_put(&data->img, (x + i) * MINI_MAP_SCALE_FACTOR, \
-			(y + j) * MINI_MAP_SCALE_FACTOR, color);
-		}
-	}
-}
-
-
-
-// char	**ft_add_map(int fd)
-// {
-// 	char	**map;
-// 	char	*saver;
-// 	char	*buff;
-// 	int		rb;
-
-// 	buff = calloc(2, sizeof(char));
-// 	if (!buff)
-// 		return (NULL);
-// 	saver = strdup("");
-// 	rb = 1;
-// 	while (rb != 0)
-// 	{
-// 		rb = read(fd, buff, 1);
-// 		if (rb == -1)
-// 		{
-// 			free(buff);
-// 			return (NULL);
-// 		}
-// 		if (rb != 0)
-// 			saver = ft_strjoin(saver, buff);
-// 	}
-// 	free(buff);
-// 	map = ft_split(saver, '\n');
-// 	free(saver);
-// 	return (map);
-// }
-
-// void	func_picture(t_data* data)
-// {
-// 	int		w;
-// 	int		h;
-// 	char	**path;
-// 	int		fd;
-// 	int		i;
-
-// 	fd = open("gun.txt", O_RDONLY);
-// 	path = ft_add_map(fd);
-// 	i = 0;
-// 	while (path[i])
-// 		i++;
-// 	data->iimg = (void **)malloc(sizeof(void *) * i);
-// 	i = 0;
-// 	while (path[i])
-// 	{
-// 		data->iimg[i] = mlx_xpm_file_to_image(data->mlx_ptr, path[i], &w, &h);
-// 		i++;
-// 	}
-// 	data->iimg[i] = NULL;
-// 	i = 0;
-// 	while (data->iimg[i])
-// 	{
-// 		update2(data);
-// 		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->iimg[i], 0, 0);
-// 		mlx_do_sync(data->mlx_ptr);
-// 		i++;
-// 	}
-// }
-
-void	render_animation(t_data* data)
-{
-	if(data->op){
-	int pid=fork();
-	if(!pid)
-	{
-	char *a = "/usr/bin/afplay";
-    char *cmd[3];
-    cmd[0] = "afplay";
-    cmd[1] = "audio1.wav";
-    cmd[2]  = NULL;
-    execve(a, cmd, NULL);
-	}
-	int i=0;
-
-	while (i < 29)
-	{
-		update2(data);
-		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->iimg[i], 0, 0);
-		mlx_do_sync(data->mlx_ptr);
-		i++;
- 	}
-		data->op = 0;
-	}
-	return ;
-}
-
 
 int update(t_data *data) 
 {
@@ -321,12 +181,7 @@ int update(t_data *data)
 	player_draw(data);
 	ray_caster(data);
 	render_3d(data);
-	ft_mini_map(data);
-	ft_mini_map_player_render(data);
-	ray_caster(data);
-	render_animation(data);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.img_ptr, 0, 0);
-	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img1_ptr, 0, 0);
 	mlx_clear_image(data);
 	
 	return (0);
