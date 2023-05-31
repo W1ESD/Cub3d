@@ -6,7 +6,7 @@
 /*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 00:51:06 by wiessaiy          #+#    #+#             */
-/*   Updated: 2023/05/23 08:40:33 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/05/28 23:09:16 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char*        gnl(int fd)
 
 char    bit;
 
-char    result[20000];
+char    result[20000]; 
 
 int     i=0;
 

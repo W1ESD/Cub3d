@@ -6,7 +6,7 @@
 /*   By: zanejar <zanejar@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 00:51:58 by wiessaiy          #+#    #+#             */
-/*   Updated: 2023/05/24 02:21:24 by zanejar          ###   ########.fr       */
+/*   Updated: 2023/05/31 19:25:12 by zanejar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,18 @@
 #include<stdlib.h>
 #include "macros.h"
 
+typedef struct s_list t_list;
+
+typedef struct s_list
+{
+    char    *string;
+    t_list  *next; 
+}t_list;
+
 typedef struct s_data_parsing
 {
-	int			i;
-	int			j;
+	int i;
+	int j;
     char        *north_txt; 
     char        *south_txt;
     char        *west_txt; 
@@ -38,19 +46,22 @@ typedef struct s_data_parsing
     char        *error_msg;
     char        **map;
     char        **new_map;
-
+    int         index_leaks;
+    char        **leaks_task;
+    int         player_x;
+    int         player_y;
 }				t_data_parsing; 
 
 
 
 int             check_name(char *str);
-int             count_lines(int fd);
+int             count_lines(int fd,t_data_parsing* data);
 char**          parse_map(char *str,t_data_parsing *data);
 void            fill_map(char   **map,int fd,t_data_parsing *data);
 int             valid_line(char *line);
-char	        *ft_strjoin(char  *s1, char  *s2);
-char*           gnl(int fd);
-char	        **ft_split(char const *s, char c);
+char	        *ft_strjoin(char  *s1, char  *s2,t_data_parsing* data);
+char*            gnl(int fd);
+char	        **ft_split(char const *s, char c,t_data_parsing* data);
 void            check_text(t_data_parsing* data);
 void            parse_fill(t_data_parsing* data);
 char	        **ft_split2(char *str);

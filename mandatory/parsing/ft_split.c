@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zanejar <zanejar@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 00:51:00 by wiessaiy          #+#    #+#             */
-/*   Updated: 2023/05/31 12:09:17 by zanejar          ###   ########.fr       */
+/*   Updated: 2023/05/26 12:25:49 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static int	numwords(char const *s, char c)
 	return (word_num);
 }
 
-static int	split_words(char **result, char const *s, char c, int word)
+static int	split_words(char **result, char const *s, char c, int word,t_data_parsing* data)
 {
 	int		start_cur;
 	int		end_cur;
@@ -45,8 +45,11 @@ static int	split_words(char **result, char const *s, char c, int word)
 			result[word] = malloc(sizeof(char) * (end_cur - start_cur + 2));
 			if (!result[word])
 			{
-				// while (word++)
-					// free(result[word]);
+				while (word++)
+				{
+					data->leaks_task[data->index_leaks++] = result[word];
+					// (result[word]);
+				}
 				return (0);
 			}
 			strlcpy(result[word], (s + start_cur), end_cur - start_cur + 2);
@@ -58,7 +61,7 @@ static int	split_words(char **result, char const *s, char c, int word)
 	return (1);
 }
 
-char	**ft_split(char const *s, char c)
+char	**ft_split(char const *s, char c,t_data_parsing* data)
 {
 	char	**result;
 
@@ -67,7 +70,7 @@ char	**ft_split(char const *s, char c)
 	result = malloc(sizeof(char *) * (numwords(s, c) + 1));
 	if (!result)
 		return (NULL);
-	if (!split_words(result, s, c, 0))
+	if (!split_words(result, s, c, 0,data))
 		return (NULL);
 	return (result);
 }

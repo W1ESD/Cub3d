@@ -6,7 +6,7 @@
 /*   By: zanejar <zanejar@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 22:13:46 by zanejar           #+#    #+#             */
-/*   Updated: 2023/05/30 16:06:58 by zanejar          ###   ########.fr       */
+/*   Updated: 2023/05/31 22:31:25 by zanejar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,17 @@ void render_walls(t_data *data, int i)
 	float x;
 	float y;
 	
-	x = ((40 / PIXEL) * i) % 40;
-	y = 0;
+	if (data->ray[i].vert)
+		x = (int)data->ray[i].hit_y % PIXEL;
+	else
+		x = (int)data->ray[i].hit_x % PIXEL;
+	if (data->wall.strip_top > 0)
+		y = 0;
+	else if (data->wall.strip_top == 0)
+	{
+		int pos_y = (data->wall.strip_height - WINDOW_HEIGHT) / 2;
+		y = pos_y * (PIXEL / data->wall.strip_height);
+	}
 	for (int a = data->wall.strip_top; a < data->wall.strip_bottom; a++)
 	{
 		if (data->wall_side == NORTH)
@@ -50,7 +59,7 @@ void render_walls(t_data *data, int i)
 			my_mlx_pixel_put(&data->img, i, a, get_color(&data->texture[2], x, y));
 		else if (data->wall_side == WEST)
 			my_mlx_pixel_put(&data->img, i, a, get_color(&data->texture[3], x, y));
-		y += 40 / data->wall.strip_height;
+		y += PIXEL / data->wall.strip_height;
 	}
 }
 

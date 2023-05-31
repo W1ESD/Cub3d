@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_merging.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zanejar <zanejar@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 04:38:00 by wiessaiy          #+#    #+#             */
-/*   Updated: 2023/05/23 08:40:47 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/05/31 21:07:39 by zanejar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,11 @@ int calcul_rows(char **map)
 	return(i);
 }
 int calcul_col(char **map)
-{
-int i=0;
-int j=0;
-while (map[i])
-{
+{ 
+	int i=0;
+	int j=0;
 	while (map[i][j])
 		j++;
-	return(j);
-}
 	return(j);
 }
 int 	fill_int(char c)
@@ -38,8 +34,10 @@ int 	fill_int(char c)
 		return 0;
 	else if(c == '1')
 	   return 1;
-	else
+	else if(c == 'N' || c == 'E' || c == 'W' || c == 'S')
 		return 0;
+	else
+		return 1;
 }
 
 double	get_angle(t_data_parsing *data)

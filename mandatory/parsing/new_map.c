@@ -6,7 +6,7 @@
 /*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 01:18:28 by wiessaiy          #+#    #+#             */
-/*   Updated: 2023/05/23 08:40:26 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/05/28 23:08:59 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,4 @@ void    fill_spaces_with_walls(t_data_parsing* data)
         i++;
     }
     return;    
-}
+} 

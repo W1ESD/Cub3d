@@ -6,7 +6,7 @@
 /*   By: zanejar <zanejar@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 11:11:36 by wiessaiy          #+#    #+#             */
-/*   Updated: 2023/05/31 11:50:09 by zanejar          ###   ########.fr       */
+/*   Updated: 2023/05/31 21:44:01 by zanejar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,15 @@ int found_Wall(t_data *data, int x, int y)
 {
     int my_x;
     int my_y;
-	if (x < 0 || x > WINDOW_WIDTH || y < 0 || y > WINDOW_HEIGHT) {
-            return 1;
-    }
+	if (x < 0 || x > WINDOW_WIDTH || y < 0 || y > WINDOW_HEIGHT)
+        return 1;
     my_x = floor(x / PIXEL);
     my_y = floor(y / PIXEL);
-    if(data->grid[my_y][my_x] == 1)
-    	return 1;
-    return 0;
+
+	if (my_x < data->cols && my_y < data->rows)
+		if(data->grid[my_y][my_x] == 1)
+    		return 1;
+	return 0; 
 }
 
 int is_ray_facing_down(double my_angle)
@@ -72,7 +73,6 @@ int   horizontal_intersection(t_data *data, int i)
 	
 	if (!is_ray_facing_down(data->ray[i].ray_angle))
 		data->ray[i].next_horz_y--;
-	
 	while(data->ray[i].next_horz_x >= 0 &&  data->ray[i].next_horz_x <= WINDOW_WIDTH \
 	&& data->ray[i].next_horz_y >=0 && data->ray[i].next_horz_y <= WINDOW_HEIGHT )
     {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zanejar <zanejar@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 16:27:55 by zanejar           #+#    #+#             */
-/*   Updated: 2023/05/28 23:09:44 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/05/31 22:35:23 by zanejar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 void render_map(t_data *data) 
 {
     int x, y, color;
-    for (int i = 0; i < MAP_NUM_ROWS; i++) {
-        for (int j = 0; j < MAP_NUM_COLS; j++) {
+    for (int i = 0; i < data->rows; i++) {
+        for (int j = 0; j < data->cols; j++) {
             x = j * PIXEL;
             y = i * PIXEL;
             color = data->grid[i][j] == 1 ? 0x0FFFFF : 0x005FFF;

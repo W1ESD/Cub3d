@@ -6,7 +6,7 @@
 /*   By: zanejar <zanejar@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 11:11:36 by wiessaiy          #+#    #+#             */
-/*   Updated: 2023/05/30 16:06:23 by zanejar          ###   ########.fr       */
+/*   Updated: 2023/05/31 22:28:39 by zanejar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,9 @@ int found_Wall(t_data *data, int x, int y)
     }
     my_x = floor(x / PIXEL);
     my_y = floor(y / PIXEL);
-    if(data->grid[my_y][my_x] == 1)
-    	return 1;
+    if (my_x < data->cols && my_y < data->rows)
+		if(data->grid[my_y][my_x] == 1)
+    		return 1;
     return 0; 
 }
 
@@ -80,7 +81,6 @@ int   horizontal_intersection(t_data *data, int i)
         {
                 data->ray[i].hit_x_h = data->ray[i].next_horz_x;
                 data->ray[i].hit_y_h = data->ray[i].next_horz_y;
-                // line_drawing(data, data->ray[i].hit_x_h, data->ray[i].hit_y_h);
                 return 1;
         }
         else
@@ -122,7 +122,6 @@ int   vertical_intersection(t_data *data, int i)
         {
                 data->ray[i].hit_x_v = data->ray[i].next_vert_x;
                 data->ray[i].hit_y_v = data->ray[i].next_vert_y;
-                // line_drawing(data, data->ray[i].hit_x_v, data->ray[i].hit_y_v);
                 return 1;
         }
         else

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   colors_parsing.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zanejar <zanejar@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 00:50:48 by wiessaiy          #+#    #+#             */
-/*   Updated: 2023/05/31 12:10:07 by zanejar          ###   ########.fr       */
+/*   Updated: 2023/05/28 23:09:22 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int     count_bits(char     *line)
         if(i > 2)
             return (1);
         i++;
-    }
+    } 
     return(0);
 }
 
@@ -106,10 +106,12 @@ void    check_format(char   *line,t_data_parsing *data,int color)
     i=0;
     while (split[i])
     {
-        // free(split[i]);
+        data->leaks_task[data->index_leaks++]=split[i];
+        //free(split[i]);
         i++;
     }
-    // free(split);
+    //data->leaks_task[data->index_leaks++] = split;
+    free(split);
     if(i > 3)
     {
         printf("%s%s\n",ERROR,"Invalid Color\033[0m");
@@ -134,7 +136,7 @@ int color_valid(char *s)
     return 1;
 }
 
-int     is_color(char *str)
+int     is_color(char *str,t_data_parsing* data)
 {
     char **result = ft_split2(str);
     int i = 0;
@@ -144,10 +146,11 @@ int     is_color(char *str)
     i = 0;
     while(result[i])
     {
-        // free(result[i]);
+        data->leaks_task[data->index_leaks++]=result[i];
+        //free(result[i]);
         i++;
     }
-    // free(result);
+    free(result);
     return type;
 }
 int flor(char *s)
@@ -162,7 +165,7 @@ int ceiling(char *s)
         return 1;
     return 0;
 }
-int     color_type(char *s)
+int     color_type(char *s,t_data_parsing* data)
 {   
 
     char **result = ft_split2(s);
@@ -175,10 +178,11 @@ int     color_type(char *s)
     i = 0;
     while(result[i])
     {
+        data->leaks_task[data->index_leaks++]=result[i];
         // free(result[i]);
         i++;
     }
-    // free(result);
+    free(result);
     return type;
 }
 
@@ -189,9 +193,9 @@ void    check_colors(t_data_parsing      *data)
         
     while(i < 6)
     {
-        if(is_color(data->map[i]))
+        if(is_color(data->map[i],data))
         {
-            check_flor(data->map[i],data,color_type(data->map[i]));
+            check_flor(data->map[i],data,color_type(data->map[i],data));
                 count++;
         }
         i++;

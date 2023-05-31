@@ -6,7 +6,7 @@
 /*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 00:51:52 by wiessaiy          #+#    #+#             */
-/*   Updated: 2023/05/23 23:46:45 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/05/28 23:08:50 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char**   parse_map(char *str,t_data_parsing *data)
         printf("%s%s\n",ERROR,FILE_NOT_FOUND);
         exit(1);
     }
-    int     nbr_lines = count_lines(fd);
+    int     nbr_lines = count_lines(fd,data);
     fd = open(str,O_RDONLY);
     map = NULL;
     map = malloc(sizeof(char*) * nbr_lines);
@@ -41,7 +41,30 @@ void    init_data(t_data_parsing    *data)
     data->error_msg = NULL;
     data->map = NULL;
     data->new_map = NULL;
+    data->leaks_task = malloc(1000*sizeof(char *));
+    data->index_leaks = 0;
+}
 
+void    save_player_position(char **map,t_data_parsing* data)
+{
+    int     i=0;
+    int     j=0;
+    while(map[i])
+    {
+        j = 0;
+        while(map[i][j])
+        {
+            if(map[i][j] == 'N' || map[i][j] == 'E' || map[i][j] == 'W' || map[i][j] == 'S')
+            {
+                    data->player_y = i;
+                    data->player_x = j;
+                return ;
+            }
+            j++;
+        }
+        i++;
+    }
+    return ;
 }
 
 void    parsing(t_data_parsing  *data,char  *map_name)
@@ -52,4 +75,17 @@ void    parsing(t_data_parsing  *data,char  *map_name)
     data->map = parse_map(map_name,data);
     parse_fill(data);
     fill_spaces_with_walls(data);
+    save_player_position(data->new_map,data);
 } 
+// int main(int ac,char **av)
+// {
+//     if(ac == 2)
+//     {
+//         t_data_parsing data;
+//         parsing(&data,av[1]);
+//         // int i=0;
+//         // while(data.leaks_task[i])
+//             // free(data.leaks_task[i++]);
+//          system("leaks Cub3d");
+//     } 
+// }

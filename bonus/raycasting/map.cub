@@ -1,15 +1,14 @@
-NO          ../textures/eagle.xpm
-SO          ../textures/wood.xpm
-WE          ../textures/mossy.xpm
-EA          ../textures/redbrick.xpm
+NO          ../textures/yin.xpm
+SO          ../textures/dragon.xpm
+WE          ../textures/monster.xpm
+EA          ../textures/house.xpm
 
-C       255,15,206
-F       25,55,200
-
+C       98,175,225
+F       12,45,154
 
 
             1111111111111111111111111
-            10000S0000110000000000001
+            10000N0000110000000000001
             1011000001110000000000001
            11001000000000000000000001
 111111111110000011100000000000011111

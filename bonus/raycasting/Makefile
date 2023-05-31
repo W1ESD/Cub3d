@@ -1,5 +1,5 @@
 
-NAME = Cub3d
+NAME = cub3d
     
 CC = gcc
 

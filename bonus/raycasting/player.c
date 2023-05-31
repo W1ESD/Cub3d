@@ -6,7 +6,7 @@
 /*   By: zanejar <zanejar@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 16:28:04 by zanejar           #+#    #+#             */
-/*   Updated: 2023/05/31 13:34:23 by zanejar          ###   ########.fr       */
+/*   Updated: 2023/05/31 22:34:52 by zanejar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,11 +60,13 @@ int able_to_x(t_data *data)
     x = floor(my_x/PIXEL);
     y = floor(my_y/PIXEL);
 
-	if(data->grid[y][x] == 1)
-        return 0;
+	if (x < data->cols && my_y < data->rows)
+		if(data->grid[y][x] == 1)
+       		return 0;
 
 	return 1;
 }
+
 int able_to_y(t_data *data)
 {
 	int my_x;
@@ -82,11 +84,14 @@ int able_to_y(t_data *data)
     x = floor(my_x/PIXEL);
     y = floor(my_y/PIXEL);
 
-	if(data->grid[y][x] == 1)
-        return 0;
+	if (x < data->cols && y < data->rows)
+		if(data->grid[y][x] == 1)
+        	return 0;
+
 
 	return 1;
 }
+
 void	wall_collision_gliss(t_data* data)
 {
 	if(able_to_x(data))
@@ -117,8 +122,9 @@ int really_able(t_data* data,int ind)
 	new_x = floor(my_x/PIXEL);
 	new_y = floor(my_y/PIXEL);
 
-	if(data->grid[new_y][new_x] == 1)
-		a++;
+	if (new_x < data->cols && new_y < data->rows)
+		if(data->grid[new_y][new_x] == 1)
+			a++;
 
 	my_x = data->player.x;
 	my_y = data->player.y + sin(data->player.rotationAngle) * data->player.moveSpeed;
@@ -128,8 +134,9 @@ int really_able(t_data* data,int ind)
 	new_x = floor(my_x/PIXEL);
 	new_y = floor(my_y/PIXEL);
 
-	if(data->grid[my_y][my_x] == 1)
-		a++;
+	if (my_x < data->cols && my_y < data->rows)
+		if(data->grid[my_y][my_x] == 1)
+			a++;
 	if(a == 2 || a == 1)
 		return (0);
 	}
@@ -141,7 +148,7 @@ void direction(t_data *data)
 {		
 	if (data->player.walkDirection == 1)
 	{
-			if(able_to_walk_up(data) && really_able(data,1))
+			if(able_to_walk_up(data))
 			{
 				data->player.x += cos(data->player.rotationAngle) * data->player.moveSpeed;
 				data->player.y += sin(data->player.rotationAngle) * data->player.moveSpeed;
@@ -190,8 +197,8 @@ void	ft_mini_map(t_data* data)
 {
 	
 	int x, y, color;
-    for (int i = 0; i < MAP_NUM_ROWS; i++) {
-        for (int j = 0; j < MAP_NUM_COLS; j++) {
+    for (int i = 0; i < data->rows; i++) {
+        for (int j = 0; j < data->cols; j++) {
             x = j * PIXEL;
             y = i * PIXEL;
             color = data->grid[i][j] == 1 ? 0x0FFFFF : 0x005FFF;

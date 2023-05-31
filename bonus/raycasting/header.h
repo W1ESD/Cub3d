@@ -6,7 +6,7 @@
 /*   By: zanejar <zanejar@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 17:12:48 by zanejar           #+#    #+#             */
-/*   Updated: 2023/05/31 14:35:06 by zanejar          ###   ########.fr       */
+/*   Updated: 2023/05/31 22:35:00 by zanejar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,6 @@
 # define BROWN_COLOR 0x964B00
 
 # define PIXEL 32
-# define MAP_NUM_ROWS 20
-# define MAP_NUM_COLS 30
 # define WINDOW_WIDTH 1280
 # define WINDOW_HEIGHT 720
 # define PI 3.14159265358979323846
@@ -122,7 +120,7 @@ typedef struct s_player
 typedef struct s_data
 {
 	void			**iimg;
-	int				grid[MAP_NUM_ROWS][MAP_NUM_COLS];
+	int				**grid;
 	void			*mlx_ptr;
 	void			*win_ptr;
 	t_img			img;
@@ -138,6 +136,8 @@ typedef struct s_data
 	long int		color_ceiling;
 	t_data_parsing	*parsing;
 	t_player		player;
+	int 			rows;
+	int 			cols;
 }				t_data;
 
 void			render_map(t_data *data);

@@ -6,7 +6,7 @@
 /*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 00:51:38 by wiessaiy          #+#    #+#             */
-/*   Updated: 2023/05/23 08:40:24 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/05/28 23:08:56 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@ void    check_duplicity(char    **map)
 {
     int  i=0;
     int j;
-    while(i < 4)
+    while(i < 6)
     {    
         j = i + 1;
-        while(j < 4)
+        while(j < 6)
         {
             if(map[i][0] == map[j][0])
             {
@@ -28,7 +28,7 @@ void    check_duplicity(char    **map)
             }
             j++;
         }
-        i++;
+        i++; 
     }
     // printf("hello\n");
 }

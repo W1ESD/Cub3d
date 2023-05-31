@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zanejar <zanejar@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 00:51:12 by wiessaiy          #+#    #+#             */
-/*   Updated: 2023/05/31 12:09:08 by zanejar          ###   ########.fr       */
+/*   Updated: 2023/05/28 23:09:07 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,14 @@
 
  
 
-char	*ft_strjoin(char  *s1, char  *s2)
+char	*ft_strjoin(char  *s1, char  *s2,t_data_parsing *data)
 {
 	int		i;
 	int		len1;
 	int		len2;
 	char	*str;
 	int		m=0;
-
+ 
 	if (s1 || s2)
 	{
         if(s1)
@@ -45,8 +45,11 @@ char	*ft_strjoin(char  *s1, char  *s2)
 		{
 			m = 1;
 		}
-		// if(!m)
-			// free(s1);
+		if(!m)
+		{
+			data->leaks_task[data->index_leaks++] = s1;
+			// (s1);
+		}
 		i = -1;
         if(s2)
         {

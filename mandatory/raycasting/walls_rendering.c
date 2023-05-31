@@ -6,12 +6,12 @@
 /*   By: zanejar <zanejar@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 22:13:46 by zanejar           #+#    #+#             */
-/*   Updated: 2023/05/31 14:53:36 by zanejar          ###   ########.fr       */
+/*   Updated: 2023/05/31 21:54:49 by zanejar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
-        
+
 void wall_sider(t_data *data, int i)
 {
 	if (!is_ray_facing_down(data->ray[i].ray_angle) && !data->ray[i].vert)
@@ -38,7 +38,10 @@ void render_walls(t_data *data, int i)
 	float x;
 	float y;
 	
-	x = (i % PIXEL);
+	if (data->ray[i].vert)
+		x = (int)data->ray[i].hit_y % PIXEL;
+	else
+		x = (int)data->ray[i].hit_x % PIXEL;
 	if (data->wall.strip_top > 0)
 		y = 0;
 	else if (data->wall.strip_top == 0)
@@ -60,12 +63,6 @@ void render_walls(t_data *data, int i)
 	}
 }
 
-// void render_walls(t_data *data, int i)
-// {
-// 	for (int a = data->wall.strip_top; a < data->wall.strip_bottom; a++)
-// 		my_mlx_pixel_put(&data->img, i, a, WHITE_COLOR);
-// }
-
 void render_ceiling(t_data *data, int i)
 {
 	for (int y = 0; y < data->wall.strip_top; y++)
@@ -82,7 +79,7 @@ void render_3d(t_data *data)
 {
 	int i;
 	double perp_distance;
-
+ 
 	i = -1;
 	while (++i < NBR_RAYS)
 	{

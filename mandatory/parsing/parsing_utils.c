@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zanejar <zanejar@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 00:51:44 by wiessaiy          #+#    #+#             */
-/*   Updated: 2023/05/31 12:09:04 by zanejar          ###   ########.fr       */
+/*   Updated: 2023/05/28 23:08:54 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,11 @@ int check_name(char *str)
         printf("%s",ERROR);
         printf("Wrong Extention File \n");
         exit(1);
-    }
+    } 
 }
 
 
-int     count_lines(int fd)
+int     count_lines(int fd,t_data_parsing *data)
 {
     int count = 0;
     char    *line;
@@ -43,7 +43,8 @@ int     count_lines(int fd)
     while(line)
     {
         count++;
-        // free(line);
+        data->leaks_task[data->index_leaks++] = line;
+        // (line);
         line = gnl(fd);
     }
     close(fd);

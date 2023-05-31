@@ -6,7 +6,7 @@
 /*   By: zanejar <zanejar@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 00:51:18 by wiessaiy          #+#    #+#             */
-/*   Updated: 2023/05/24 02:08:34 by zanejar          ###   ########.fr       */
+/*   Updated: 2023/05/30 15:58:08 by zanejar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@
 #define         LMAP            "New Line In Map\033[0m"
 #define         ERROR           "\033[91;1mError \n"
 #define         WRONG_ARGS	  "Wrong number of arguments\033[0m"
+ 
 
 
-
-
+ 
 
 #endif

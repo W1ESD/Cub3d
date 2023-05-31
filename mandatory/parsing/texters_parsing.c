@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texters_parsing.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zanejar <zanejar@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 00:52:11 by wiessaiy          #+#    #+#             */
-/*   Updated: 2023/05/31 12:10:19 by zanejar          ###   ########.fr       */
+/*   Updated: 2023/05/28 23:08:43 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int     check_identifier(char   *str)
     return(strcmp(str,"NO") && strcmp(str,"EA") &&  \
     strcmp(str,"WE") && strcmp(str,"SO") && strcmp(str,"C") && strcmp(str,"F"));
 
-}
+} 
 void    check_validity(char *line,t_data_parsing* data)
 {
     char    **split;
@@ -68,29 +68,24 @@ void    check_validity(char *line,t_data_parsing* data)
         }
     add_text_to_struct(split[0],split[1],data);
     }
-    // int i = 0;
+    int i = 0;
     
-    // while(split[i])
-    // {
-    //     free(split[i]);
-    //     i++;
-    // }
-    // free(split);
+    while(split[i])
+    {
+        data->leaks_task[data->index_leaks++]=split[i];
+            //free(split[i]);
+        i++;
+    }
+    free(split);
 }
 
 void    check_text(t_data_parsing* data)
 {
     int i = 0;
-    // //system("leaks Cub3d");
+
     while(i < 6)
     {
         check_validity(data->map[i],data);
         i++;
     }
-    // //system("leaks Cub3d");
-    // printf("%s\n",data->south_txt);
-    // printf("%s\n",data->north_txt);
-    // printf("%s\n",data->west_txt);
-    // printf("%s\n",data->east_txt);
-    // printf("HELLOOOOOO\n");
 }

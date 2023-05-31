@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   the_new_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zanejar <zanejar@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 00:52:16 by wiessaiy          #+#    #+#             */
-/*   Updated: 2023/05/31 12:08:45 by zanejar          ###   ########.fr       */
+/*   Updated: 2023/05/28 23:08:41 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void    check_mochkil(char  **map,int   n,int   m)
                         }
                 }
                 if(i + 1 >= 0 && i + 1 < m)      
-                {
+                { 
                     if(champ(map[i+1][j])){
                         printf("%s%s\n",ERROR,"Space Error\033[0m");
                         exit(1);
@@ -92,8 +92,10 @@ void    fill_new_map(char   **map,char  **new_map,int max_line,t_data_parsing*  
         fill_line(map[i],new_map[i],max_line);
         i++;
     }
-    // if (new_map[i])
-        // free(new_map[i]);
+    if (new_map[i]){
+        // (new_map[i]);
+        data->leaks_task[data->index_leaks++]=new_map[i];
+        }
     new_map[i] = map[i];
 }
 int     max_size(char   **map)
