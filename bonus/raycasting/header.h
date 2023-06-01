@@ -6,7 +6,7 @@
 /*   By: zanejar <zanejar@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 17:12:48 by zanejar           #+#    #+#             */
-/*   Updated: 2023/06/01 15:47:02 by zanejar          ###   ########.fr       */
+/*   Updated: 2023/06/01 17:45:39 by zanejar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,7 @@ typedef struct s_data
 	t_ray			ray[NBR_RAYS];
 	t_img			texture[5];
 	t_wall			wall;
+	char			*door_path;
 	long int		color_floor;
 	int 			op;
 	void			*img1_ptr;
@@ -174,7 +175,7 @@ void			render_walls(t_data *data, int i);
 int				calcul_rows(char **map);
 int				calcul_col(char **map);
 int				fill_int(char c);
-void	open_door(t_data* data);
+void			open_door(t_data* data);
 
 double			get_angle(t_data_parsing *data);
 

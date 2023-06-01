@@ -6,7 +6,7 @@
 /*   By: zanejar <zanejar@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 04:17:43 by wiessaiy          #+#    #+#             */
-/*   Updated: 2023/06/01 15:04:39 by zanejar          ###   ########.fr       */
+/*   Updated: 2023/06/01 17:46:41 by zanejar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,7 @@ int	main(int ac, char **av)
 		
 		func_picture(&data,data.parsing);
 		
+		data.door_path = "./textures/door.xpm";
 		textures_init(&data);
 		
 		render_map(&data);
