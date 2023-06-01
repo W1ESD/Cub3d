@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movement.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zanejar <zanejar@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 10:57:06 by wiessaiy          #+#    #+#             */
-/*   Updated: 2023/05/31 22:33:59 by zanejar          ###   ########.fr       */
+/*   Updated: 2023/06/01 16:41:29 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,9 @@ int     able_to_walk_up(t_data *data)
     my_y = floor(my_y/PIXEL);
 
     if (my_x < data->cols && my_y < data->rows)
-    	if(data->grid[my_y][my_x] == 1)
+    	if(data->grid[my_y][my_x] == 1 || data->grid[my_y][my_x] == 6)
         	return 0;
-    return 1;    
+    return 1;
 }
 int     able_to_walk_down(t_data *data)
 {
@@ -53,7 +53,7 @@ int     able_to_walk_down(t_data *data)
     my_y = floor(my_y/PIXEL);
     
     if (my_x < data->cols && my_y < data->rows)
-   		if(data->grid[my_y][my_x] == 1)
+   		if(data->grid[my_y][my_x] == 1 || data->grid[my_y][my_x] == 6)
         	return 0;
     return 1;
 }
@@ -73,8 +73,8 @@ int     able_to_turn_left(t_data *data)
     my_y = floor(my_y/PIXEL);
         
     if (my_x < data->cols && my_y < data->rows)
-		if(data->grid[my_y][my_x] == 1)
-            return 0;
+		if(data->grid[my_y][my_x] == 1 || data->grid[my_y][my_x] == 6)
+        	return 0;
     return 1;
 }
 int     able_to_turn_right(t_data *data)
@@ -90,7 +90,7 @@ int     able_to_turn_right(t_data *data)
     my_y = floor(my_y/PIXEL);
         
     if (my_x < data->cols && my_y < data->rows)
-   		if(data->grid[my_y][my_x] == 1)
-       		return 0;
+   		if(data->grid[my_y][my_x] == 1 || data->grid[my_y][my_x] == 6)
+        	return 0;
     return 1;
 }

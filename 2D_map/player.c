@@ -6,7 +6,7 @@
 /*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 16:28:04 by zanejar           #+#    #+#             */
-/*   Updated: 2023/05/29 00:04:08 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/06/01 16:36:36 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,6 @@ void	wall_collision_gliss(t_data* data)
 	if(able_to_x(data))
 	{
 		data->player.x +=  cos(data->player.rotationAngle) * data->player.moveSpeed;
-		printf("yes able to move\n");
 	}
 	if(able_to_y(data))
 	{

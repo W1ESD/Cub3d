@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zanejar <zanejar@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 16:28:04 by zanejar           #+#    #+#             */
-/*   Updated: 2023/06/01 01:31:20 by zanejar          ###   ########.fr       */
+/*   Updated: 2023/06/01 16:42:20 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int able_to_x(t_data *data)
     y = floor(my_y/PIXEL);
 
 	if (x < data->cols && y < data->rows)
-		if(data->grid[y][x] == 1)
+		if(data->grid[y][x] == 1 || data->grid[y][x] == 6)
        		return 0;
 
 	return 1;
@@ -85,7 +85,7 @@ int able_to_y(t_data *data)
     y = floor(my_y/PIXEL);
 
 	if (x < data->cols && y < data->rows)
-		if(data->grid[y][x] == 1)
+		if(data->grid[y][x] == 1 || data->grid[y][x] == 6)
         	return 0;
 	return 1;
 }
@@ -227,68 +227,6 @@ void ft_mini_map_player_render(t_data *data)
 		}
 	}
 }
-
-
-
-// char	**ft_add_map(int fd)
-// {
-// 	char	**map;
-// 	char	*saver;
-// 	char	*buff;
-// 	int		rb;
-
-// 	buff = calloc(2, sizeof(char));
-// 	if (!buff)
-// 		return (NULL);
-// 	saver = strdup("");
-// 	rb = 1;
-// 	while (rb != 0)
-// 	{
-// 		rb = read(fd, buff, 1);
-// 		if (rb == -1)
-// 		{
-// 			free(buff);
-// 			return (NULL);
-// 		}
-// 		if (rb != 0)
-// 			saver = ft_strjoin(saver, buff);
-// 	}
-// 	free(buff);
-// 	map = ft_split(saver, '\n');
-// 	free(saver);
-// 	return (map);
-// }
-
-// void	func_picture(t_data* data)
-// {
-// 	int		w;
-// 	int		h;
-// 	char	**path;
-// 	int		fd;
-// 	int		i;
-
-// 	fd = open("gun.txt", O_RDONLY);
-// 	path = ft_add_map(fd);
-// 	i = 0;
-// 	while (path[i])
-// 		i++;
-// 	data->iimg = (void **)malloc(sizeof(void *) * i);
-// 	i = 0;
-// 	while (path[i])
-// 	{
-// 		data->iimg[i] = mlx_xpm_file_to_image(data->mlx_ptr, path[i], &w, &h);
-// 		i++;
-// 	}
-// 	data->iimg[i] = NULL;
-// 	i = 0;
-// 	while (data->iimg[i])
-// 	{
-// 		update2(data);
-// 		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->iimg[i], 0, 0);
-// 		mlx_do_sync(data->mlx_ptr);
-// 		i++;
-// 	}
-// }
 
 void	render_animation(t_data* data)
 {
