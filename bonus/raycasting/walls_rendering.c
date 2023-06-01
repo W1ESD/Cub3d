@@ -6,7 +6,7 @@
 /*   By: zanejar <zanejar@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 22:13:46 by zanejar           #+#    #+#             */
-/*   Updated: 2023/05/31 22:31:25 by zanejar          ###   ########.fr       */
+/*   Updated: 2023/06/01 15:48:56 by zanejar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ void render_walls(t_data *data, int i)
 			my_mlx_pixel_put(&data->img, i, a, get_color(&data->texture[2], x, y));
 		else if (data->wall_side == WEST)
 			my_mlx_pixel_put(&data->img, i, a, get_color(&data->texture[3], x, y));
+		else if (data->ray[i].found_door)
+			my_mlx_pixel_put(&data->img, i, a, get_color(&data->texture[4], x, y));
 		y += PIXEL / data->wall.strip_height;
 	}
 }

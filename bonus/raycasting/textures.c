@@ -19,4 +19,6 @@ void textures_init(t_data *data)
 	&data->texture[2].bits_per_pixel, &data->texture[2].lineLength, &data->texture[2].endian);
 	data->texture[3].addr = (int*)mlx_get_data_addr(data->parsing->east_txt, \
 	&data->texture[3].bits_per_pixel, &data->texture[3].lineLength, &data->texture[3].endian);
+
+	// convert and initialize the door texture after having its path 
 }

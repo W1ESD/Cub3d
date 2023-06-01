@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   casting_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zanejar <zanejar@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 11:11:36 by wiessaiy          #+#    #+#             */
-/*   Updated: 2023/06/01 04:57:22 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/06/01 15:25:04 by zanejar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,13 +97,13 @@ int   horizontal_intersection(t_data *data, int i)
         }
         else
         {
-            if(to_door(data,data->ray[i].next_horz_x,data->ray[i].next_horz_y))
-            {
-                data->ray[i].hit_x_h = data->ray[i].next_horz_x;
-                data->ray[i].hit_y_h = data->ray[i].next_horz_y;
-                data->ray[i].found_door = 1;
-                return 1;
-            }
+            // if(to_door(data,data->ray[i].next_horz_x,data->ray[i].next_horz_y))
+            // {
+            //     data->ray[i].hit_x_h = data->ray[i].next_horz_x;
+            //     data->ray[i].hit_y_h = data->ray[i].next_horz_y;
+            //     data->ray[i].found_door = 1;
+            //     return 1;
+            // }
             data->ray[i].next_horz_x += data->ray[i].x_step;
             data->ray[i].next_horz_y += data->ray[i].y_step;
         }
@@ -145,6 +145,13 @@ int   vertical_intersection(t_data *data, int i)
         }
         else
         {
+			//  if(to_door(data,data->ray[i].next_horz_x,data->ray[i].next_horz_y))
+            // {
+            //     data->ray[i].hit_x_h = data->ray[i].next_horz_x;
+            //     data->ray[i].hit_y_h = data->ray[i].next_horz_y;
+            //     data->ray[i].found_door = 1;
+            //     return 1;
+            // }
             data->ray[i].next_vert_x += data->ray[i].x_step;
             data->ray[i].next_vert_y += data->ray[i].y_step;
         }

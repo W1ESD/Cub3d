@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   header.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zanejar <zanejar@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 17:12:48 by zanejar           #+#    #+#             */
-/*   Updated: 2023/06/01 04:58:31 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/06/01 15:47:02 by zanejar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,7 @@ typedef struct s_data
 	void			*win_ptr;
 	t_img			img;
 	t_ray			ray[NBR_RAYS];
-	t_img			texture[4];
+	t_img			texture[5];
 	t_wall			wall;
 	long int		color_floor;
 	int 			op;
