@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   header.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zanejar <zanejar@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 17:12:48 by zanejar           #+#    #+#             */
-/*   Updated: 2023/05/31 22:43:54 by zanejar          ###   ########.fr       */
+/*   Updated: 2023/06/01 04:58:31 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ typedef struct s_ray
 	double		next_horz_y;
 	double		hit_x_v;
 	double		hit_y_v;
+	int				found_door;
 	double		hit_x_h;
 	double		hit_y_h;
 	double		hit_x;
@@ -173,6 +174,7 @@ void			render_walls(t_data *data, int i);
 int				calcul_rows(char **map);
 int				calcul_col(char **map);
 int				fill_int(char c);
+void	open_door(t_data* data);
 
 double			get_angle(t_data_parsing *data);
 

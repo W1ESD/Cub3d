@@ -6,7 +6,7 @@
 /*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 00:50:41 by wiessaiy          #+#    #+#             */
-/*   Updated: 2023/05/28 23:09:27 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/06/01 04:53:31 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	check_vl(char *s)
 	while (s[i])
 	{
 		if (s[i] != '1' && s[i] != '0' && s[i] != 'N' && s[i] != 'S'
-			&& s[i] != 'E' && s[i] != 'W' && s[i] != ' ')
+			&& s[i] != 'E' && s[i] != 'W' && s[i] != ' ' && s[i] != '6' && s[i] != '9')
 		{
 			printf("%s%s\n", ERROR, "Invalid Map Element\033[0m");
 			exit(1);

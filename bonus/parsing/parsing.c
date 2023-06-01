@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zanejar <zanejar@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 00:51:52 by wiessaiy          #+#    #+#             */
-/*   Updated: 2023/05/31 23:52:24 by zanejar          ###   ########.fr       */
+/*   Updated: 2023/06/01 04:52:18 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,15 +78,3 @@ void    parsing(t_data_parsing  *data,char  *map_name)
     save_player_position(data->new_map,data);
 }
 
-// int main(int ac,char **av)
-// {
-//     if(ac == 2)
-//     {
-//         t_data_parsing data;
-//         parsing(&data,av[1]);
-//         // int i=0;
-//         // while(data.leaks_task[i])
-//             // free(data.leaks_task[i++]);
-//          system("leaks Cub3d");
-//     } 
-// }

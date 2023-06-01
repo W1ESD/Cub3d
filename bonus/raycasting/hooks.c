@@ -6,7 +6,7 @@
 /*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 16:28:02 by zanejar           #+#    #+#             */
-/*   Updated: 2023/05/28 23:09:56 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/06/01 04:59:13 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -195,6 +195,32 @@ int update2(t_data *data)
 // 		i++;
 // 	}
 // }
+void	door_step(t_data* data,double x,double y)
+{
+	int my_x;
+    int my_y;
+	if (x < 0 || x > WINDOW_WIDTH || y < 0 || y > WINDOW_HEIGHT) {
+            return 1;
+    }
+    my_x = floor(x / PIXEL);
+    my_y = floor(y / PIXEL);
+    if (my_x < data->cols && my_y < data->rows)
+	{
+		if(data->grid[my_y][my_x] == 6)
+    		data->grid[my_y][my_x] = 9;
+		else if (data->grid[my_y][my_x] == 9)
+			data->grid[my_y][my_x] = 6;
+	}
+}
+void	open_door(t_data* data)
+{
+	double 		x 	= 	0;
+	double 		y 	= 	0;
+	
+	x = cos(data->player.rotationAngle) * data->player.moveSpeed + data->player.x;
+	y = sin(data->player.rotationAngle) * data->player.moveSpeed + data->player.y;
+	door_step(data,x,y);
+}
 
 int	key_pressed(int keycode, t_data *data)
 {
@@ -214,6 +240,8 @@ int	key_pressed(int keycode, t_data *data)
 			close_window();
 	if(keycode == 49)
 			data->op = 1;
+	if(keycode == 56)
+		open_door(data);
 	return (0);
 }
 

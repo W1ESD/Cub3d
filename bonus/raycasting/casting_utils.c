@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   casting_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zanejar <zanejar@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 11:11:36 by wiessaiy          #+#    #+#             */
-/*   Updated: 2023/05/31 22:28:39 by zanejar          ###   ########.fr       */
+/*   Updated: 2023/06/01 04:57:22 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,25 @@ int found_Wall(t_data *data, int x, int y)
 {
     int my_x;
     int my_y;
-	if (x < 0 || x > WINDOW_WIDTH || y < 0 || y > WINDOW_HEIGHT) {
+	if (x < 0 || x > WINDOW_WIDTH || y < 0 || y > WINDOW_HEIGHT)
             return 1;
-    }
     my_x = floor(x / PIXEL);
     my_y = floor(y / PIXEL);
     if (my_x < data->cols && my_y < data->rows)
 		if(data->grid[my_y][my_x] == 1)
+    		return 1;
+    return 0; 
+}
+int to_door(t_data *data, int x, int y)
+{
+    int my_x;
+    int my_y;
+	if (x < 0 || x > WINDOW_WIDTH || y < 0 || y > WINDOW_HEIGHT)
+            return 1;
+    my_x = floor(x / PIXEL);
+    my_y = floor(y / PIXEL);
+    if (my_x < data->cols && my_y < data->rows)
+		if(data->grid[my_y][my_x] == 6)
     		return 1;
     return 0; 
 }
@@ -85,6 +97,13 @@ int   horizontal_intersection(t_data *data, int i)
         }
         else
         {
+            if(to_door(data,data->ray[i].next_horz_x,data->ray[i].next_horz_y))
+            {
+                data->ray[i].hit_x_h = data->ray[i].next_horz_x;
+                data->ray[i].hit_y_h = data->ray[i].next_horz_y;
+                data->ray[i].found_door = 1;
+                return 1;
+            }
             data->ray[i].next_horz_x += data->ray[i].x_step;
             data->ray[i].next_horz_y += data->ray[i].y_step;
         }

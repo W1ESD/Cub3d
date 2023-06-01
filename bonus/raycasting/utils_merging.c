@@ -6,7 +6,7 @@
 /*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 04:38:00 by wiessaiy          #+#    #+#             */
-/*   Updated: 2023/05/28 23:09:31 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/06/01 04:55:44 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,9 @@ while (map[i])
 }
 int 	fill_int(char c)
 {
-	if(c == '0')
+	if(c == '6')
+		return 6;
+	else if(c == '0')
 		return 0;
 	else if(c == '1')
 	   return 1;
@@ -67,5 +69,3 @@ double	get_angle(t_data_parsing *data)
 	}
 	return(PI/2);
 }
-
-
