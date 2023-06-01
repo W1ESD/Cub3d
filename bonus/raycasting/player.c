@@ -6,7 +6,7 @@
 /*   By: zanejar <zanejar@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 16:28:04 by zanejar           #+#    #+#             */
-/*   Updated: 2023/05/31 22:34:52 by zanejar          ###   ########.fr       */
+/*   Updated: 2023/06/01 01:31:20 by zanejar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int able_to_x(t_data *data)
     x = floor(my_x/PIXEL);
     y = floor(my_y/PIXEL);
 
-	if (x < data->cols && my_y < data->rows)
+	if (x < data->cols && y < data->rows)
 		if(data->grid[y][x] == 1)
        		return 0;
 
@@ -87,8 +87,6 @@ int able_to_y(t_data *data)
 	if (x < data->cols && y < data->rows)
 		if(data->grid[y][x] == 1)
         	return 0;
-
-
 	return 1;
 }
 

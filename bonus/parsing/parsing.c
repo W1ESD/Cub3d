@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zanejar <zanejar@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 00:51:52 by wiessaiy          #+#    #+#             */
-/*   Updated: 2023/05/28 23:08:50 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/05/31 23:52:24 by zanejar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,8 @@ void    parsing(t_data_parsing  *data,char  *map_name)
     parse_fill(data);
     fill_spaces_with_walls(data);
     save_player_position(data->new_map,data);
-} 
+}
+
 // int main(int ac,char **av)
 // {
 //     if(ac == 2)

@@ -1,7 +1,7 @@
-NO          ../textures/yin.xpm
-SO          ../textures/dragon.xpm
-WE          ../textures/monster.xpm
-EA          ../textures/house.xpm
+NO          ./textures/yin.xpm
+SO          ./textures/dragon.xpm
+WE          ./textures/monster.xpm
+EA          ./textures/house.xpm
 
 C       98,175,225
 F       12,45,154

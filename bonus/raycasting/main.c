@@ -6,7 +6,7 @@
 /*   By: zanejar <zanejar@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 04:17:43 by wiessaiy          #+#    #+#             */
-/*   Updated: 2023/05/31 22:31:16 by zanejar          ###   ########.fr       */
+/*   Updated: 2023/06/01 01:37:13 by zanejar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,14 @@ void	func_picture(t_data* data,t_data_parsing* data_parsing)
 	int		fd;
 	int		i;
 
+
 	fd = open("gun.txt", O_RDONLY);
-	path = ft_add_map(fd,data_parsing);
+	if (fd == -1)
+	{
+		printf("Open error\n");
+		exit(0);
+	}
+	path = ft_add_map(fd, data_parsing);
 	i = 0;
 	while (path[i])
 		i++;
