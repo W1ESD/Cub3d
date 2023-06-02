@@ -6,7 +6,7 @@
 /*   By: zanejar <zanejar@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 17:12:48 by zanejar           #+#    #+#             */
-/*   Updated: 2023/06/01 02:57:49 by zanejar          ###   ########.fr       */
+/*   Updated: 2023/06/02 01:07:45 by zanejar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@
 
 # define PIXEL 32
 
-# define WINDOW_WIDTH 1280
-# define WINDOW_HEIGHT 720
+# define WINDOW_WIDTH 1600
+# define WINDOW_HEIGHT 900
 # define PI 3.14159265358979323846
 
 # define NBR_RAYS WINDOW_WIDTH
@@ -81,7 +81,7 @@ typedef struct s_ray
 	double		dv;
 	double		ray_angle;
 	double		ray_distance;
-	int vert;
+	int 		vert;
 }				t_ray;
 
 typedef struct s_img

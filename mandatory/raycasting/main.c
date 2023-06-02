@@ -6,7 +6,7 @@
 /*   By: zanejar <zanejar@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 04:17:43 by wiessaiy          #+#    #+#             */
-/*   Updated: 2023/05/31 22:18:32 by zanejar          ###   ########.fr       */
+/*   Updated: 2023/06/01 23:51:00 by zanejar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,9 @@ int main(int ac,char **av)
 	
 		data.rows = calcul_rows(data.parsing->new_map);
 		data.cols =  calcul_col(data.parsing->new_map);
+		// printf("cols = %d\n", data.cols);
+		// printf("rows = %d\n", data.rows);
+
 		
 		data.grid = malloc(sizeof(int*) * (data.rows));
 		for (int i = 0; i < data.rows; i++)
@@ -41,7 +44,7 @@ int main(int ac,char **av)
     		    data.grid[i][j] = fill_int(data.parsing->new_map[i][j]);
 		}
 		data.mlx_ptr = mlx_init();
-		data.win_ptr = mlx_new_window(data.mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT, "cub_2d");
+		data.win_ptr = mlx_new_window(data.mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT, "Cub3d");
 		data.img.img_ptr = mlx_new_image(data.mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT);
 		data.img.addr = (int*)mlx_get_data_addr(data.img.img_ptr, &data.img.bits_per_pixel, \
 		&data.img.lineLength, &data.img.endian);

@@ -6,7 +6,7 @@
 /*   By: zanejar <zanejar@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 17:12:48 by zanejar           #+#    #+#             */
-/*   Updated: 2023/06/01 17:45:39 by zanejar          ###   ########.fr       */
+/*   Updated: 2023/06/02 02:09:37 by zanejar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@
 #define SOUTH 1
 #define EAST 2
 #define WEST 3
+#define DOOR 4
 
 typedef struct s_ray
 {

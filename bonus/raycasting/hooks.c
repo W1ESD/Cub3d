@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zanejar <zanejar@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 16:28:02 by zanejar           #+#    #+#             */
-/*   Updated: 2023/06/01 17:02:13 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/06/02 01:57:34 by zanejar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ void	door_step(t_data* data,double x,double y)
     }
     my_x = floor(x / PIXEL);
     my_y = floor(y / PIXEL);
-	printf("x:%d y:%d\n",my_x,my_y);
     if (my_x < data->cols && my_y < data->rows)
 	{
 		if(data->grid[my_y][my_x] == 6)
@@ -74,7 +73,7 @@ int	key_pressed(int keycode, t_data *data)
 	if (keycode == ESC)
 			close_window();
 	if(keycode == 15)
-			data->op = 1;
+			data->op  = 1;
 	if(keycode == 49)
 		open_door(data);
 	return (0);

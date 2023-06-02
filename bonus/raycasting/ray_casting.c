@@ -6,7 +6,7 @@
 /*   By: zanejar <zanejar@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 04:17:26 by wiessaiy          #+#    #+#             */
-/*   Updated: 2023/06/01 17:41:24 by zanejar          ###   ########.fr       */
+/*   Updated: 2023/06/02 02:34:48 by zanejar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	 line_drawing(t_data *data,  int end_x, int end_y)
 	int pixels = sqrt((distance_x * distance_x) + (distance_y * distance_y));
 
 	distance_x /= pixels;
-	
+	 
 	distance_y /= pixels;
 
 	double pixel_x = data->player.x;

@@ -6,7 +6,7 @@
 /*   By: zanejar <zanejar@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 22:13:46 by zanejar           #+#    #+#             */
-/*   Updated: 2023/06/01 17:49:23 by zanejar          ###   ########.fr       */
+/*   Updated: 2023/06/02 02:13:27 by zanejar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 void wall_sider(t_data *data, int i)
 {
-	if (!is_ray_facing_down(data->ray[i].ray_angle) && !data->ray[i].vert)
+	if (data->ray[i].found_door)
+		data->wall_side = DOOR;
+	else if (!is_ray_facing_down(data->ray[i].ray_angle) && !data->ray[i].vert)
 		data->wall_side = NORTH;
 	else if (is_ray_facing_down(data->ray[i].ray_angle) && !data->ray[i].vert)
 		data->wall_side = SOUTH;
@@ -51,7 +53,7 @@ void render_walls(t_data *data, int i)
 	}
 	for (int a = data->wall.strip_top; a < data->wall.strip_bottom; a++)
 	{
-		if (data->ray[i].found_door)
+		if (data->wall_side == DOOR)
 			my_mlx_pixel_put(&data->img, i, a, get_color(&data->texture[4], x, y));
 		else if (data->wall_side == NORTH)
 			my_mlx_pixel_put(&data->img, i, a, get_color(&data->texture[0], x, y));
