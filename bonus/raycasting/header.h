@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   header.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zanejar <zanejar@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 17:12:48 by zanejar           #+#    #+#             */
-/*   Updated: 2023/06/02 02:09:37 by zanejar          ###   ########.fr       */
+/*   Updated: 2023/06/03 00:02:49 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@
 # define GREY_COLOR 0x808080
 # define BROWN_COLOR 0x964B00
 
-# define PIXEL 32
+// # define PIXEL 32
 # define WINDOW_WIDTH 1280
 # define WINDOW_HEIGHT 720
 # define PI 3.14159265358979323846
@@ -125,6 +125,7 @@ typedef struct s_data
 	int				**grid;
 	void			*mlx_ptr;
 	void			*win_ptr;
+	double			tile_size;
 	t_img			img;
 	t_ray			ray[NBR_RAYS];
 	t_img			texture[5];
@@ -132,6 +133,8 @@ typedef struct s_data
 	char			*door_path;
 	long int		color_floor;
 	int 			op;
+	double			pixel_x;
+	double			pixel_y;
 	void			*img1_ptr;
 	int 			m;
 	int				n;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   walls_rendering.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zanejar <zanejar@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 22:13:46 by zanejar           #+#    #+#             */
-/*   Updated: 2023/06/02 02:13:27 by zanejar          ###   ########.fr       */
+/*   Updated: 2023/06/03 00:08:10 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,15 +41,15 @@ void render_walls(t_data *data, int i)
 	float y;
 	
 	if (data->ray[i].vert)
-		x = (int)data->ray[i].hit_y % PIXEL;
+		x = (int)data->ray[i].hit_y % (int)(data->tile_size);
 	else
-		x = (int)data->ray[i].hit_x % PIXEL;
+		x = (int)data->ray[i].hit_x % (int)data->tile_size;
 	if (data->wall.strip_top > 0)
 		y = 0;
 	else if (data->wall.strip_top == 0)
 	{
 		int pos_y = (data->wall.strip_height - WINDOW_HEIGHT) / 2;
-		y = pos_y * (PIXEL / data->wall.strip_height);
+		y = pos_y * (data->tile_size / data->wall.strip_height);
 	}
 	for (int a = data->wall.strip_top; a < data->wall.strip_bottom; a++)
 	{
@@ -63,7 +63,7 @@ void render_walls(t_data *data, int i)
 			my_mlx_pixel_put(&data->img, i, a, get_color(&data->texture[2], x, y));
 		else if (data->wall_side == WEST)
 			my_mlx_pixel_put(&data->img, i, a, get_color(&data->texture[3], x, y));
-		y += PIXEL / data->wall.strip_height;
+		y += data->pixel_y / data->wall.strip_height;
 	}
 }
 
@@ -88,7 +88,7 @@ void render_3d(t_data *data)
 	while (++i < NBR_RAYS)
 	{
 		perp_distance = data->ray[i].ray_distance * cos(data->ray[i].ray_angle - data->player.rotationAngle);
-		data->wall.strip_height = (PIXEL / perp_distance) * data->wall.projection;
+		data->wall.strip_height = (data->tile_size / perp_distance) * data->wall.projection;
 
 		data->wall.strip_top = (WINDOW_HEIGHT - data->wall.strip_height) / 2;
 		if (data->wall.strip_top < 0)

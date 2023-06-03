@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zanejar <zanejar@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 16:28:02 by zanejar           #+#    #+#             */
-/*   Updated: 2023/06/02 01:57:34 by zanejar          ###   ########.fr       */
+/*   Updated: 2023/06/03 00:05:22 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ void	door_step(t_data* data,double x,double y)
 	if (x < 0 || x > WINDOW_WIDTH || y < 0 || y > WINDOW_HEIGHT) {
         return ;
     }
-    my_x = floor(x / PIXEL);
-    my_y = floor(y / PIXEL);
+    my_x = floor(x / data->tile_size);
+    my_y = floor(y / data->tile_size);
     if (my_x < data->cols && my_y < data->rows)
 	{
 		if(data->grid[my_y][my_x] == 6)
