@@ -6,14 +6,14 @@
 /*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 00:52:11 by wiessaiy          #+#    #+#             */
-/*   Updated: 2023/05/28 23:08:43 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/06/03 03:21:38 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
 void    add_text_to_struct(char *ident,char *line,t_data_parsing*   data)
-{
+{ 
     if(ident[0] == 'N')
         data->north_txt = strdup(line);
     if(ident[0] == 'S')

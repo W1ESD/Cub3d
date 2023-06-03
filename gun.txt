@@ -15,7 +15,7 @@
 ./reload/15.xpm
 ./reload/16.xpm
 ./reload/17.xpm
-./reload/18.xpm
+./reload/18.xpm   
 ./reload/19.xpm
 ./reload/20.xpm
 ./reload/21.xpm

@@ -6,7 +6,7 @@
 /*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 11:11:36 by wiessaiy          #+#    #+#             */
-/*   Updated: 2023/06/03 00:05:12 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/06/03 03:20:46 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 double adjust_angle(double angle)   
 {
     angle = fmod(angle, 2 * PI);      
-    if (angle < 0) {
+    if (angle < 0) { 
         angle = (2 * PI) + angle;
     }   
     return angle;   

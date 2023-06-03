@@ -6,7 +6,7 @@
 /*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 17:12:48 by zanejar           #+#    #+#             */
-/*   Updated: 2023/06/03 00:02:49 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/06/03 03:20:48 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # ifndef PARSER
-#  define PARSER
+# define PARSER
 
 #  include "../parsing/macros.h"
 #  include "../parsing/parsing.h"
@@ -47,7 +47,6 @@
 # define GREY_COLOR 0x808080
 # define BROWN_COLOR 0x964B00
 
-// # define PIXEL 32
 # define WINDOW_WIDTH 1280
 # define WINDOW_HEIGHT 720
 # define PI 3.14159265358979323846
@@ -106,7 +105,7 @@ typedef struct s_wall
 }				t_wall;
 
 typedef struct s_player
-{
+{ 
 	double		x;
 	double		y;
 	double		radius;
@@ -129,6 +128,7 @@ typedef struct s_data
 	t_img			img;
 	t_ray			ray[NBR_RAYS];
 	t_img			texture[5];
+	int				**text_leak;
 	t_wall			wall;
 	char			*door_path;
 	long int		color_floor;
@@ -170,22 +170,17 @@ int				vertical_intersection(t_data *data, int i);
 void			cast_ray(t_data *data, int i);
 double			distance_between_xy(t_data *data, double hit_x, double hit_y);
 void			dist_calc(t_data *data, int i, int h, int v);
-
 int				is_ray_facing_right(double my_angle);
 int				is_ray_facing_down(double my_angle);
-
 void			render_3d(t_data *data);
 void			render_walls(t_data *data, int i);
 int				calcul_rows(char **map);
 int				calcul_col(char **map);
 int				fill_int(char c);
 void			open_door(t_data* data);
-
 double			get_angle(t_data_parsing *data);
-
-void textures_init(t_data *data);
-void wall_sider(t_data *data, int i);
-int	get_color(t_img *data, int x, int y);
-
+void 			textures_init(t_data *data);
+void 			wall_sider(t_data *data, int i);
+int				get_color(t_img *data, int x, int y);
 
 #endif

@@ -6,14 +6,14 @@
 /*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 22:13:46 by zanejar           #+#    #+#             */
-/*   Updated: 2023/06/03 00:08:10 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/06/03 03:21:07 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
 void wall_sider(t_data *data, int i)
-{
+{ 
 	if (data->ray[i].found_door)
 		data->wall_side = DOOR;
 	else if (!is_ray_facing_down(data->ray[i].ray_angle) && !data->ray[i].vert)

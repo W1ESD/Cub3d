@@ -6,13 +6,13 @@
 /*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 00:51:06 by wiessaiy          #+#    #+#             */
-/*   Updated: 2023/05/28 23:09:16 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/06/03 03:21:20 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-    
+     
 
 
 char*        gnl(int fd)

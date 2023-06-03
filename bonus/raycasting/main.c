@@ -6,7 +6,7 @@
 /*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 04:17:43 by wiessaiy          #+#    #+#             */
-/*   Updated: 2023/06/03 00:03:32 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/06/03 03:20:53 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,7 +133,7 @@ int	main(int ac, char **av)
 		data.mlx_ptr = mlx_init();
 		data.win_ptr = mlx_new_window(data.mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT, "cub3d_bonus");
 		data.img.img_ptr = mlx_new_image(data.mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT);
-
+ 
 		data.img.addr = (int*)mlx_get_data_addr(data.img.img_ptr, &data.img.bits_per_pixel, &data.img.lineLength, &data.img.endian);
 		int x;
 		int y;
@@ -144,13 +144,12 @@ int	main(int ac, char **av)
 
 		data.door_path = "./textures/win.xpm";
 		textures_init(&data);
-
 		render_map(&data);
 		render_player(&data, data.parsing);
 
 		data.color_ceiling = data.parsing->ceiling_color;
 		data.color_floor = data.parsing->floor_color;
-
+		
 		update(&data);
 
 		mlx_hook(data.win_ptr, 2, 0, key_pressed, &data);

@@ -6,11 +6,11 @@
 /*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 10:57:06 by wiessaiy          #+#    #+#             */
-/*   Updated: 2023/06/03 00:06:29 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/06/03 03:20:57 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-   
+    
 #include "header.h"
    
 int     to_up(double start,double end)

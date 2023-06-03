@@ -6,7 +6,7 @@
 /*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 00:52:16 by wiessaiy          #+#    #+#             */
-/*   Updated: 2023/05/28 23:08:41 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/06/03 03:21:40 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int     champ(char  c)
     return(c == '0' || c == 'N' \
     || c == 'S' || c == 'E' || c == 'W');
 }
-
+ 
 void    check_mochkil(char  **map,int   n,int   m)
 {
     int     i = 0;

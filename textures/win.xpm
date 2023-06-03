@@ -13,7 +13,7 @@ static char *window1685664904[] = {
 "$  c gray49",
 "%  c #7C7C7C",
 "&  c #8B8C8C",
-"*  c #3A3F3F",
+"*  c #3A3F3F", 
 "=  c #2A2F2F",
 "-  c #1B1B1B",
 ";  c gray15",

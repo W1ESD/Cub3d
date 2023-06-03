@@ -6,7 +6,7 @@
 /*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 00:51:52 by wiessaiy          #+#    #+#             */
-/*   Updated: 2023/06/01 04:52:18 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/06/03 03:21:32 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void    init_data(t_data_parsing    *data)
     data->west_txt = NULL;
     data->east_txt = NULL;
     data->floor_color = 0;
-    data->ceiling_color = 0;
+    data->ceiling_color = 0; 
     data->error_msg = NULL;
     data->map = NULL;
     data->new_map = NULL;

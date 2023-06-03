@@ -6,13 +6,13 @@
 /*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 00:51:00 by wiessaiy          #+#    #+#             */
-/*   Updated: 2023/05/26 12:25:49 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/06/03 03:21:18 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-   
+    
 static int	numwords(char const *s, char c)
 {
 	int	cur;

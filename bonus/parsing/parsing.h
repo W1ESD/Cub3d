@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zanejar <zanejar@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 00:51:58 by wiessaiy          #+#    #+#             */
-/*   Updated: 2023/05/30 16:02:45 by zanejar          ###   ########.fr       */
+/*   Updated: 2023/06/03 03:21:34 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARS_H
 #define PARS_H
 
-
+ 
 
 #include <fcntl.h>
 #include <sys/stat.h>

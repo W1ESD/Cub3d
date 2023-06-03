@@ -6,12 +6,12 @@
 /*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 16:28:04 by zanejar           #+#    #+#             */
-/*   Updated: 2023/06/03 00:07:04 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/06/03 03:20:59 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
-
+ 
 void player_draw(t_data *data) 
 {
 	int x, y, color;
@@ -38,7 +38,7 @@ void render_player(t_data *data,t_data_parsing *parsing)
 	data->player.sideDirection = 0;
 	data->player.walkDirection = 0;
 	data->player.rotationAngle = get_angle(parsing);
-	data->player.moveSpeed = 2;
+	data->player.moveSpeed = 0.7;
 	data->player.rotationSpeed = (3 * PI) / 100;
 	player_draw(data);
 }
@@ -103,50 +103,50 @@ void	wall_collision_gliss(t_data* data)
 	return ;
 }
 
-// int really_able(t_data* data,int ind)
-// {
-// 	int 	a = 0;
-// 	int  	my_x;
-// 	int 	my_y;
-// 	int 	new_x;
-// 	int 	new_y;
+int really_able(t_data* data,int ind)
+{
+	int 	a = 0;
+	int  	my_x;
+	int 	my_y;
+	int 	new_x;
+	int 	new_y;
 
-// 	if(ind == 1)
-// 	{
+	if(ind == 1)
+	{
 
-// 	my_x = data->player.x + cos(data->player.rotationAngle) * data->player.moveSpeed;
-// 	my_y = data->player.y;
+	my_x = data->player.x + cos(data->player.rotationAngle) * data->player.moveSpeed;
+	my_y = data->player.y;
 
-// 	new_x = floor(my_x/PIXEL);
-// 	new_y = floor(my_y/PIXEL);
+	new_x = floor(my_x/data->tile_size);
+	new_y = floor(my_y/data->tile_size);
 
-// 	if (new_x < data->cols && new_y < data->rows)
-// 		if(data->grid[new_y][new_x] == 1)
-// 			a++;
+	if (new_x < data->cols && new_y < data->rows)
+		if(data->grid[new_y][new_x] == 1)
+			a++;
 
-// 	my_x = data->player.x;
-// 	my_y = data->player.y + sin(data->player.rotationAngle) * data->player.moveSpeed;
+	my_x = data->player.x;
+	my_y = data->player.y + sin(data->player.rotationAngle) * data->player.moveSpeed;
 
-// 	if(my_y % PIXEL == 0)
-// 		my_y--;
-// 	new_x = floor(my_x/PIXEL);
-// 	new_y = floor(my_y/PIXEL);
+	if(my_y % (int)data->tile_size == 0)
+		my_y--;
+	new_x = floor(my_x/data->tile_size);
+	new_y = floor(my_y/data->tile_size);
 
-// 	if (my_x < data->cols && my_y < data->rows)
-// 		if(data->grid[my_y][my_x] == 1)
-// 			a++;
-// 	if(a == 2 || a == 1)
-// 		return (0);
-// 	}
+	if (my_x < data->cols && my_y < data->rows)
+		if(data->grid[my_y][my_x] == 1)
+			a++;
+	if(a == 2 || a == 1)
+		return (0);
+	}
 
-// 	return 1;
-// }
+	return 1;
+}
 
 void direction(t_data *data)
 {		
 	if (data->player.walkDirection == 1)
 	{
-			if(able_to_walk_up(data))
+			if(able_to_walk_up(data) && really_able(data,1))
 			{
 				data->player.x += cos(data->player.rotationAngle) * data->player.moveSpeed;
 				data->player.y += sin(data->player.rotationAngle) * data->player.moveSpeed;
