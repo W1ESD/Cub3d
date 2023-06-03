@@ -25,7 +25,7 @@ void textures_init(t_data *data)
 	
 	data->texture[3].addr = (int*)mlx_get_data_addr(data->parsing->east_txt, \
 	&data->texture[3].bits_per_pixel, &data->texture[3].lineLength, &data->texture[3].endian);
-	
+	   
 	data->texture[4].addr = (int*)mlx_get_data_addr(data->door_path, \
 	&data->texture[4].bits_per_pixel, &data->texture[4].lineLength, &data->texture[4].endian);
 

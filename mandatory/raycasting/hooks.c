@@ -6,7 +6,7 @@
 /*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 16:28:02 by zanejar           #+#    #+#             */
-/*   Updated: 2023/05/31 15:47:15 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/06/03 03:35:25 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,4 @@ int	key_released(int keycode, t_data *data)
 	else if (keycode == A_KEY || keycode == D_KEY)
 		data->player.sideDirection = 0;
 	return (0);
-}
+}    

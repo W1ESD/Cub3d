@@ -6,7 +6,7 @@
 /*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 00:50:48 by wiessaiy          #+#    #+#             */
-/*   Updated: 2023/06/03 03:21:15 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/06/03 03:37:07 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int     count_bits(char     *line)
 {
-    int     i=0;
+    int      i=0;
     while(line[i])
     {
         if(i > 2)

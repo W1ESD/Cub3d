@@ -6,7 +6,7 @@
 /*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 16:28:04 by zanejar           #+#    #+#             */
-/*   Updated: 2023/06/03 03:20:59 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/06/03 03:36:26 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void player_draw(t_data *data)
 		}
 	}
 }
-
+   
 void render_player(t_data *data,t_data_parsing *parsing)
 {
 	data->player.x = (parsing->player_x) * data->tile_size;

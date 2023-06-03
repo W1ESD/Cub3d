@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_merging.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zanejar <zanejar@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 04:38:00 by wiessaiy          #+#    #+#             */
-/*   Updated: 2023/05/31 21:07:39 by zanejar          ###   ########.fr       */
+/*   Updated: 2023/06/03 03:35:35 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int calcul_col(char **map)
 }
 int 	fill_int(char c)
 {
-	if(c == '0')
+	if(c == '0')   
 		return 0;
 	else if(c == '1')
 	   return 1;

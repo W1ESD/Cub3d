@@ -6,7 +6,7 @@
 /*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 04:17:26 by wiessaiy          #+#    #+#             */
-/*   Updated: 2023/06/03 03:21:00 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/06/03 03:36:24 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	 line_drawing(t_data *data,  int end_x, int end_y)
 
 	distance_x /= pixels;
 	 
-	distance_y /= pixels;
+	distance_y /= pixels;   
 
 	double pixel_x = data->player.x;
 	
@@ -40,7 +40,7 @@ void	 line_drawing(t_data *data,  int end_x, int end_y)
         pixels--;
     }
 }
-
+       
 void	ray_caster(t_data *data)
 {
 	data->wall.projection = (WINDOW_WIDTH / 2) / tan(FOV / 2);

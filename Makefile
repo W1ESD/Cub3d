@@ -18,7 +18,7 @@ SRC_M =	./mandatory/raycasting/textures.c \
 		./mandatory/raycasting/utils_merging.c \
 		./mandatory/parsing/check_map_game.c \
 		./mandatory/parsing/colors_parsing.c \
-		./mandatory/parsing/fill_map.c \   
+		./mandatory/parsing/fill_map.c \
 		./mandatory/parsing/ft_split.c  \
 		./mandatory/parsing/get_next_line.c \
 		./mandatory/parsing/libft_utils.c  \

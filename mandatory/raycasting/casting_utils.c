@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   casting_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zanejar <zanejar@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 11:11:36 by wiessaiy          #+#    #+#             */
-/*   Updated: 2023/06/01 23:26:25 by zanejar          ###   ########.fr       */
+/*   Updated: 2023/06/03 03:35:22 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ int found_Wall(t_data *data, int x, int y)
     int my_y;
 	if (x < 0 || x > WINDOW_WIDTH || y < 0 || y > WINDOW_HEIGHT)
         return 1;
-    my_x = floor(x / PIXEL);
-    my_y = floor(y / PIXEL);
+    my_x = floor(x / data->tile_size);
+    my_y = floor(y / data->tile_size);
 
 	if (my_x < data->cols && my_y < data->rows)
 		if(data->grid[my_y][my_x] == 1)
@@ -52,17 +52,17 @@ int is_ray_facing_right(double my_angle)
 
 int   horizontal_intersection(t_data *data, int i)
 {
-    data->ray[i].y_intercept = floor(data->player.y / PIXEL) * PIXEL;
+    data->ray[i].y_intercept = floor(data->player.y / data->tile_size) * data->tile_size;
     if(is_ray_facing_down(data->ray[i].ray_angle))
-        data->ray[i].y_intercept += PIXEL;
+        data->ray[i].y_intercept += data->tile_size;
 	
     data->ray[i].x_intercept = data->player.x + (data->ray[i].y_intercept - data->player.y) / tan(data->ray[i].ray_angle);
     
-	data->ray[i].y_step = PIXEL;
+	data->ray[i].y_step = data->tile_size;
     if(!is_ray_facing_down(data->ray[i].ray_angle))
         data->ray[i].y_step *= -1;
     
-	data->ray[i].x_step  = PIXEL / tan(data->ray[i].ray_angle);
+	data->ray[i].x_step  = data->tile_size / tan(data->ray[i].ray_angle);
     if(data->ray[i].x_step > 0  && !is_ray_facing_right(data->ray[i].ray_angle))
         data->ray[i].x_step *= -1;
 	if(data->ray[i].x_step < 0 && is_ray_facing_right(data->ray[i].ray_angle))
@@ -93,17 +93,17 @@ int   horizontal_intersection(t_data *data, int i)
 
 int   vertical_intersection(t_data *data, int i)
 {
-	data->ray[i].x_intercept = floor(data->player.x/PIXEL) * PIXEL;
+	data->ray[i].x_intercept = floor(data->player.x/data->tile_size) * data->tile_size;
 	if(is_ray_facing_right(data->ray[i].ray_angle))
-        data->ray[i].x_intercept += PIXEL;
+        data->ray[i].x_intercept += data->tile_size;
     
 	data->ray[i].y_intercept = data->player.y + (data->ray[i].x_intercept - data->player.x) * tan(data->ray[i].ray_angle);
     
-	data->ray[i].x_step = PIXEL;
+	data->ray[i].x_step = data->tile_size;
 	if(!is_ray_facing_right(data->ray[i].ray_angle))
         data->ray[i].x_step *= -1;
     
-	data->ray[i].y_step  = PIXEL * tan(data->ray[i].ray_angle);
+	data->ray[i].y_step  = data->tile_size * tan(data->ray[i].ray_angle);
     if(data->ray[i].y_step > 0  && !is_ray_facing_down(data->ray[i].ray_angle))
         data->ray[i].y_step *= -1;
 	else if(data->ray[i].y_step < 0 && is_ray_facing_down(data->ray[i].ray_angle))
@@ -178,4 +178,4 @@ double	distance_between_xy(t_data *data, double hit_x, double hit_y)
     distance = sqrt((hit_x - data->player.x)*(hit_x - data->player.x) + \
       (hit_y - data->player.y)*(hit_y - data->player.y));
     return (distance);
-}
+}    

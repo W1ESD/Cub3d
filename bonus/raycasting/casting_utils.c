@@ -6,7 +6,7 @@
 /*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 11:11:36 by wiessaiy          #+#    #+#             */
-/*   Updated: 2023/06/03 03:20:46 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/06/03 03:36:41 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ double adjust_angle(double angle)
         angle = (2 * PI) + angle;
     }   
     return angle;   
-}
-
+}    
+  
 int found_Wall(t_data *data, int x, int y)
 {
     int my_x;

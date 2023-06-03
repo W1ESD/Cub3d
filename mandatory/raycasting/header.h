@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   header.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zanejar <zanejar@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 17:12:48 by zanejar           #+#    #+#             */
-/*   Updated: 2023/06/02 01:07:45 by zanejar          ###   ########.fr       */
+/*   Updated: 2023/06/03 03:35:23 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,7 +131,10 @@ typedef struct s_data
 	void			*img1_ptr;
 	int 			m;
 	int				n;
+	double			pixel_x;
+	double			pixel_y;
 	int				wall_side;
+	double			tile_size;
 	long int		color_ceiling;
 	t_data_parsing	*parsing;
 	t_player		player;
@@ -179,4 +182,4 @@ void			wall_sider(t_data *data, int i);
 int				get_color(t_img *data, int x, int y);
 
 
-#endif
+#endif    

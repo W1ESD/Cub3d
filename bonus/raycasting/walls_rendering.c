@@ -6,7 +6,7 @@
 /*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 22:13:46 by zanejar           #+#    #+#             */
-/*   Updated: 2023/06/03 03:21:07 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/06/03 03:35:38 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void wall_sider(t_data *data, int i)
 int	get_color(t_img *data, int x, int y)
 {
 	char	*dst;
-	 
+	     
 	dst = (char*) data->addr + (y * data->lineLength + x * (data->bits_per_pixel / 8));
 	int k = *(unsigned int*)dst;
 	return (k);

@@ -6,7 +6,7 @@
 /*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 10:57:06 by wiessaiy          #+#    #+#             */
-/*   Updated: 2023/06/03 03:20:57 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/06/03 03:36:29 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int     able_to_walk_up(t_data *data)
     int my_x;
         
     int my_y;
-          
+              
     my_x = cos(data->player.rotationAngle) * data->player.moveSpeed + data->player.x;
 	my_y = sin(data->player.rotationAngle) * data->player.moveSpeed + data->player.y;
     

@@ -6,7 +6,7 @@
 /*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 17:12:48 by zanejar           #+#    #+#             */
-/*   Updated: 2023/06/03 03:20:48 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/06/03 03:36:39 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,7 +136,7 @@ typedef struct s_data
 	double			pixel_x;
 	double			pixel_y;
 	void			*img1_ptr;
-	int 			m;
+	int 			m;   
 	int				n;
 	int				wall_side;
 	long int		color_ceiling;

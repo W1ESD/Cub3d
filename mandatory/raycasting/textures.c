@@ -2,6 +2,11 @@
 
 void textures_init(t_data *data)
 {
+	data->parsing->leaks_task[data->parsing->index_leaks++] = data->parsing->north_txt;
+	data->parsing->leaks_task[data->parsing->index_leaks++] = data->parsing->south_txt;
+	data->parsing->leaks_task[data->parsing->index_leaks++] = data->parsing->west_txt;
+	data->parsing->leaks_task[data->parsing->index_leaks++] = data->parsing->east_txt;
+
 	data->parsing->north_txt = mlx_xpm_file_to_image(data->mlx_ptr,\
 	data->parsing->north_txt, &data->parsing->i, &data->parsing->j);
 	data->parsing->south_txt = mlx_xpm_file_to_image(data->mlx_ptr,\
@@ -20,4 +25,4 @@ void textures_init(t_data *data)
 	data->texture[3].addr = (int*)mlx_get_data_addr(data->parsing->east_txt, \
 	&data->texture[3].bits_per_pixel, &data->texture[3].lineLength, &data->texture[3].endian);
 
-}
+}   

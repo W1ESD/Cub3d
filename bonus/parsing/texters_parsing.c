@@ -6,7 +6,7 @@
 /*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 00:52:11 by wiessaiy          #+#    #+#             */
-/*   Updated: 2023/06/03 03:21:38 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/06/03 03:36:45 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void    add_text_to_struct(char *ident,char *line,t_data_parsing*   data)
         data->west_txt = strdup(line);
 }
  
-int     check_path(char *str)
+int     check_path(char *str)   
 {
     int fd;
     fd = open(str,O_RDONLY);

@@ -6,7 +6,7 @@
 /*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 04:17:43 by wiessaiy          #+#    #+#             */
-/*   Updated: 2023/06/03 03:20:53 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/06/03 03:36:34 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,7 @@ int	main(int ac, char **av)
 		{
 			data.tile_size = data.pixel_x;
 			data.pixel_y = data.pixel_x;
-		}
+		}   
 		else
 			data.tile_size = data.pixel_y;
 		data.mlx_ptr = mlx_init();

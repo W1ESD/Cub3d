@@ -6,7 +6,7 @@
 /*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 00:52:05 by wiessaiy          #+#    #+#             */
-/*   Updated: 2023/06/03 03:21:36 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/06/03 03:36:47 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char *ft_strncpy(char *s1, char *s2, int n)
  
 char	**ft_split2_2(char *str)
 {
-	int i = 0;
+	int i = 0;   
 	int j = 0;
 	int k = 0;
 	int wc = 0;

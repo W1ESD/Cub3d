@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   walls_rendering.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zanejar <zanejar@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 22:13:46 by zanejar           #+#    #+#             */
-/*   Updated: 2023/05/31 21:54:49 by zanejar          ###   ########.fr       */
+/*   Updated: 2023/06/03 03:31:38 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,15 +39,15 @@ void render_walls(t_data *data, int i)
 	float y;
 	
 	if (data->ray[i].vert)
-		x = (int)data->ray[i].hit_y % PIXEL;
+		x = (int)data->ray[i].hit_y % (int)data->tile_size;
 	else
-		x = (int)data->ray[i].hit_x % PIXEL;
+		x = (int)data->ray[i].hit_x % (int)data->tile_size;
 	if (data->wall.strip_top > 0)
 		y = 0;
 	else if (data->wall.strip_top == 0)
 	{
 		int pos_y = (data->wall.strip_height - WINDOW_HEIGHT) / 2;
-		y = pos_y * (PIXEL / data->wall.strip_height);
+		y = pos_y * (data->tile_size / data->wall.strip_height);
 	}
 	for (int a = data->wall.strip_top; a < data->wall.strip_bottom; a++)
 	{

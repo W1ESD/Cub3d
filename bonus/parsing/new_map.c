@@ -6,7 +6,7 @@
 /*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 01:18:28 by wiessaiy          #+#    #+#             */
-/*   Updated: 2023/06/03 03:21:25 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/06/03 03:36:54 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void    fill_spaces_with_walls(t_data_parsing* data)
 {
-    int i =0;
+    int i =0;  
     int j=0;
     while(data->new_map[i])
     {    

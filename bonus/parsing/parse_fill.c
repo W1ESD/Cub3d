@@ -6,7 +6,7 @@
 /*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 00:51:38 by wiessaiy          #+#    #+#             */
-/*   Updated: 2023/06/03 03:21:28 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/06/03 03:36:52 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void            parse_fill(t_data_parsing* data)
     
     check_text(data);
     check_duplicity(data->map);
-    check_colors(data);
+    check_colors(data);  
     check_map_game(data);
     check_lfaraghat(data->map + 6,data);
 }

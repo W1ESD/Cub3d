@@ -6,7 +6,7 @@
 /*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 16:28:02 by zanejar           #+#    #+#             */
-/*   Updated: 2023/06/03 03:20:51 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/06/03 03:36:36 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 int	close_window(void)
 {
 	exit(0);
-} 
+}    
+
 int update2(t_data *data) 
 {
 	direction(data);

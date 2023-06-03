@@ -6,7 +6,7 @@
 /*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 00:51:58 by wiessaiy          #+#    #+#             */
-/*   Updated: 2023/06/03 03:21:34 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/06/03 03:36:48 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 #include<fcntl.h>
 #include<string.h>
 #include <unistd.h>
-#include<stdlib.h>
+#include<stdlib.h>   
 #include "macros.h"
 
 typedef struct s_list t_list;

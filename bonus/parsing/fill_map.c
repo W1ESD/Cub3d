@@ -6,7 +6,7 @@
 /*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 00:50:55 by wiessaiy          #+#    #+#             */
-/*   Updated: 2023/06/03 03:21:17 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/06/03 03:37:05 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
  
 
 void    follow_to_map(char  **map,int   fd,t_data_parsing *data)
-{
+{ 
     char    *line = gnl(fd);
     char    *liste = NULL;
     int     n;

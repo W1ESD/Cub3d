@@ -6,7 +6,7 @@
 /*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 00:52:16 by wiessaiy          #+#    #+#             */
-/*   Updated: 2023/06/03 03:21:40 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/06/03 03:36:43 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void    check_mochkil(char  **map,int   n,int   m)
                         printf("%s%s\n",ERROR,"Space Error\033[0m");
                         exit(1);
                   }
-                }
+                }    
             }
             j++;
         }

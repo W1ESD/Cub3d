@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zanejar <zanejar@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 04:17:43 by wiessaiy          #+#    #+#             */
-/*   Updated: 2023/06/01 23:51:00 by zanejar          ###   ########.fr       */
+/*   Updated: 2023/06/03 03:35:26 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,16 @@ int main(int ac,char **av)
     		for (int j = 0; j < data.cols; j++)
     		    data.grid[i][j] = fill_int(data.parsing->new_map[i][j]);
 		}
+		data.pixel_x = floor(WINDOW_HEIGHT / data.cols);
+		data.pixel_y = floor(WINDOW_WIDTH / data.rows);
+		if(data.pixel_x < data.pixel_y)
+		{
+			data.tile_size = data.pixel_x;
+			data.pixel_y = data.pixel_x;
+		}
+		else
+			data.tile_size = data.pixel_y;
+		    
 		data.mlx_ptr = mlx_init();
 		data.win_ptr = mlx_new_window(data.mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT, "Cub3d");
 		data.img.img_ptr = mlx_new_image(data.mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT);
