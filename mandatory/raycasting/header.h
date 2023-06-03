@@ -6,7 +6,7 @@
 /*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 17:12:48 by zanejar           #+#    #+#             */
-/*   Updated: 2023/06/03 03:35:23 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/06/03 04:12:33 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@
 
 # define PIXEL 32
 
-# define WINDOW_WIDTH 1600
-# define WINDOW_HEIGHT 900
+# define WINDOW_WIDTH 1280
+# define WINDOW_HEIGHT 720
 # define PI 3.14159265358979323846
 
 # define NBR_RAYS WINDOW_WIDTH

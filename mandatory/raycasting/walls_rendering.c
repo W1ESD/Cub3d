@@ -6,7 +6,7 @@
 /*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 22:13:46 by zanejar           #+#    #+#             */
-/*   Updated: 2023/06/03 03:31:38 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/06/03 04:18:28 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void render_walls(t_data *data, int i)
 			my_mlx_pixel_put(&data->img, i, a, get_color(&data->texture[2], x, y));
 		else if (data->wall_side == WEST)
 			my_mlx_pixel_put(&data->img, i, a, get_color(&data->texture[3], x, y));
-		y += PIXEL / data->wall.strip_height;
+		y += data->tile_size / data->wall.strip_height;
 	}
 }
 
@@ -84,7 +84,7 @@ void render_3d(t_data *data)
 	while (++i < NBR_RAYS)
 	{
 		perp_distance = data->ray[i].ray_distance * cos(data->ray[i].ray_angle - data->player.rotationAngle);
-		data->wall.strip_height = (PIXEL / perp_distance) * data->wall.projection;
+		data->wall.strip_height = (data->tile_size / perp_distance) * data->wall.projection;
 
 		data->wall.strip_top = (WINDOW_HEIGHT - data->wall.strip_height) / 2;
 		if (data->wall.strip_top < 0)

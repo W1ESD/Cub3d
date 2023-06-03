@@ -6,7 +6,7 @@
 /*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 16:28:04 by zanejar           #+#    #+#             */
-/*   Updated: 2023/06/03 03:36:26 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/06/03 04:08:32 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -243,7 +243,7 @@ void	render_animation(t_data* data)
 	}
 	int i=0;
 
-	while (i < 29)
+	while (i < 10)
 	{
 		update2(data);
 		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->iimg[i], 0, 0);
