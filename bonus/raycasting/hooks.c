@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zanejar <zanejar@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 16:28:02 by zanejar           #+#    #+#             */
-/*   Updated: 2023/06/04 05:16:35 by zanejar          ###   ########.fr       */
+/*   Updated: 2023/06/04 06:38:24 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ void	open_door(t_data* data)
 	double 		x 	= 	0;
 	double 		y 	= 	0;
 	
-	x = (cos(data->player.rotationAngle) * data->player.moveSpeed + data->player.x);
-	y = (sin(data->player.rotationAngle) * data->player.moveSpeed + data->player.y);
+	x = (cos(data->player.rotationAngle) * 20 + data->player.x);
+	y = (sin(data->player.rotationAngle) * 20 + data->player.y);
 	
 	door_step(data,x,y);
 }
@@ -75,8 +75,8 @@ int	key_pressed(int keycode, t_data *data)
 			close_window();
 	if(keycode == 15)
 			data->op  = 1;
-	// if(keycode == 49)
-	// 	open_door(data);
+	if(keycode == 49)
+		open_door(data);
 	return (0);
 }
 
