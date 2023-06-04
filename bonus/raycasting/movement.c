@@ -6,7 +6,7 @@
 /*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 10:57:06 by wiessaiy          #+#    #+#             */
-/*   Updated: 2023/06/03 03:36:29 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/06/04 07:31:43 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ int     able_to_walk_up(t_data *data)
     
     if(my_y % (int)(data->tile_size)  == 0 && to_up(data->player.y,sin(data->player.rotationAngle) * data->player.moveSpeed + data->player.y))
         my_y--;
-
+    if(my_x < data->player.x && (my_x % (int)data->tile_size == 0))
+		my_x--;
     my_x = floor(my_x/data->tile_size);
     my_y = floor(my_y/data->tile_size);
 
@@ -47,8 +48,10 @@ int     able_to_walk_down(t_data *data)
 	
     my_x = data->player.x - cos(data->player.rotationAngle) * data->player.moveSpeed;
 	my_y = data->player.y - sin(data->player.rotationAngle) * data->player.moveSpeed;
-    
-    
+    if(my_y < data->player.y && (my_y % (int)data->tile_size == 0))
+		my_y--;
+    if(my_x < data->player.x && (my_x % (int)data->tile_size == 0))
+		my_x--;
     my_x = floor(my_x/data->tile_size);
     my_y = floor(my_y/data->tile_size);
     
@@ -65,10 +68,11 @@ int     able_to_turn_left(t_data *data)
 
     
     my_x  = data->player.x + cos(data->player.rotationAngle + (PI / 2)) * data->player.moveSpeed;
-    if(my_x % (int)(data->tile_size) == 0)
-        my_x--;
     my_y = data->player.y + sin(data->player.rotationAngle + (PI / 2)) * data->player.moveSpeed;
-
+    if(my_y < data->player.y && (my_y % (int)data->tile_size == 0))
+		my_y--;
+    if(my_x < data->player.x && (my_y % (int)data->tile_size == 0))
+		my_x--;
     my_x = floor(my_x/data->tile_size);
     my_y = floor(my_y/data->tile_size);
         
@@ -85,7 +89,10 @@ int     able_to_turn_right(t_data *data)
 
     my_x = data->player.x - cos(data->player.rotationAngle + (PI / 2)) * data->player.moveSpeed;
     my_y = data->player.y - sin(data->player.rotationAngle + (PI / 2)) * data->player.moveSpeed;
-
+    if(my_y < data->player.y && (my_y % (int)data->tile_size == 0))
+		my_y--;
+    if(my_x < data->player.x && (my_y % (int)data->tile_size == 0))
+		my_x--;
     my_x = floor(my_x/data->tile_size);
     my_y = floor(my_y/data->tile_size);
         

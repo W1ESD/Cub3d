@@ -6,7 +6,7 @@
 /*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 16:28:04 by zanejar           #+#    #+#             */
-/*   Updated: 2023/06/04 06:49:53 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/06/04 07:25:00 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,8 @@ int really_able(t_data* data,int ind)
 
 	my_x = data->player.x + cos(data->player.rotationAngle) * data->player.moveSpeed;
 	my_y = data->player.y;
-
+	if(my_x < data->player.x && (my_x % (int)data->tile_size == 0))
+		my_x--;
 	new_x = floor(my_x/data->tile_size);
 	new_y = floor(my_y/data->tile_size);
 
@@ -133,8 +134,34 @@ int really_able(t_data* data,int ind)
 
 	my_x = data->player.x;
 	my_y = data->player.y + sin(data->player.rotationAngle) * data->player.moveSpeed;
+	if(my_y < data->player.y && (my_y % (int)data->tile_size == 0))
+		my_y--;
+	new_x = floor(my_x/data->tile_size);
+	new_y = floor(my_y/data->tile_size);
+	if (my_x < data->cols && my_y < data->rows)
+		if(data->grid[my_y][my_x] == 1)
+			a++;
+	if(a == 2 || a == 1)
+		return (0);
+	return 1;
+	}
+	if(ind == 2)
+	{
+	a = 0;
+	my_x = data->player.x - cos(data->player.rotationAngle) * data->player.moveSpeed;
+	my_y = data->player.y;
+	if(my_x < data->player.x && (my_x % (int)data->tile_size == 0))
+		my_x--;
+	new_x = floor(my_x/data->tile_size);
+	new_y = floor(my_y/data->tile_size);
 
-	if(my_y % (int)data->tile_size == 0)
+	if (new_x < data->cols && new_y < data->rows)
+		if(data->grid[new_y][new_x] == 1)
+			a++;
+
+	my_x = data->player.x;
+	my_y = data->player.y - sin(data->player.rotationAngle) * data->player.moveSpeed;
+	if(my_y < data->player.y && (my_y % (int)data->tile_size == 0))
 		my_y--;
 	new_x = floor(my_x/data->tile_size);
 	new_y = floor(my_y/data->tile_size);
@@ -144,9 +171,9 @@ int really_able(t_data* data,int ind)
 			a++;
 	if(a == 2 || a == 1)
 		return (0);
+	else
+		return 1;
 	}
-	
-
 	return 1;
 }
 
@@ -164,7 +191,7 @@ void direction(t_data *data)
 	}
 	else if (data->player.walkDirection == -1)
 	{
-			if(able_to_walk_down(data))
+			if(able_to_walk_down(data) && really_able(data,2))
 			{
 				data->player.x -= cos(data->player.rotationAngle) * data->player.moveSpeed;
 				data->player.y -= sin(data->player.rotationAngle) * data->player.moveSpeed;
