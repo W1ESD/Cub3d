@@ -28,7 +28,9 @@ SRC_M =	./mandatory/raycasting/textures.c \
 		./mandatory/parsing/parsing.c \
 		./mandatory/parsing/split2.c \
 		./mandatory/parsing/texters_parsing.c \
-		./mandatory/parsing/the_new_map.c
+		./mandatory/parsing/the_new_map.c \
+		./mandatory/parsing/utils_parsing.c \
+		./mandatory/parsing/colors_parsing_utils.c 
 
 OBJ_M = $(SRC_M:.c=.o)
 
@@ -44,6 +46,7 @@ SRC_B =	./bonus/raycasting/textures.c \
 		./bonus/raycasting/utils_merging.c   \
 		./bonus/parsing/check_map_game.c \
 		./bonus/parsing/colors_parsing.c \
+		./bonus/parsing/colors_parsing_utils.c \
 		./bonus/parsing/fill_map.c \
 		./bonus/parsing/ft_split.c  \
 		./bonus/parsing/get_next_line.c \
@@ -53,6 +56,7 @@ SRC_B =	./bonus/raycasting/textures.c \
 		./bonus/parsing/parsing_utils.c \
 		./bonus/parsing/parsing.c \
 		./bonus/parsing/split2.c \
+		./bonus/parsing/utils_parsing.c \
 		./bonus/parsing/texters_parsing.c \
 		./bonus/parsing/the_new_map.c
 

@@ -6,13 +6,12 @@
 /*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 00:51:00 by wiessaiy          #+#    #+#             */
-/*   Updated: 2023/05/26 12:25:49 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/06/03 23:38:19 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-   
 static int	numwords(char const *s, char c)
 {
 	int	cur;
@@ -29,48 +28,52 @@ static int	numwords(char const *s, char c)
 	return (word_num);
 }
 
-static int	split_words(char **result, char const *s, char c, int word,t_data_parsing* data)
+void	init_ocur(t_norm *norm)
 {
-	int		start_cur;
-	int		end_cur;
+	norm->end_cur = 0;
+	norm->start_cur = 0;
+}
 
-	end_cur = 0;
-	start_cur = 0;
-	while (s[end_cur])
+static int	split_words(t_norm *norm, int word, t_data_parsing *data)
+{
+	init_ocur(norm);
+	while (norm->s[norm->end_cur])
 	{
-		if (s[end_cur] == c || s[end_cur] == 0)
-			start_cur = end_cur + 1;
-		if (s[end_cur] != c && (s[end_cur + 1] == c || s[end_cur + 1] == 0))
+		if (norm->s[norm->end_cur] == norm->c || norm->s[norm->end_cur] == 0)
+			norm->start_cur = norm->end_cur + 1;
+		if (norm->s[norm->end_cur] != norm->c && (norm->s[norm->end_cur
+					+ 1] == norm->c || norm->s[norm->end_cur + 1] == 0))
 		{
-			result[word] = malloc(sizeof(char) * (end_cur - start_cur + 2));
-			if (!result[word])
+			norm->result[word] = malloc(sizeof(char) * (norm->end_cur
+						- norm->start_cur + 2));
+			if (!norm->result[word])
 			{
 				while (word++)
-				{
-					data->leaks_task[data->index_leaks++] = result[word];
-					// (result[word]);
-				}
+					data->leaks_task[data->index_leaks++] = norm->result[word];
 				return (0);
 			}
-			strlcpy(result[word], (s + start_cur), end_cur - start_cur + 2);
+			strlcpy(norm->result[word], (norm->s + norm->start_cur),
+				norm->end_cur - norm->start_cur + 2);
 			word++;
 		}
-		end_cur++;
+		norm->end_cur++;
 	}
-	result[word] = 0;
+	norm->result[word] = 0;
 	return (1);
 }
 
-char	**ft_split(char const *s, char c,t_data_parsing* data)
+char	**ft_split(char const *s, char c, t_data_parsing *data)
 {
-	char	**result;
+	t_norm	norm;
 
-	if (!s)
+	norm.s = s;
+	norm.c = c;
+	if (!norm.s)
 		return (NULL);
-	result = malloc(sizeof(char *) * (numwords(s, c) + 1));
-	if (!result)
+	norm.result = malloc(sizeof(char *) * (numwords(s, c) + 1));
+	if (!norm.result)
 		return (NULL);
-	if (!split_words(result, s, c, 0,data))
+	if (!split_words(&norm, 0, data))
 		return (NULL);
-	return (result);
+	return (norm.result);
 }
