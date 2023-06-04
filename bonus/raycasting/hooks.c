@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zanejar <zanejar@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 16:28:02 by zanejar           #+#    #+#             */
-/*   Updated: 2023/06/03 03:36:36 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/06/04 05:16:35 by zanejar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,8 @@ int	key_pressed(int keycode, t_data *data)
 			close_window();
 	if(keycode == 15)
 			data->op  = 1;
-	if(keycode == 49)
-		open_door(data);
+	// if(keycode == 49)
+	// 	open_door(data);
 	return (0);
 }
 

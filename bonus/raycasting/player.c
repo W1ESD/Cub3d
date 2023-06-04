@@ -3,31 +3,38 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zanejar <zanejar@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 16:28:04 by zanejar           #+#    #+#             */
-/*   Updated: 2023/06/03 04:08:32 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/06/03 23:06:12 by zanejar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
  
-void player_draw(t_data *data) 
+void player_draw(t_data *data)
 {
-	int x, y, color;
+    int x;
+	int y; 
+	int color;
+    int i;
+    int j;
 	
-	x = data->player.x;
-	
-	y = data->player.y;
-
-	color = WHITE_COLOR;
-	for (int i = 0; i < data->player.width; i++) {
-		for (int j = 0; j < data->player.height; j++) {
-			my_mlx_pixel_put(&data->img, (x + i) * MINI_MAP_SCALE_FACTOR, \
+    x = data->player.x;
+    y = data->player.y;
+    color = WHITE_COLOR;
+	i = -1;
+    while (++i < data->player.width) 
+	{
+        j = -1;
+        while (++j < data->player.height) 
+		{
+            my_mlx_pixel_put(&data->img, (x + i) * MINI_MAP_SCALE_FACTOR, \
 			(y + j) * MINI_MAP_SCALE_FACTOR, color);
-		}
-	}
+        }
+    }
 }
+
    
 void render_player(t_data *data,t_data_parsing *parsing)
 {
@@ -184,49 +191,63 @@ void mlx_clear_image(t_data *data)
 {
 	int x, y;
 	int color = BLACK_COLOR;
-	for (x = 0; x < WINDOW_WIDTH; x++)
+	
+	x = -1;
+	while (++x < WINDOW_WIDTH)
 	{
-		for (y = 0; y < WINDOW_HEIGHT; y++)
+		y = -1;
+		while (++y < WINDOW_HEIGHT)
 			my_mlx_pixel_put(&data->img, x, y, color);
 	}
 }
 
-void	ft_mini_map(t_data* data)
+void ft_mini_map(t_data* data)
 {
+    int x, y, color;
+    int i;
+    int j;
+	int dx;
+	int dy;
 	
-	int x, y, color;
-    for (int i = 0; i < data->rows; i++) {
-        for (int j = 0; j < data->cols; j++) {
+	i = -1;
+    while (++i < data->rows) {
+        j = -1;
+        while (++j < data->cols) {
             x = j * data->tile_size;
             y = i * data->tile_size;
             color = data->grid[i][j] == 1 ? 0x0FFFFF : 0x005FFF;
-            for (int dx = 0; dx < data->tile_size; dx++) {
-                for (int dy = 0; dy < data->tile_size; dy++) {
+            dx = -1;
+            while (++dx < data->tile_size) {
+                dy = -1;
+                while (++dy < data->tile_size) {
                     my_mlx_pixel_put(&data->img, (x + dx) * MINI_MAP_SCALE_FACTOR, \
-					(y + dy) * MINI_MAP_SCALE_FACTOR, color);
+					(y + dy) * MINI_MAP_SCALE_FACTOR, color);  
                 }
             }
-        }
+		}
     }
-	
 }
 
-void ft_mini_map_player_render(t_data *data) 
+
+void ft_mini_map_player_render(t_data *data)
 {
-	int x, y, color;
+    int x, y, color;
+	int i;
+	int j;
 	
-	x = data->player.x;
-	
-	y = data->player.y;
+    x = data->player.x;
+    y = data->player.y;
 	    
-	color = WHITE_COLOR;
-	for (int i = 0; i < data->player.width; i++) {
-		for (int j = 0; j < data->player.height; j++) {
-			my_mlx_pixel_put(&data->img, (x + i) * MINI_MAP_SCALE_FACTOR, \
-			(y + j) * MINI_MAP_SCALE_FACTOR, color);
-		}
-	}
+    color = WHITE_COLOR;
+    i = -1;
+    while (++i < data->player.width) {
+        j = -1;
+        while (++j < data->player.height) {
+            my_mlx_pixel_put(&data->img, (x + i) * MINI_MAP_SCALE_FACTOR, (y + j) * MINI_MAP_SCALE_FACTOR, color);
+        }
+    }
 }
+
 
 void	render_animation(t_data* data)
 {

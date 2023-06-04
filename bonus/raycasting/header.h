@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   header.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zanejar <zanejar@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 17:12:48 by zanejar           #+#    #+#             */
-/*   Updated: 2023/06/03 03:36:39 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/06/04 04:55:52 by zanejar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@
 #define EAST 2
 #define WEST 3
 #define DOOR 4
+
+#define TEX_SIZE 64
 
 typedef struct s_ray
 {
@@ -135,6 +137,8 @@ typedef struct s_data
 	int 			op;
 	double			pixel_x;
 	double			pixel_y;
+	int x_door;
+	int y_door;
 	void			*img1_ptr;
 	int 			m;   
 	int				n;

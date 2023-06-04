@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_casting.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zanejar <zanejar@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 04:17:26 by wiessaiy          #+#    #+#             */
-/*   Updated: 2023/06/03 03:36:24 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/06/03 20:37:14 by zanejar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	ray_caster(t_data *data)
 		data->ray[i].found_door = 0;
 		
 		cast_ray(data, i);
-		line_drawing(data,data->ray[i].hit_x,data->ray[i].hit_y);
+		// line_drawing(data,data->ray[i].hit_x,data->ray[i].hit_y);
 		if (i + 1 < NBR_RAYS)
 			data->ray[i + 1].ray_angle = data->player.rotationAngle + (atan((i - (NBR_RAYS / 2)) / data->wall.projection));
 		i++;

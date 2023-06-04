@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zanejar <zanejar@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 04:17:43 by wiessaiy          #+#    #+#             */
-/*   Updated: 2023/06/03 03:36:34 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/06/03 22:11:44 by zanejar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,25 +100,24 @@ void	func_picture(t_data* data,t_data_parsing* data_parsing)
 
 int	main(int ac, char **av)
 {
-	t_data data;
-
 	if (ac == 2)
 	{
+		t_data data;
+		int i;
+		int j;
 		data.parsing = malloc(sizeof(t_data_parsing));
 		
 		parsing(data.parsing, av[1]);
 		
 		data.rows = calcul_rows(data.parsing->new_map);
 		data.cols = calcul_col(data.parsing->new_map);
-		// printf("cols = %d\n", data.cols);
-		// printf("rows = %d\n", data.rows);
-		// exit(0);
-		
+		i = -1;
 		data.grid = malloc(sizeof(int*) * data.rows);
-		for (int i = 0; i < data.rows; i++)
+		while (++i < data.rows)
 		{	
 			data.grid[i] = malloc(sizeof(int) * data.cols);
-			for (int j = 0; j < data.cols; j++)
+			j = -1;
+			while (++j < data.cols)
 				data.grid[i][j] = fill_int(data.parsing->new_map[i][j]);
 		}
 		data.pixel_x = floor(WINDOW_HEIGHT / data.cols);
@@ -142,7 +141,7 @@ int	main(int ac, char **av)
 		
 		func_picture(&data,data.parsing);
 
-		data.door_path = "./textures/win.xpm";
+		data.door_path = "./textures/sideB.xpm";
 		textures_init(&data);
 		render_map(&data);
 		render_player(&data, data.parsing);

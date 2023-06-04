@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   header.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zanejar <zanejar@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 17:12:48 by zanejar           #+#    #+#             */
-/*   Updated: 2023/06/03 04:12:33 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/06/03 21:27:49 by zanejar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@
 # define GREY_COLOR 0x808080
 # define BROWN_COLOR 0x964B00
 
-# define PIXEL 32
+# define TEX_SIZE 64
 
 # define WINDOW_WIDTH 1280
 # define WINDOW_HEIGHT 720
@@ -133,8 +133,8 @@ typedef struct s_data
 	int				n;
 	double			pixel_x;
 	double			pixel_y;
-	int				wall_side;
 	double			tile_size;
+	int				wall_side;
 	long int		color_ceiling;
 	t_data_parsing	*parsing;
 	t_player		player;
