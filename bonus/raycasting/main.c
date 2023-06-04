@@ -141,7 +141,7 @@ int	main(int ac, char **av)
 		
 		func_picture(&data,data.parsing);
 
-		data.door_path = "./textures/sideB.xpm";
+		data.door_path = "./textures/sideA.xpm";
 		textures_init(&data);
 		render_map(&data);
 		render_player(&data, data.parsing);

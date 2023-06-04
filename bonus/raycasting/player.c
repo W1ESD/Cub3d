@@ -280,19 +280,10 @@ void ft_mini_map_player_render(t_data *data)
 void	render_animation(t_data* data)
 {
 	if(data->op){
-	int pid=fork();
-	if(!pid)
-	{
-	char *a = "/usr/bin/afplay";
-    char *cmd[3];
-    cmd[0] = "afplay";
-    cmd[1] = "audio1.wav";
-    cmd[2]  = NULL;
-    execve(a, cmd, NULL);
-	}
+
 	int i=0;
 
-	while (i < 10)
+	while (i < 17)
 	{
 		update2(data);
 		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->iimg[i], 0, 0);
