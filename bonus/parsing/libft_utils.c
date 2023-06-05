@@ -6,32 +6,32 @@
 /*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 00:51:12 by wiessaiy          #+#    #+#             */
-/*   Updated: 2023/06/03 23:53:00 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/06/05 02:56:05 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-int	ft_atoi(char *str)
+int	ft_atoi(char *string)
 {
-	int	result;
+	int	resultulted_string;
 	int	s;
 	int	f;
 
-	result = 0;
+	resultulted_string = 0;
 	s = 1;
 	f = 1;
-	if (*str == '-')
+	if (*string == '-')
 		return (-1);
-	while (*str && f)
+	while (*string && f)
 	{
-		if (*str >= '0' && *str <= '9')
-			result = result * 10 + *str - '0';
+		if (*string >= '0' && *string <= '9')
+			resultulted_string = resultulted_string * 10 + *string - '0';
 		else
 			return (-1);
-		str++;
+		string++;
 	}
-	return (s * result);
+	return (s * resultulted_string);
 }
 
 void	init_join(t_join *join, char *s1, char *s2)

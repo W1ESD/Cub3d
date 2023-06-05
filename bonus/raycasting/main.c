@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zanejar <zanejar@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 04:17:43 by wiessaiy          #+#    #+#             */
-/*   Updated: 2023/06/03 22:11:44 by zanejar          ###   ########.fr       */
+/*   Updated: 2023/06/05 03:04:27 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	my_mlx_pixel_put(t_img *data, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-int	func(int x, int y, void *param)
+int	func_mouse(int x, int y, void *param)
 {
 	t_data	*data;
 	double	my_speed;
@@ -34,40 +34,38 @@ int	func(int x, int y, void *param)
 		data->player.rotationAngle -= my_speed;
 	return (1);
 }
-char	**ft_add_map(int fd,t_data_parsing *data_parsing)
+char	**reload_rd(int fd,t_data_parsing *data_parsing)
 {
-	char	**map;
-	char	*saver;
-	char	*buff;
-	int		rb;
+	char	**gun;
+	char	*line_saved;
+	char	*readed_bit;
+	int		read_index;
 
-	buff = calloc(2, sizeof(char));
-	if (!buff)
-		return (NULL); 
-	saver = strdup("");
-	rb = 1;
-	while (rb != 0)
+	readed_bit = calloc(2, sizeof(char));
+	line_saved = strdup("");
+	read_index = 1;
+	while (read_index != 0)
 	{ 
-		rb = read(fd, buff, 1);
-		if (rb == -1)
+		read_index = read(fd, readed_bit, 1);
+		if (read_index == -1)
 		{
-			data_parsing->leaks_task[data_parsing->index_leaks++] = buff;
+			data_parsing->leaks_task[data_parsing->index_leaks++] = readed_bit;
 			return (NULL);
 		}
-		if (rb != 0)
-			saver = ft_strjoin(saver, buff,data_parsing);
+		if (read_index != 0)
+			line_saved = ft_strjoin(line_saved, readed_bit,data_parsing);
 	}
-	data_parsing->leaks_task[data_parsing->index_leaks++] = buff;
-	map = ft_split(saver, '\n',data_parsing);
-	data_parsing->leaks_task[data_parsing->index_leaks++] = saver;
-	return (map);
+	data_parsing->leaks_task[data_parsing->index_leaks++] = readed_bit;
+	gun = ft_split(line_saved, '\n',data_parsing);
+	data_parsing->leaks_task[data_parsing->index_leaks++] = line_saved;
+	return (gun);
 }
 
 void	func_picture(t_data* data,t_data_parsing* data_parsing)
 {
-	int		w;
-	int		h;
-	char	**path;
+	int		width;
+	int		heigth;
+	char	**reload_path;
 	int		fd;
 	int		i;
 
@@ -75,26 +73,24 @@ void	func_picture(t_data* data,t_data_parsing* data_parsing)
 	fd = open("gun.txt", O_RDONLY);
 	if (fd == -1)
 	{
-		printf("Open error\n");
+		printf("{File can't be opend}\n");
 		exit(0);
 	}
-	path = ft_add_map(fd, data_parsing);
+	reload_path = reload_rd(fd, data_parsing);
 	i = 0;
-	while (path[i])
+	while (reload_path[i])
 		i++;
 	data->iimg = (void **)malloc(sizeof(void *) * i);
 	i = 0;
-	while (path[i])
+	while (reload_path[i])
 	{
-		data->iimg[i] = mlx_xpm_file_to_image(data->mlx_ptr, path[i], &w, &h);
+		data->iimg[i] = mlx_xpm_file_to_image(data->mlx_ptr, reload_path[i], &width, &heigth);
 		i++;
 	}
 	i = 0;
-	while(path[i])
-	{
-		data_parsing->leaks_task[data_parsing->index_leaks++] = path[i++];
-	}
-	free(path);
+	while(reload_path[i])
+		data_parsing->leaks_task[data_parsing->index_leaks++] = reload_path[i++];
+	free(reload_path);
 	data->iimg[i] = NULL;
 }
 
@@ -155,7 +151,7 @@ int	main(int ac, char **av)
 		mlx_hook(data.win_ptr, 3, 0, key_released, &data);
 		mlx_loop_hook(data.mlx_ptr, update, &data);
 		mlx_hook(data.win_ptr, 17, 0, close_window, &data);
-		mlx_hook(data.win_ptr, 6, 0, &func, &data);			//{ 6 for the event 0 for the bitmask options }
+		mlx_hook(data.win_ptr, 6, 0, &func_mouse, &data);			//{ 6 for the event 0 for the bitmask options }
 		mlx_loop(data.mlx_ptr);
 	}
 	else
