@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zanejar <zanejar@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 20:29:56 by zanejar           #+#    #+#             */
-/*   Updated: 2023/06/05 03:54:53 by zanejar          ###   ########.fr       */
+/*   Updated: 2023/06/05 05:19:48 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,22 +131,10 @@ void	ft_mini_map_player_render(t_data *data)
 
 void	render_animation(t_data *data)
 {
-	int		pid;
-	char	*a;
-	char	*cmd[3];
 	int		i;
 
 	if (data->op)
 	{
-		pid = fork();
-		if (!pid)
-		{
-			a = "/usr/bin/afplay";
-			cmd[0] = "afplay";
-			cmd[1] = "audio1.wav";
-			cmd[2] = NULL;
-			execve(a, cmd, NULL);
-		}
 		i = 0;
 		while (i < 10)
 		{

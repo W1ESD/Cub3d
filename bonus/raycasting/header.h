@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   header.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zanejar <zanejar@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 17:12:48 by zanejar           #+#    #+#             */
-/*   Updated: 2023/06/05 03:55:09 by zanejar          ###   ########.fr       */
+/*   Updated: 2023/06/05 05:36:27 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -214,5 +214,10 @@ void				render_animation(t_data *data);
 int					update(t_data *data);
 void				render_walls(t_data *data, int i);
 void				wall_collision_gliss(t_data *data);
+void				wall_col_ray_h(t_data *data, int index, int i);
+void				wall_col_ray_v(t_data *data, int index, int i);
+void				set_hit1(t_data *data, int i);
+void				set_hit2(t_data *data, int i);
+void				set_hit3(t_data *data, int i);
 
 #endif

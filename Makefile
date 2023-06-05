@@ -60,6 +60,7 @@ SRC_B =	./bonus/raycasting/textures.c \
 		./bonus/parsing/new_map.c \
 		./bonus/parsing/parse_fill.c \
 		./bonus/parsing/parsing_utils.c \
+		./bonus/raycasting/casting_utils3.c \
 		./bonus/parsing/parsing.c \
 		./bonus/parsing/split2.c \
 		./bonus/parsing/utils_parsing.c \

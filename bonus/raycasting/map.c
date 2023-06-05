@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zanejar <zanejar@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 16:27:55 by zanejar           #+#    #+#             */
-/*   Updated: 2023/06/05 04:04:22 by zanejar          ###   ########.fr       */
+/*   Updated: 2023/06/05 05:38:36 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,26 @@ void	render_map(t_data *data)
 			}
 		}
 	}
+}
+void	dist_calc(t_data *data, int i, int h, int v)
+{
+	data->ray[i].dh = distance_between_xy(data, data->ray[i].hit_x_h,
+			data->ray[i].hit_y_h);
+	data->ray[i].dv = distance_between_xy(data, data->ray[i].hit_x_v,
+			data->ray[i].hit_y_v);
+	if (h == 0)
+		return (set_hit1(data, i));
+	if (data->ray[i].dh < data->ray[i].dv || (v == 0))
+		return (set_hit2(data, i));
+	else
+		return (set_hit3(data, i));
+}
+
+double	distance_between_xy(t_data *data, double hit_x, double hit_y)
+{
+	double	distance;
+
+	distance = sqrt((hit_x - data->player.x) * (hit_x - data->player.x) + (hit_y
+				- data->player.y) * (hit_y - data->player.y));
+	return (distance);
 }
