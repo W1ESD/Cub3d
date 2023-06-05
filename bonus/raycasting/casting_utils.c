@@ -102,7 +102,7 @@ int   horizontal_intersection(t_data *data, int i)
                 data->ray[i].hit_x_h = data->ray[i].next_horz_x;
                 data->ray[i].hit_y_h = data->ray[i].next_horz_y;
 				if(index == 2)
-					data->ray[i].found_door = 1;
+					data->ray[i].found_door = -1;
                 return 1;
         }
         else
@@ -147,7 +147,7 @@ int   vertical_intersection(t_data *data, int i)
                 data->ray[i].hit_x_v = data->ray[i].next_vert_x;
                 data->ray[i].hit_y_v = data->ray[i].next_vert_y;
 				if(index == 2)
-					data->ray[i].found_door = 1;
+					data->ray[i].found_door = -1;
 		        return 1;
         }
         else
@@ -159,50 +159,10 @@ int   vertical_intersection(t_data *data, int i)
 	return 0;
 }
 
-// void		door_coordinates(t_data *data)
-// {
-// 	int i = 0;
-// 	int j = 0;
-// 	while(i < data->rows)
-// 	{
-// 		j = 0;
-// 		while(j < data->cols)
-// 		{
-// 			if(data->grid[i][j] == 6)
-// 			{
-// 				data->x_door = j;
-// 				data->y_door = i;
-// 				return;
-// 			}
-// 			j++;
-// 		}
-// 		i++;
-// 	}
-// }
-
-// void	filler(t_data *data)
-// {
-// 	int i = 0;
-// 	int j = 0;
-// 	while(i < data->rows)
-// 	{
-// 		j = 0;
-// 		while(j < data->cols)
-// 		{
-// 			if(data->grid[i][j] == 6)
-// 				data->grid[i][j] = 1;
-// 			j++;
-// 		}
-// 		i++;
-// 	}
-// }
-
 void    cast_ray(t_data *data, int i)
 {
     data->ray[i].ray_angle = adjust_angle(data->ray[i].ray_angle);
 	data->ray[i].vert = 0;
-	// door_coordinates(data);
-	// filler(data);
 	int h = horizontal_intersection(data, i);
 	int v = vertical_intersection(data, i);
 	dist_calc(data, i, h, v);
@@ -230,7 +190,7 @@ void dist_calc(t_data *data, int i, int h, int v)
         data->ray[i].ray_distance = data->ray[i].dh;
 		return;
     }
-	else 
+	else
 	{
 		data->ray[i].hit_x = data->ray[i].hit_x_v;
 		data->ray[i].hit_y = data->ray[i].hit_y_v;
