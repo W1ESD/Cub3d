@@ -6,43 +6,40 @@
 /*   By: zanejar <zanejar@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 16:27:55 by zanejar           #+#    #+#             */
-/*   Updated: 2023/06/03 22:58:03 by zanejar          ###   ########.fr       */
+/*   Updated: 2023/06/05 04:04:22 by zanejar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header.h"     
+#include "header.h"
 
-void render_map(t_data *data)
+void	render_map(t_data *data)
 {
-    int x;
-	int y; 
-	int color;
-    int i;
-	int j;
-	int dx;
-	int dy;
-	
-	i = -1;
-    while (++i < data->rows) 
-	{
-        j = -1;
-        while (++j < data->cols) 
-		{
-            x = j * data->tile_size;
-            y = i * data->tile_size;
-            color = data->grid[i][j] == 1 ? 0x0FFFFF : 0x005FFF;
-            dx = -1;
-            while (++dx < data->tile_size) 
-			{
-                dy = -1;
-                while (++dy < data->tile_size) 
-				{
-                    my_mlx_pixel_put(&data->img, (x + dx) * MINI_MAP_SCALE_FACTOR, \
-					(y + dy) * MINI_MAP_SCALE_FACTOR, color);
-            
-                }
-            }
-        }
-    }
-}
+	t_vars	vars;
 
+	vars.i = -1;
+	while (++vars.i < data->rows)
+	{
+		vars.j = -1;
+		while (++vars.j < data->cols)
+		{
+			vars.x = vars.j * data->tile_size;
+			vars.y = vars.i * data->tile_size;
+			if (data->grid[vars.i][vars.j] == 1 || \
+			data->grid[vars.i][vars.j] == 6)
+				vars.color = 0x0FFFFF;
+			else
+				vars.color = 0x005FFF;
+			vars.dx = -1;
+			while (++vars.dx < data->tile_size)
+			{
+				vars.dy = -1;
+				while (++vars.dy < data->tile_size)
+				{
+					my_mlx_pixel_put(&data->img, (vars.x + vars.dx)
+						* MINI_MAP_SCALE_FACTOR, (vars.y + vars.dy)
+						* MINI_MAP_SCALE_FACTOR, vars.color);
+				}
+			}
+		}
+	}
+}

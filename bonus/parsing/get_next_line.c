@@ -6,7 +6,7 @@
 /*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 00:51:06 by wiessaiy          #+#    #+#             */
-/*   Updated: 2023/06/05 02:52:56 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/06/04 03:05:48 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 char	*gnl(int fd)
 {
 	char	bit;
-	char	the_line[40000];
+	char	result[20000];
 	int		i;
 	int		n;
 
@@ -23,15 +23,15 @@ char	*gnl(int fd)
 	n = read(fd, &bit, 1);
 	while (n > 0)
 	{
-		the_line[i++] = bit;
+		result[i++] = bit;
 		if (bit == '\n')
 			break ;
 		n = read(fd, &bit, 1);
 	}
 	if (i == 0 && n <= 0)
 		return (0);
-	the_line[i] = '\0';
-	return (strdup(the_line));
+	result[i] = '\0';
+	return (strdup(result));
 }
 
 int	champ(char c)

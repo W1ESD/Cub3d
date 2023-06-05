@@ -9,6 +9,7 @@ LINK = -lmlx -framework OpenGL -framework AppKit
 
 SRC_M =	./mandatory/raycasting/textures.c \
 		./mandatory/raycasting/casting_utils.c \
+		./mandatory/raycasting/casting_utils2.c \
 		./mandatory/raycasting/hooks.c \
 		./mandatory/raycasting/main.c \
 		./mandatory/raycasting/movement.c \
@@ -36,14 +37,19 @@ OBJ_M = $(SRC_M:.c=.o)
 
 SRC_B =	./bonus/raycasting/textures.c \
 		./bonus/raycasting/casting_utils.c \
+		./bonus/raycasting/casting_utils2.c \
 		./bonus/raycasting/hooks.c \
 		./bonus/raycasting/main.c \
+		./bonus/raycasting/main_funcs.c \
+		./bonus/raycasting/move.c \
+		./bonus/raycasting/render.c \
 		./bonus/raycasting/map.c \
 		./bonus/raycasting/movement.c \
 		./bonus/raycasting/player.c \
 		./bonus/raycasting/ray_casting.c \
 		./bonus/raycasting/walls_rendering.c \
-		./bonus/raycasting/utils_merging.c   \
+		./bonus/raycasting/walls_rendering2.c \
+		./bonus/raycasting/utils_merging.c \
 		./bonus/parsing/check_map_game.c \
 		./bonus/parsing/colors_parsing.c \
 		./bonus/parsing/colors_parsing_utils.c \
