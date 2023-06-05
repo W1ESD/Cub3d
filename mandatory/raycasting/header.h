@@ -6,7 +6,7 @@
 /*   By: zanejar <zanejar@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 17:12:48 by zanejar           #+#    #+#             */
-/*   Updated: 2023/06/05 03:05:15 by zanejar          ###   ########.fr       */
+/*   Updated: 2023/06/05 23:17:07 by zanejar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,5 +164,10 @@ int					is_ray_facing_down(double my_angle);
 int					is_ray_facing_right(double my_angle);
 int					update(t_data *data);
 void				render_walls(t_data *data, int i);
+void				cond1(t_data *data);
+void				cond2(t_data *data);
+void				cond3(t_data *data);
+void				cond4(t_data *data);
+int					really_able(t_data *data, int ind);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zanejar <zanejar@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 20:29:56 by zanejar           #+#    #+#             */
-/*   Updated: 2023/06/05 22:05:51 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/06/05 22:50:06 by zanejar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,47 +15,13 @@
 void	direction(t_data *data)
 {
 	if (data->player.walk_direction == 1)
-	{
-		if (able_to_walk_up(data) && really_able_up(data))
-		{
-			data->player.x += cos(data->player.rotation_angle)
-				* data->player.move_speed;
-			data->player.y += sin(data->player.rotation_angle)
-				* data->player.move_speed;
-		}
-		else
-			wall_collision_gliss(data);
-	}
+		cond1(data);
 	else if (data->player.walk_direction == -1)
-	{
-		if (able_to_walk_down(data) && really_able_down(data))
-		{
-			data->player.x -= cos(data->player.rotation_angle)
-				* data->player.move_speed;
-			data->player.y -= sin(data->player.rotation_angle)
-				* data->player.move_speed;
-		}
-	}
+		cond2(data);
 	if (data->player.side_direction == 1)
-	{
-		if (able_to_turn_left(data))
-		{
-			data->player.x += cos(data->player.rotation_angle + (PI / 2))
-				* data->player.move_speed;
-			data->player.y += sin(data->player.rotation_angle + (PI / 2))
-				* data->player.move_speed;
-		}
-	}
+		cond3(data);
 	else if (data->player.side_direction == -1)
-	{
-		if (able_to_turn_right(data))
-		{
-			data->player.x -= cos(data->player.rotation_angle + (PI / 2))
-				* data->player.move_speed;
-			data->player.y -= sin(data->player.rotation_angle + (PI / 2))
-				* data->player.move_speed;
-		}
-	}
+		cond4(data);
 }
 
 void	mlx_clear_image(t_data *data)

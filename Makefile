@@ -12,6 +12,7 @@ SRC_M =	./mandatory/raycasting/textures.c \
 		./mandatory/raycasting/casting_utils2.c \
 		./mandatory/raycasting/hooks.c \
 		./mandatory/raycasting/main.c \
+		./mandatory/raycasting/direction_conds.c \
 		./mandatory/raycasting/movement.c \
 		./mandatory/raycasting/player.c \
 		./mandatory/raycasting/ray_casting.c \
@@ -42,8 +43,10 @@ SRC_B =	./bonus/raycasting/textures.c \
 		./bonus/raycasting/main.c \
 		./bonus/raycasting/main_funcs.c \
 		./bonus/raycasting/move.c \
+		./bonus/raycasting/move2.c \
 		./bonus/raycasting/render.c \
 		./bonus/raycasting/map.c \
+		./bonus/raycasting/direction_conds.c \
 		./bonus/raycasting/movement.c \
 		./bonus/raycasting/player.c \
 		./bonus/raycasting/ray_casting.c \

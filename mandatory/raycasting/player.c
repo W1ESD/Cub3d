@@ -6,7 +6,7 @@
 /*   By: zanejar <zanejar@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 16:28:04 by zanejar           #+#    #+#             */
-/*   Updated: 2023/06/05 02:34:07 by zanejar          ###   ########.fr       */
+/*   Updated: 2023/06/05 23:14:37 by zanejar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,43 +99,11 @@ int	really_able(t_data *data, int ind)
 void	direction(t_data *data)
 {
 	if (data->player.walk_direction == 1)
-	{
-		if (able_to_walk_up(data) && really_able(data, 1))
-		{
-			data->player.x += cos(data->player.rotation_angle)
-				* data->player.move_speed;
-			data->player.y += sin(data->player.rotation_angle)
-				* data->player.move_speed;
-		}
-	}
+		cond1(data);
 	else if (data->player.walk_direction == -1)
-	{
-		if (able_to_walk_down(data))
-		{
-			data->player.x -= cos(data->player.rotation_angle)
-				* data->player.move_speed;
-			data->player.y -= sin(data->player.rotation_angle)
-				* data->player.move_speed;
-		}
-	}
+		cond2(data);
 	if (data->player.side_direction == 1)
-	{
-		if (able_to_turn_left(data))
-		{
-			data->player.x += cos(data->player.rotation_angle + (PI / 2))
-				* data->player.move_speed;
-			data->player.y += sin(data->player.rotation_angle + (PI / 2))
-				* data->player.move_speed;
-		}
-	}
+		cond3(data);
 	else if (data->player.side_direction == -1)
-	{
-		if (able_to_turn_right(data))
-		{
-			data->player.x -= cos(data->player.rotation_angle + (PI / 2))
-				* data->player.move_speed;
-			data->player.y -= sin(data->player.rotation_angle + (PI / 2))
-				* data->player.move_speed;
-		}
-	}
+		cond4(data);
 }

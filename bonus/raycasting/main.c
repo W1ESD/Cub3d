@@ -6,7 +6,7 @@
 /*   By: zanejar <zanejar@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 04:17:43 by wiessaiy          #+#    #+#             */
-/*   Updated: 2023/06/05 03:33:49 by zanejar          ###   ########.fr       */
+/*   Updated: 2023/06/05 23:07:35 by zanejar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,38 +26,59 @@ void	my_mlx_pixel_put(t_img *data, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
+void	parse(t_data *data, char **av)
+{
+	int	i;
+	int	j;
+
+	data->parsing = malloc(sizeof(t_data_parsing));
+	parsing(data->parsing, av[1]);
+	data->rows = calcul_rows(data->parsing->new_map);
+	data->cols = calcul_col(data->parsing->new_map);
+	i = -1;
+	data->grid = malloc(sizeof(int *) * data->rows);
+	while (++i < data->rows)
+	{
+		data->grid[i] = malloc(sizeof(int) * data->cols);
+		j = -1;
+		while (++j < data->cols)
+			data->grid[i][j] = fill_int(data->parsing->new_map[i][j]);
+	}
+	data->pixel_x = floor(WINDOW_HEIGHT / data->cols);
+	data->pixel_y = floor(WINDOW_WIDTH / data->rows);
+	if (data->pixel_x < data->pixel_y)
+	{
+		data->tile_size = data->pixel_x;
+		data->pixel_y = data->pixel_x;
+	}
+	else
+		data->tile_size = data->pixel_y;
+}
+
+void	init(t_data *data)
+{
+	int	x;
+	int	y;
+
+	data->img1_ptr = mlx_xpm_file_to_image(data->mlx_ptr, "./reload/1.xpm", \
+	&y, &x);
+	data->op = 0;
+	func_picture(data, data->parsing);
+	data->door_path = "./textures/door.xpm";
+	textures_init(data);
+	render_map(data);
+	render_player(data, data->parsing);
+	data->color_ceiling = data->parsing->ceiling_color;
+	data->color_floor = data->parsing->floor_color;
+}
+
 int	main(int ac, char **av)
 {
 	t_data	data;
-	int		i;
-	int		j;
-	int		x;
-	int		y;
 
 	if (ac == 2)
 	{
-		data.parsing = malloc(sizeof(t_data_parsing));
-		parsing(data.parsing, av[1]);
-		data.rows = calcul_rows(data.parsing->new_map);
-		data.cols = calcul_col(data.parsing->new_map);
-		i = -1;
-		data.grid = malloc(sizeof(int *) * data.rows);
-		while (++i < data.rows)
-		{
-			data.grid[i] = malloc(sizeof(int) * data.cols);
-			j = -1;
-			while (++j < data.cols)
-				data.grid[i][j] = fill_int(data.parsing->new_map[i][j]);
-		}
-		data.pixel_x = floor(WINDOW_HEIGHT / data.cols);
-		data.pixel_y = floor(WINDOW_WIDTH / data.rows);
-		if (data.pixel_x < data.pixel_y)
-		{
-			data.tile_size = data.pixel_x;
-			data.pixel_y = data.pixel_x;
-		}
-		else
-			data.tile_size = data.pixel_y;
+		parse(&data, av);
 		data.mlx_ptr = mlx_init();
 		data.win_ptr = mlx_new_window(data.mlx_ptr, WINDOW_WIDTH, \
 		WINDOW_HEIGHT, "cub3d_bonus");
@@ -65,16 +86,7 @@ int	main(int ac, char **av)
 		WINDOW_HEIGHT);
 		data.img.addr = (int *)mlx_get_data_addr(data.img.img_ptr, \
 		&data.img.bits_per_pixel, &data.img.line_length, &data.img.endian);
-		data.img1_ptr = mlx_xpm_file_to_image(data.mlx_ptr, "./reload/1.xpm", \
-		&y, &x);
-		data.op = 0;
-		func_picture(&data, data.parsing);
-		data.door_path = "./textures/door.xpm";
-		textures_init(&data);
-		render_map(&data);
-		render_player(&data, data.parsing);
-		data.color_ceiling = data.parsing->ceiling_color;
-		data.color_floor = data.parsing->floor_color;
+		init(&data);
 		update(&data);
 		mlx_hook(data.win_ptr, 2, 0, key_pressed, &data);
 		mlx_hook(data.win_ptr, 3, 0, key_released, &data);

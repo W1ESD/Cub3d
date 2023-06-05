@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_funcs.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zanejar <zanejar@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 20:22:56 by zanejar           #+#    #+#             */
-/*   Updated: 2023/06/05 05:10:41 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/06/05 22:51:49 by zanejar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,13 +76,15 @@ void	func_picture(t_data *data, t_data_parsing *data_parsing)
 	i = 0;
 	while (images_file[i])
 	{
-		data->iimg[i] = mlx_xpm_file_to_image(data->mlx_ptr, images_file[i], &width, &heigth);
+		data->iimg[i] = mlx_xpm_file_to_image(data->mlx_ptr, \
+		images_file[i], &width, &heigth);
 		i++;
 	}
 	i = 0;
 	while (images_file[i])
 	{
-		data_parsing->leaks_task[data_parsing->index_leaks++] = images_file[i++];
+		data_parsing->leaks_task[data_parsing->index_leaks++] = \
+		images_file[i++];
 	}
 	free(images_file);
 	data->iimg[i] = NULL;

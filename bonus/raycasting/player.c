@@ -6,7 +6,7 @@
 /*   By: zanejar <zanejar@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 16:28:04 by zanejar           #+#    #+#             */
-/*   Updated: 2023/06/05 02:28:10 by zanejar          ###   ########.fr       */
+/*   Updated: 2023/06/05 22:27:31 by zanejar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	player_draw(t_data *data)
 
 	x = data->player.x;
 	y = data->player.y;
-	color = WHITE_COLOR;
+	color = BLACK_COLOR;
 	i = -1;
 	while (++i < data->player.width)
 	{
@@ -39,12 +39,12 @@ void	render_player(t_data *data, t_data_parsing *parsing)
 {
 	data->player.x = (parsing->player_x) * data->tile_size;
 	data->player.y = (parsing->player_y) * data->tile_size;
-	data->player.width = 5;
-	data->player.height = 5;
+	data->player.width = 10;
+	data->player.height = 10;
 	data->player.side_direction = 0;
 	data->player.walk_direction = 0;
 	data->player.rotation_angle = get_angle(parsing);
-	data->player.move_speed = 0.7;
+	data->player.move_speed = 2;
 	data->player.rotation_speed = (3 * PI) / 100;
 	player_draw(data);
 }

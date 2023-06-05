@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   header.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zanejar <zanejar@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 17:12:48 by zanejar           #+#    #+#             */
-/*   Updated: 2023/06/05 22:05:03 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/06/05 22:50:36 by zanejar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@
 # define WINDOW_HEIGHT 900
 # define PI 3.14159265358979323846
 # define NBR_RAYS WINDOW_WIDTH
-# define MINI_MAP_SCALE_FACTOR 0.3
+# define MINI_MAP_SCALE_FACTOR 0.4
 # define WALL_STRIP_WIDTH 1
 # define NORTH 0
 # define SOUTH 1
@@ -193,7 +193,7 @@ void				render_3d(t_data *data);
 void				render_walls(t_data *data, int i);
 int					calcul_rows(char **map);
 int					calcul_col(char **map);
-int					really_able_up(t_data* data);
+int					really_able_up(t_data *data);
 int					fill_int(char c);
 void				open_door(t_data *data);
 double				get_angle(t_data_parsing *data);
@@ -222,7 +222,13 @@ void				wall_col_ray_v(t_data *data, int index, int i);
 void				set_hit1(t_data *data, int i);
 void				set_hit2(t_data *data, int i);
 void				set_hit3(t_data *data, int i);
-int					really_able_down(t_data* data);
-int					really_able_up(t_data* data);
+int					really_able_down(t_data *data);
+int					really_able_up(t_data *data);
+int					wall_y(t_data *data);
+int					wall_x(t_data *data);
+void				cond1(t_data *data);
+void				cond2(t_data *data);
+void				cond3(t_data *data);
+void				cond4(t_data *data);
 
 #endif
