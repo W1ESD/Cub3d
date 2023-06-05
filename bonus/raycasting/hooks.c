@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zanejar <zanejar@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 16:28:02 by zanejar           #+#    #+#             */
-/*   Updated: 2023/06/05 03:31:25 by zanejar          ###   ########.fr       */
+/*   Updated: 2023/06/05 21:25:14 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ void	open_door(t_data *data)
 
 	x = 0;
 	y = 0;
-	x = (cos(data->player.rotation_angle) * 20 + data->player.x);
-	y = (sin(data->player.rotation_angle) * 20 + data->player.y);
+	x = (cos(data->player.rotation_angle) * 22 + data->player.x);
+	y = (sin(data->player.rotation_angle) * 22 + data->player.y);
 	door_step(data, x, y);
 }
 

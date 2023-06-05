@@ -6,7 +6,7 @@
 /*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 20:29:56 by zanejar           #+#    #+#             */
-/*   Updated: 2023/06/05 05:19:48 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/06/05 22:05:51 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	direction(t_data *data)
 {
 	if (data->player.walk_direction == 1)
 	{
-		if (able_to_walk_up(data) && really_able(data, 1))
+		if (able_to_walk_up(data) && really_able_up(data))
 		{
 			data->player.x += cos(data->player.rotation_angle)
 				* data->player.move_speed;
@@ -28,7 +28,7 @@ void	direction(t_data *data)
 	}
 	else if (data->player.walk_direction == -1)
 	{
-		if (able_to_walk_down(data) && really_able(data, 2))
+		if (able_to_walk_down(data) && really_able_down(data))
 		{
 			data->player.x -= cos(data->player.rotation_angle)
 				* data->player.move_speed;

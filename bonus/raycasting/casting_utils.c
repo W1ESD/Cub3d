@@ -6,7 +6,7 @@
 /*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 11:11:36 by wiessaiy          #+#    #+#             */
-/*   Updated: 2023/06/05 05:41:26 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/06/05 21:23:40 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,9 @@ void	cast_ray(t_data *data, int i)
 
 	data->ray[i].ray_angle = adjust_angle(data->ray[i].ray_angle);
 	data->ray[i].vert = 0;
+	data->ray[i].hit_door_vertical = 0;
+	data->ray[i].hit_door_horizontal = 0;
+	data->ray[i].found_door = 0;
 	h = horizontal_intersection(data, i);
 	v = vertical_intersection(data, i);
 	dist_calc(data, i, h, v);

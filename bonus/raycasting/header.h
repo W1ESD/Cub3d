@@ -6,7 +6,7 @@
 /*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 17:12:48 by zanejar           #+#    #+#             */
-/*   Updated: 2023/06/05 05:36:27 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/06/05 22:05:03 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,8 @@ typedef struct s_ray
 	int				found_door;
 	double			hit_x_h;
 	double			hit_y_h;
+	int				hit_door_vertical;
+	int				hit_door_horizontal;
 	double			hit_x;
 	double			hit_y;
 	double			dh;
@@ -191,6 +193,7 @@ void				render_3d(t_data *data);
 void				render_walls(t_data *data, int i);
 int					calcul_rows(char **map);
 int					calcul_col(char **map);
+int					really_able_up(t_data* data);
 int					fill_int(char c);
 void				open_door(t_data *data);
 double				get_angle(t_data_parsing *data);
@@ -219,5 +222,7 @@ void				wall_col_ray_v(t_data *data, int index, int i);
 void				set_hit1(t_data *data, int i);
 void				set_hit2(t_data *data, int i);
 void				set_hit3(t_data *data, int i);
+int					really_able_down(t_data* data);
+int					really_able_up(t_data* data);
 
 #endif

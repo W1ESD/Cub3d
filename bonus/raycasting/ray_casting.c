@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_casting.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zanejar <zanejar@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 04:17:26 by wiessaiy          #+#    #+#             */
-/*   Updated: 2023/06/05 03:46:22 by zanejar          ###   ########.fr       */
+/*   Updated: 2023/06/05 21:02:08 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ void	ray_caster(t_data *data)
 	data->ray[i].ray_angle = data->player.rotation_angle - (fov / 2);
 	while (i < NBR_RAYS)
 	{
-		data->ray[i].found_door = 0;
 		cast_ray(data, i);
 		if (i + 1 < NBR_RAYS)
 		{	

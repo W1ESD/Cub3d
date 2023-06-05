@@ -6,7 +6,7 @@
 /*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 16:27:55 by zanejar           #+#    #+#             */
-/*   Updated: 2023/06/05 05:38:36 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/06/05 21:25:51 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void	render_map(t_data *data)
 		}
 	}
 }
+
 void	dist_calc(t_data *data, int i, int h, int v)
 {
 	data->ray[i].dh = distance_between_xy(data, data->ray[i].hit_x_h,
