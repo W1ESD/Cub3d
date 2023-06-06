@@ -6,7 +6,7 @@
 /*   By: zanejar <zanejar@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 20:22:56 by zanejar           #+#    #+#             */
-/*   Updated: 2023/06/05 22:51:49 by zanejar          ###   ########.fr       */
+/*   Updated: 2023/06/06 04:32:59 by zanejar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,23 +62,17 @@ void	func_picture(t_data *data, t_data_parsing *data_parsing)
 	int		fd;
 	int		i;
 
-	fd = open("gun.txt", O_RDONLY);
-	if (fd == -1)
-	{
-		printf("Open file error\n");
-		exit(0);
-	}
-	images_file = read_gun(fd, data_parsing);
 	i = 0;
+	fd = open("bonus/gun.txt", O_RDONLY);
+	images_file = read_gun(fd, data_parsing);
 	while (images_file[i])
 		i++;
 	data->iimg = (void **)malloc(sizeof(void *) * i);
-	i = 0;
-	while (images_file[i])
+	i = -1;
+	while (images_file[++i])
 	{
 		data->iimg[i] = mlx_xpm_file_to_image(data->mlx_ptr, \
 		images_file[i], &width, &heigth);
-		i++;
 	}
 	i = 0;
 	while (images_file[i])
@@ -87,5 +81,4 @@ void	func_picture(t_data *data, t_data_parsing *data_parsing)
 		images_file[i++];
 	}
 	free(images_file);
-	data->iimg[i] = NULL;
 }

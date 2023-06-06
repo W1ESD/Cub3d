@@ -6,7 +6,7 @@
 #    By: zanejar <zanejar@student.1337.ma>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/06 03:00:56 by zanejar           #+#    #+#              #
-#    Updated: 2023/06/06 04:02:27 by zanejar          ###   ########.fr        #
+#    Updated: 2023/06/06 04:26:35 by zanejar          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ LINK = -lmlx -framework OpenGL -framework AppKit
 SRC_M =	./mandatory/raycasting/textures.c \
 		./mandatory/raycasting/casting_utils.c \
 		./mandatory/raycasting/casting_utils2.c \
+		./mandatory/raycasting/casting_utils3.c \
 		./mandatory/raycasting/hooks.c \
 		./mandatory/raycasting/main.c \
 		./mandatory/raycasting/move.c \

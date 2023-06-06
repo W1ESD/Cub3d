@@ -6,7 +6,7 @@
 /*   By: zanejar <zanejar@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 17:12:48 by zanejar           #+#    #+#             */
-/*   Updated: 2023/06/06 04:02:00 by zanejar          ###   ########.fr       */
+/*   Updated: 2023/06/06 04:26:09 by zanejar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,5 +179,10 @@ int					wall_y_down(t_data *data);
 int					wall_x_down(t_data *data);
 int					wall_y(t_data *data);
 int					wall_x(t_data *data);
+void				second_calcul(t_data *data, int i);
+void				last_calcul(t_data *data, int i);
+void				first_calcul(t_data *data, int i);
+void				get_vert(t_data *data, int i);
+void				get_hor(t_data *data, int i);
 
 #endif
