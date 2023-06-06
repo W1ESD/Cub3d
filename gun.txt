@@ -18,12 +18,3 @@
 ./reload/18.xpm   
 ./reload/19.xpm
 ./reload/20.xpm
-./reload/21.xpm
-./reload/22.xpm
-./reload/23.xpm
-./reload/24.xpm
-./reload/25.xpm
-./reload/26.xpm
-./reload/27.xpm
-./reload/28.xpm
-./reload/29.xpm

@@ -6,7 +6,7 @@
 /*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 00:51:52 by wiessaiy          #+#    #+#             */
-/*   Updated: 2023/06/03 07:41:18 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/06/06 00:34:31 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,30 @@ void	save_player_position(char **map, t_data_parsing *data)
 	return ;
 }
 
+void check_for_doors(char **map_doors)
+{
+	int	i=0;
+	int j;
+	while (map_doors[i])
+	{
+		j = 0;
+		while(map_doors[i][j])
+		{
+			if (map_doors[i][j] == '6')
+			{
+				if(map_doors[i-1][j] != '1' && map_doors[i+1][j] != '1')
+				{
+					printf("Wrong Doors Placement");
+					exit(0);
+				}
+			}
+			j++;
+		}
+		i++;
+	}
+	return;	
+}
+
 void	parsing(t_data_parsing *data, char *map_name)
 {
 	init_data(data);
@@ -82,4 +106,5 @@ void	parsing(t_data_parsing *data, char *map_name)
 	parse_fill(data);
 	fill_spaces_with_walls(data);
 	save_player_position(data->new_map, data);
+	check_for_doors(data->new_map);
 }
