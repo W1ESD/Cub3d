@@ -1,5 +1,17 @@
-NAME = cub3d
-BONUS = cub3d_bonus
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: zanejar <zanejar@student.1337.ma>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/06/06 03:00:56 by zanejar           #+#    #+#              #
+#    Updated: 2023/06/06 04:02:27 by zanejar          ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+NAME = cub3D
+BONUS = cub3D_bonus
     
 CC = gcc
 
@@ -12,6 +24,8 @@ SRC_M =	./mandatory/raycasting/textures.c \
 		./mandatory/raycasting/casting_utils2.c \
 		./mandatory/raycasting/hooks.c \
 		./mandatory/raycasting/main.c \
+		./mandatory/raycasting/move.c \
+		./mandatory/raycasting/move2.c \
 		./mandatory/raycasting/direction_conds.c \
 		./mandatory/raycasting/movement.c \
 		./mandatory/raycasting/player.c \
@@ -44,6 +58,7 @@ SRC_B =	./bonus/raycasting/textures.c \
 		./bonus/raycasting/main_funcs.c \
 		./bonus/raycasting/move.c \
 		./bonus/raycasting/move2.c \
+		./bonus/raycasting/move3.c \
 		./bonus/raycasting/render.c \
 		./bonus/raycasting/map.c \
 		./bonus/raycasting/direction_conds.c \
@@ -70,8 +85,8 @@ SRC_B =	./bonus/raycasting/textures.c \
 		./bonus/parsing/texters_parsing.c \
 		./bonus/parsing/the_new_map.c
 
-HEADER_M = ./mandatory/raycasting/header.h
-HEADER_B = ./bonus/raycasting/header.h
+HEADER_M = ./mandatory/raycasting/header.h ./mandatory/parsing/parsing.h ./mandatory/parsing/macros.h 
+HEADER_B = ./bonus/raycasting/header.h ./bonus/parsing/parsing.h ./bonus/parsing/macros.h 
 
 OBJ_B = $(SRC_B:.c=.o)
 

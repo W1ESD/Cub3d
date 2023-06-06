@@ -1,8 +1,7 @@
 NO          ./textures/sideA.xpm
-SO          ./textures/sideE.xpm
+SO          ./textures/sideD.xpm
 WE          ./textures/sideC.xpm
-EA          ./textures/sideD.xpm
-
+EA          ./textures/sideE.xpm
 
 C       98,175,225
 F       12,45,154

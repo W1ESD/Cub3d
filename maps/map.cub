@@ -1,4 +1,4 @@
-NO          ./textures/sideA.xpm
+NO 			./textures/sideA.xpm				
 SO          ./textures/sideD.xpm
 WE          ./textures/sideC.xpm
 EA          ./textures/sideE.xpm

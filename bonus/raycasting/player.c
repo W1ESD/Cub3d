@@ -6,7 +6,7 @@
 /*   By: zanejar <zanejar@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 16:28:04 by zanejar           #+#    #+#             */
-/*   Updated: 2023/06/05 22:27:31 by zanejar          ###   ########.fr       */
+/*   Updated: 2023/06/06 04:05:47 by zanejar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	player_draw(t_data *data)
 
 	x = data->player.x;
 	y = data->player.y;
-	color = BLACK_COLOR;
+	color = WHITE_COLOR;
 	i = -1;
 	while (++i < data->player.width)
 	{
@@ -32,6 +32,8 @@ void	player_draw(t_data *data)
 			my_mlx_pixel_put(&data->img, (x + i) * MINI_MAP_SCALE_FACTOR, (y
 					+ j) * MINI_MAP_SCALE_FACTOR, color);
 		}
+		line_drawing(data, x + cos(data->player.rotation_angle) * LINE_LENGTH, y
+			+ sin(data->player.rotation_angle) * LINE_LENGTH);
 	}
 }
 

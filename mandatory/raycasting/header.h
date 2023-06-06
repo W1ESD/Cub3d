@@ -6,17 +6,17 @@
 /*   By: zanejar <zanejar@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 17:12:48 by zanejar           #+#    #+#             */
-/*   Updated: 2023/06/05 23:17:07 by zanejar          ###   ########.fr       */
+/*   Updated: 2023/06/06 04:02:00 by zanejar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef HEADER_H
 # define HEADER_H
+# include <fcntl.h>
 # include <math.h>
+# include <mlx.h>
 # include <stdio.h>
 # include <stdlib.h>
-# include <fcntl.h>
-# include <mlx.h>
 # include <unistd.h>
 
 # ifndef PARSER
@@ -125,7 +125,6 @@ typedef struct s_data
 }					t_data;
 
 int					update2(t_data *data);
-void				mlx_clear_image(t_data *data);
 void				direction(t_data *data);
 int					close_window(void);
 int					key_pressed(int keycode, t_data *data);
@@ -144,8 +143,8 @@ double				adjust_angle(double angle);
 int					horizontal_intersection(t_data *data, int i);
 int					vertical_intersection(t_data *data, int i);
 void				cast_ray(t_data *data, int i);
-double				distance_between_xy(t_data *data, \
-double hit_x, double hit_y);
+double				distance_between_xy(t_data *data, double hit_x,
+						double hit_y);
 void				dist_calc(t_data *data, int i, int h, int v);
 int					is_ray_facing_right(double my_angle);
 int					is_ray_facing_down(double my_angle);
@@ -168,6 +167,17 @@ void				cond1(t_data *data);
 void				cond2(t_data *data);
 void				cond3(t_data *data);
 void				cond4(t_data *data);
-int					really_able(t_data *data, int ind);
+int					really_able_up(t_data *data);
+int					really_able_down(t_data *data);
+int					really_able_left(t_data *data);
+int					really_able_right(t_data *data);
+int					wall_y_right(t_data *data);
+int					wall_x_right(t_data *data);
+int					wall_y_left(t_data *data);
+int					wall_x_left(t_data *data);
+int					wall_y_down(t_data *data);
+int					wall_x_down(t_data *data);
+int					wall_y(t_data *data);
+int					wall_x(t_data *data);
 
 #endif

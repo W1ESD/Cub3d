@@ -6,7 +6,7 @@
 /*   By: zanejar <zanejar@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 17:12:48 by zanejar           #+#    #+#             */
-/*   Updated: 2023/06/05 22:50:36 by zanejar          ###   ########.fr       */
+/*   Updated: 2023/06/06 03:57:34 by zanejar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,7 @@
 # define WHITE_COLOR 0xFFFFFF
 # define BLACK_COLOR 0x000000
 # define RED_COLOR 0xFF0000
-# define GREEN_COLOR 0x00FFF0
-# define BLUE_COLOR 0x0000FF
-# define YELLOW_COLOR 0xFFFF00
-# define PURPLE_COLOR 0x800080
-# define WALLS_SKALE 2
-# define ROSE_COLOR 0xFF00FF
-# define GREY_COLOR 0x808080
-# define BROWN_COLOR 0x964B00
+# define LINE_LENGTH 50
 # define WINDOW_WIDTH 1600
 # define WINDOW_HEIGHT 900
 # define PI 3.14159265358979323846
@@ -55,7 +48,6 @@
 # define EAST 2
 # define WEST 3
 # define DOOR 4
-
 # define TEX_SIZE 64
 
 typedef struct s_ray
@@ -165,7 +157,6 @@ typedef struct s_data
 
 void				render_map(t_data *data);
 int					update2(t_data *data);
-void				mlx_clear_image(t_data *data);
 void				direction(t_data *data);
 int					close_window(void);
 int					key_pressed(int keycode, t_data *data);
@@ -210,11 +201,10 @@ int					is_ray_facing_down(double my_angle);
 int					is_ray_facing_right(double my_angle);
 int					really_able(t_data *data, int ind);
 void				direction(t_data *data);
-void				mlx_clear_image(t_data *data);
-void				ft_mini_map(t_data *data);
-void				ft_mini_map_player_render(t_data *data);
 void				render_animation(t_data *data);
 int					update(t_data *data);
+int					really_able_right(t_data *data);
+int					really_able_left(t_data *data);
 void				render_walls(t_data *data, int i);
 void				wall_collision_gliss(t_data *data);
 void				wall_col_ray_h(t_data *data, int index, int i);
@@ -230,5 +220,11 @@ void				cond1(t_data *data);
 void				cond2(t_data *data);
 void				cond3(t_data *data);
 void				cond4(t_data *data);
+int					wall_x_left(t_data *data);
+int					wall_y_left(t_data *data);
+int					wall_x_right(t_data *data);
+int					wall_y_right(t_data *data);
+int					wall_x_down(t_data *data);
+int					wall_y_down(t_data *data);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_casting.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zanejar <zanejar@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 04:17:26 by wiessaiy          #+#    #+#             */
-/*   Updated: 2023/06/05 21:02:08 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/06/06 01:50:10 by zanejar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	line_drawing(t_data *data, int end_x, int end_y)
 {
 	t_vars	vars;
 
-	vars.pixels_color = WHITE_COLOR;
+	vars.pixels_color = RED_COLOR;
 	vars.distance_x = end_x - data->player.x;
 	vars.distance_y = end_y - data->player.y;
 	vars.pixels = sqrt((vars.distance_x * vars.distance_x) + \

@@ -3,14 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zanejar <zanejar@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 16:27:55 by zanejar           #+#    #+#             */
-/*   Updated: 2023/06/05 21:25:51 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/06/06 04:08:52 by zanejar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
+
+void	render_init(t_data *data, t_vars *vars)
+{
+	vars->x = vars->j * data->tile_size;
+	vars->y = vars->i * data->tile_size;
+	if (data->grid[vars->i][vars->j] == 1 || \
+	data->grid[vars->i][vars->j] == 6)
+		vars->color = 0x0FFFFF;
+	else
+		vars->color = 0x005FFF;
+	vars->dx = -1;
+}
 
 void	render_map(t_data *data)
 {
@@ -22,14 +34,7 @@ void	render_map(t_data *data)
 		vars.j = -1;
 		while (++vars.j < data->cols)
 		{
-			vars.x = vars.j * data->tile_size;
-			vars.y = vars.i * data->tile_size;
-			if (data->grid[vars.i][vars.j] == 1 || \
-			data->grid[vars.i][vars.j] == 6)
-				vars.color = 0x0FFFFF;
-			else
-				vars.color = 0x005FFF;
-			vars.dx = -1;
+			render_init(data, &vars);
 			while (++vars.dx < data->tile_size)
 			{
 				vars.dy = -1;

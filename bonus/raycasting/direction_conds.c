@@ -6,7 +6,7 @@
 /*   By: zanejar <zanejar@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 22:49:53 by zanejar           #+#    #+#             */
-/*   Updated: 2023/06/05 22:51:31 by zanejar          ###   ########.fr       */
+/*   Updated: 2023/06/06 03:24:09 by zanejar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	cond2(t_data *data)
 
 void	cond3(t_data *data)
 {
-	if (able_to_turn_left(data))
+	if (able_to_turn_left(data) && really_able_left(data))
 	{
 		data->player.x += cos(data->player.rotation_angle + (PI / 2))
 			* data->player.move_speed;
@@ -49,7 +49,7 @@ void	cond3(t_data *data)
 
 void	cond4(t_data *data)
 {
-	if (able_to_turn_right(data))
+	if (able_to_turn_right(data) && really_able_right(data))
 	{
 		data->player.x -= cos(data->player.rotation_angle + (PI / 2))
 			* data->player.move_speed;

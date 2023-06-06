@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_parsing.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zanejar <zanejar@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/03 05:27:02 by wiessaiy          #+#    #+#             */
-/*   Updated: 2023/06/04 02:59:43 by wiessaiy         ###   ########.fr       */
+/*   Updated: 2023/06/06 02:08:32 by zanejar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,7 @@ void	check_vl(char *s)
 	while (s[i])
 	{
 		if (s[i] != '1' && s[i] != '0' && s[i] != 'N' && s[i] != 'S'
-			&& s[i] != 'E' && s[i] != 'W' && s[i] != ' ' && s[i] != '6'
-			&& s[i] != '9')
+			&& s[i] != 'E' && s[i] != 'W' && s[i] != ' ')
 		{
 			printf("%s%s\n", ERROR, "Invalid Map Element\033[0m");
 			exit(1);

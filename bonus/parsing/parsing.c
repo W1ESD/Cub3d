@@ -73,18 +73,20 @@ void	save_player_position(char **map, t_data_parsing *data)
 	return ;
 }
 
-void check_for_doors(char **map_doors)
+void	check_for_doors(char **map_doors)
 {
-	int	i=0;
-	int j;
+	int	i;
+	int	j;
+
+	i = 0;
 	while (map_doors[i])
 	{
 		j = 0;
-		while(map_doors[i][j])
+		while (map_doors[i][j])
 		{
 			if (map_doors[i][j] == '6')
 			{
-				if(map_doors[i-1][j] != '1' && map_doors[i+1][j] != '1')
+				if (map_doors[i - 1][j] != '1' && map_doors[i + 1][j] != '1')
 				{
 					printf("Wrong Doors Placement");
 					exit(0);
@@ -94,7 +96,7 @@ void check_for_doors(char **map_doors)
 		}
 		i++;
 	}
-	return;	
+	return ;
 }
 
 void	parsing(t_data_parsing *data, char *map_name)
