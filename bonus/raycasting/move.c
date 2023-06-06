@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zanejar <zanejar@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: wiessaiy <wiessaiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 20:30:48 by zanejar           #+#    #+#             */
-/*   Updated: 2023/06/05 22:37:07 by zanejar          ###   ########.fr       */
+/*   Updated: 2023/06/06 01:24:49 by wiessaiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,11 +85,6 @@ int	really_able_down(t_data *data)
 	a += wall_x_down(data);
 	a += wall_y_down(data);
 	if (a == 2 || a == 1)
-		return (0);
-	my_x = data->player.x;
-	my_y = data->player.y;
-	if ((my_x % (int)data->tile_size == 0) && (my_y
-			% (int)data->tile_size == 0))
 		return (0);
 	return (1);
 }
